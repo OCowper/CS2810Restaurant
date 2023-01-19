@@ -6,23 +6,25 @@ package restaurant;
  * @author zkac355
  */
 public class RestController {
-  
-  String[] curOrder = {""};
-  
-  
+
+  // holds the current order
+  private Order curOrder;
+
+
   /**
    * Retrieves the current order from the view.
    */
   public void retrieveOrder() {
-    curOrder[0] = "cake";
+    String[] itemList = {"Cake", "Fanta", "Steak"};
+    curOrder = new Order(itemList, 54, 27.60f);
   }
-  
+
   /**
    * Sends the current stored order on.
    *
    * @return the current order.
    */
-  public String[] returnOrder() {
+  public Order returnOrder() {
     return curOrder;
   }
 }

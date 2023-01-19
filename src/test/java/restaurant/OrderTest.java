@@ -15,5 +15,11 @@ public class OrderTest {
   void testClass() {
     testOrder = new Order();
   }
+  
+  @Test // test 2
+  void testConstructor() {
+    String[] itemList = {"Cake", "Fanta", "Steak"};
+    testOrder = new Order(itemList, 54, 27.60f);
+  }
 
 }
