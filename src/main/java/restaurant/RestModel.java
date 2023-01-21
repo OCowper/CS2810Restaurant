@@ -5,10 +5,11 @@ package restaurant;
  *
  * @author zkac355
  */
-public class RestModel {
+public class RestModel implements Subject {
   
   private RestController controller;
   private Order curOrder;
+  private Observer obs;
   
   /**
    * Constructs an empty instance of the model.
@@ -38,6 +39,18 @@ public class RestModel {
    */
   public Order getOrder() {
     return curOrder;
+  }
+
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
+    
+  }
+
+  @Override
+  public void notifyObservers(Observer obs) {
+    obs.update(true);
+    
   }
 
 }

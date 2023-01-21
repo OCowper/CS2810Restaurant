@@ -7,9 +7,11 @@ package restaurant;
  */
 public class Order {
   
+  // fields representing information about an order. confirmed is the only mutable.
   private String[] items;
   private int tableNum;
   private float total;
+  private Boolean confirmed;
   
   /**
    * Defines the empty constructor for Order.
@@ -54,6 +56,24 @@ public class Order {
    */
   public float getTotal() {
     return total;
+  }
+  
+  /**
+   * Returns whether or not the order is currently confirmed.
+   *
+   * @return true if confirmed, false if not.
+   */
+  public boolean getConfirmed() {
+    return confirmed;
+  }
+  
+  /**
+   * Sets the confirmation value of an order.
+   *
+   * @param confirmed true if confirmed, false if not.
+   */
+  public void setConfirmed(Boolean confirmed) {
+    this.confirmed = confirmed;
   }
 
 }

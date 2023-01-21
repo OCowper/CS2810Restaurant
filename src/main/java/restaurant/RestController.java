@@ -5,7 +5,7 @@ package restaurant;
  *
  * @author zkac355
  */
-public class RestController {
+public class RestController implements Observer {
 
   // holds the current order
   private Order curOrder;
@@ -26,5 +26,17 @@ public class RestController {
    */
   public Order returnOrder() {
     return curOrder;
+  }
+
+  @Override
+  public void update(Order curOrder) {
+    this.curOrder = curOrder;
+    
+  }
+
+  @Override
+  public void update(Boolean confirmed) {
+    curOrder.setConfirmed(confirmed);
+    
   }
 }
