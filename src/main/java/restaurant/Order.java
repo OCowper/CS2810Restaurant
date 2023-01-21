@@ -7,9 +7,9 @@ package restaurant;
  */
 public class Order {
   
-  public String[] items;
-  public int tableNum;
-  public float total;
+  private String[] items;
+  private int tableNum;
+  private float total;
   
   /**
    * Defines the empty constructor for Order.
@@ -27,6 +27,33 @@ public class Order {
     this.items = items;
     this.tableNum = tableNum;
     this.total = total;
+  }
+  
+  /**
+   * Returns the list of items.
+   *
+   * @return list of items ordered by the customer.
+   */
+  public String[] getItems() {
+    return items;
+  }
+  
+  /**
+   * Returns the table number.
+   *
+   * @return the table where the customer is sitting.
+   */
+  public int getTableNum() {
+    return tableNum;
+  }
+  
+  /**
+   * Returns the total cost of the order.
+   *
+   * @return the total cost.
+   */
+  public float getTotal() {
+    return total;
   }
 
 }

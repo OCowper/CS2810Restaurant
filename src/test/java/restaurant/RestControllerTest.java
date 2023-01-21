@@ -31,7 +31,8 @@ public class RestControllerTest {
   @Test // test 2
   void testRetrieval() {
     testController.retrieveOrder();
-    assertEquals(testController.returnOrder().items[0], "Cake",
+    assertEquals(testController.returnOrder().getItems()[0], "Cake",
         "first element should be set to cake");
   } // refactored to work with order class
+  // refactored to work with order getters
 }

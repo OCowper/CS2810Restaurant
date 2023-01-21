@@ -24,10 +24,18 @@ public class RestModel {
     this.controller = controller;
   }
   
+  /**
+   * Collects the current order from the controller.
+   */
   public void retrieveOrder() {
     curOrder = controller.returnOrder();
   }
   
+  /**
+   * Returns the current order. 
+   *
+   * @return the order to be returned.
+   */
   public Order getOrder() {
     return curOrder;
   }

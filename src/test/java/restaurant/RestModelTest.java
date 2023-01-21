@@ -1,6 +1,7 @@
 package restaurant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +39,7 @@ public class RestModelTest {
   void testGetOrder() {
     testController.retrieveOrder();
     testModel.retrieveOrder();
-    assertEquals(testModel.getOrder().items[0], "Cake", "order first item should be cake");
-  }
+    assertEquals(testModel.getOrder().getItems()[0], "Cake", "order first item should be cake");
+  } // refactored to work with new order getters
 
 }
