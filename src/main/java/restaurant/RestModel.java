@@ -7,7 +7,8 @@ package restaurant;
  */
 public class RestModel {
   
-  RestController controller;
+  private RestController controller;
+  private Order curOrder;
   
   /**
    * Constructs an empty instance of the model.
@@ -21,6 +22,14 @@ public class RestModel {
    */
   public RestModel(RestController controller) {
     this.controller = controller;
+  }
+  
+  public void retrieveOrder() {
+    curOrder = controller.returnOrder();
+  }
+  
+  public Order getOrder() {
+    return curOrder;
   }
 
 }
