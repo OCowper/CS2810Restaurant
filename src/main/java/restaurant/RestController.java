@@ -11,6 +11,11 @@ public class RestController implements Observer {
 
   // holds the current order
   private Order curOrder;
+  
+  /**
+   * Constructs an empty instance of the controller.
+   */
+  public RestController() {}
 
 
   /**
