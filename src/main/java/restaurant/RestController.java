@@ -6,18 +6,12 @@ package restaurant;
  * @author zkac355
  */
 public class RestController implements Observer {
+  
+  private RestModel model = new RestModel(this);
 
   // holds the current order
   private Order curOrder;
 
-
-  /**
-   * Retrieves the current order from the view.
-   */
-  public void retrieveOrder() {
-    String[] itemList = {"Cake", "Fanta", "Steak"};
-    curOrder = new Order(itemList, 54, 27.60f);
-  }
 
   /**
    * Sends the current stored order on.
@@ -27,10 +21,20 @@ public class RestController implements Observer {
   public Order returnOrder() {
     return curOrder;
   }
+  
+  /**
+   * Returns the instance of the current model.
+   *
+   * @return the current model.
+   */
+  public RestModel returnModel() {
+    return model;
+  }
 
   @Override
   public void update(Order curOrder) {
     this.curOrder = curOrder;
+    model.retrieveOrder(curOrder);
     
   }
 

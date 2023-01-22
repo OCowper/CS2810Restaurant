@@ -1,7 +1,5 @@
 package restaurant;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -28,11 +26,5 @@ public class RestControllerTest {
     testController = new RestController();
   } // passed by creating a controller class
 
-  @Test // test 2
-  void testRetrieval() {
-    testController.retrieveOrder();
-    assertEquals(testController.returnOrder().getItems()[0], "Cake",
-        "first element should be set to cake");
-  } // refactored to work with order class
-  // refactored to work with order getters
+  // test retrieval deleted after refactoring to work with observers.
 }

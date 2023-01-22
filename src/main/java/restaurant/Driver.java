@@ -6,5 +6,8 @@ package restaurant;
  * @author zkac355
  */
 public class Driver {
+  
+  RestController controller = new RestController();
+  
 
 }

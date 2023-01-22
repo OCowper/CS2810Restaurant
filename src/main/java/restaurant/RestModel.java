@@ -7,7 +7,6 @@ package restaurant;
  */
 public class RestModel implements Subject {
   
-  private RestController controller;
   private Order curOrder;
   private Observer obs;
   
@@ -21,15 +20,15 @@ public class RestModel implements Subject {
    *
    * @param controller the controller.
    */
-  public RestModel(RestController controller) {
-    this.controller = controller;
+  public RestModel(Observer controller) {
+    addObservers(controller);
   }
   
   /**
    * Collects the current order from the controller.
    */
-  public void retrieveOrder() {
-    curOrder = controller.returnOrder();
+  public void retrieveOrder(Order curOrder) {
+    this.curOrder = curOrder;
   }
   
   /**

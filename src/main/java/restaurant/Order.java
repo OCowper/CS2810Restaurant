@@ -11,7 +11,7 @@ public class Order {
   private String[] items;
   private int tableNum;
   private float total;
-  private Boolean confirmed;
+  private Boolean confirmed = false;
   
   /**
    * Defines the empty constructor for Order.
