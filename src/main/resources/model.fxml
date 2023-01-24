@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainView">
+   <children>
+      <ScrollPane fx:id="scrollpane" hbarPolicy="NEVER" layoutX="14.0" layoutY="173.0" maxHeight="1.7976931348623157E308" prefHeight="213.0" prefWidth="200.0" vbarPolicy="ALWAYS" vmax="2.0">
+        <content>
+          <AnchorPane fx:id="anchorpane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <VBox fx:id="vbox" prefHeight="247.0" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="starters" alignment="TOP_LEFT" text="Starters">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <CheckBox fx:id="one" mnemonicParsing="false" text="Fries" />
+                        <CheckBox fx:id="two" mnemonicParsing="false" text="Beans" />
+                        <CheckBox fx:id="three" mnemonicParsing="false" text="Wings" />
+                        <CheckBox fx:id="four" mnemonicParsing="false" text="Rice" />
+                        <CheckBox fx:id="five" mnemonicParsing="false" text="Salad" />
+                        <Label fx:id="mains" text="Mains">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
+                        <CheckBox fx:id="six" mnemonicParsing="false" text="Burger" />
+                        <CheckBox fx:id="seven" mnemonicParsing="false" text="Wrap" />
+                        <CheckBox fx:id="eight" mnemonicParsing="false" text="Pizza" />
+                        <CheckBox fx:id="nine" mnemonicParsing="false" text="Burrito" />
+                        <CheckBox fx:id="ten" mnemonicParsing="false" text="HotDog" />
+                        <Label fx:id="drinks" text="Drinks" />
+                        <CheckBox fx:id="eleven" mnemonicParsing="false" text="Cola" />
+                        <CheckBox fx:id="twelve" mnemonicParsing="false" text="Fanta" />
+                        <CheckBox fx:id="thirteen" mnemonicParsing="false" text="Sprite" />
+                        <CheckBox fx:id="fourteen" mnemonicParsing="false" text="Pepsi" />
+                        <CheckBox fx:id="fifteen" mnemonicParsing="false" text="Oasis" />
+                        <CheckBox fx:id="sixteen" mnemonicParsing="false" text="Water" />
+                        <Label fx:id="desserts" text="Desserts" />
+                        <CheckBox fx:id="seventeen" mnemonicParsing="false" text="IceCream" />
+                        <CheckBox fx:id="eightteen" mnemonicParsing="false" text="Cake" />
+                        <CheckBox fx:id="nineteen" mnemonicParsing="false" text="Cookies" />
+                        <CheckBox fx:id="twenty" mnemonicParsing="false" text="Brownies" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+      <TextField fx:id="searchbar" layoutX="14.0" layoutY="14.0" prefHeight="35.0" prefWidth="200.0" promptText="SEARCH">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </TextField>
+      <Separator fx:id="seperator" layoutX="394.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="10.0" />
+      <Label fx:id="selectionlbl" layoutX="421.0" layoutY="18.0" text="YOUR SELECTION">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="userselections" disable="true" layoutX="424.0" layoutY="49.0" prefHeight="144.0" prefWidth="149.0" />
+      <Label fx:id="tablelbl" layoutX="452.0" layoutY="200.0" text="TABLE NUMBER:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tablenotxt" layoutX="425.0" layoutY="217.0" />
+      <Button fx:id="submitbtn" layoutX="447.0" layoutY="309.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="PLACE ORDER" />
+      <Label fx:id="totallbl" layoutX="479.0" layoutY="250.0" text="TOTAL:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="totaltxt" disable="true" editable="false" layoutX="425.0" layoutY="267.0" />
+      <Label fx:id="titlelbl" layoutX="249.0" layoutY="9.0" text="Oaxaca">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <ListView fx:id="searchlist" disable="true" layoutX="14.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
+   </children>
+</Pane>
