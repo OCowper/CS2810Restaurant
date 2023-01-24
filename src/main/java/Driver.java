@@ -13,7 +13,7 @@ public class Driver extends Application{
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("model.fxml"));
+    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
     Scene scene = new Scene(root, 600, 400); // Creates Scene and Size
     primaryStage.setScene(scene); //Sets the Primary Stage as Scene
     primaryStage.setResizable(false); //Makes GUI not resizeable
