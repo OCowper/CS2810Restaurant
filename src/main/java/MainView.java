@@ -1,8 +1,12 @@
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -12,6 +16,7 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MainView {
 
@@ -56,6 +61,9 @@ public class MainView {
 
   @FXML
   private CheckBox one;
+
+  @FXML
+  private Button rtnbtn;
 
   @FXML
   private ScrollPane scrollpane;
@@ -214,5 +222,11 @@ private void handleCheckboxClick(CheckBox checkbox) {
       userselections.setText(selectedCheckboxes.toString());
       totaltxt.setText("£" + String.valueOf(totalCost));
       
+  }
+  
+  public void handleCustomerRtnBtn() throws IOException {
+    Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+    Stage window = (Stage) rtnbtn.getScene().getWindow();
+    window.setScene(new Scene(root, 600, 400));
   }
 }

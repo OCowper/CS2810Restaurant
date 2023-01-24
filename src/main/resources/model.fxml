@@ -87,5 +87,6 @@
          </font>
       </Label>
       <ListView fx:id="searchlist" disable="true" layoutX="14.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
+      <Button fx:id="rtnbtn" layoutX="223.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleCustomerRtnBtn" prefHeight="25.0" prefWidth="164.0" text="return to menu" />
    </children>
 </Pane>
