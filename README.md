@@ -33,5 +33,13 @@ To implement the customer menu, We had identified that the following features ne
 - the total cost being displayed
 - a submit order button to send the order to the kitchen
 
+Connecting Main Menu x Customer Menu/Order GUI
+User Story:As a customer I want to be able to go from the Main Menu to the Customer Main / Order Screen, and from the Customer Menu / Order Screen to the Main Menu.
+
+To implement this feature, we needed to:
+- Update our current driver class to launch the Main Menu
+- Add a button onto Main Menu which is linked to a handle method to swap scenes
+- Add another button on the Customer Menu screen which is linked to a handle method to swap scenes.
+
 
 
