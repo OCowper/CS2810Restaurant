@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -100,6 +102,15 @@ public class MainView {
   private CheckBox three;
 
   @FXML
+  private Label titlelbl;
+
+  @FXML
+  private Label totallbl;
+
+  @FXML
+  private TextField totaltxt;
+
+  @FXML
   private CheckBox twelve;
 
   @FXML
@@ -114,15 +125,32 @@ public class MainView {
   @FXML
   private VBox vbox;
 
+
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
+
   
   public void initialize() {
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
-  }
+    for (Node node : vbox.getChildren()) {
+        if (node instanceof CheckBox) {
+            CheckBox checkbox = (CheckBox) node;
+            checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
+        }
+    }
+}
+
+private void handleCheckboxClick(CheckBox checkbox) {
+    if (checkbox.isSelected()) {
+        userselections.appendText(checkbox.getText() + ", ");
+    }
+    else {
+        userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
+    }
+}
 
   private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
-  
+ 
   @FXML
   private void handleSearchbarAction() {
       String text = searchbar.getText();
@@ -151,7 +179,6 @@ public class MainView {
           selectedCheckboxes.append(checkbox.getText()).append(", ");
       }
       userselections.setText(selectedCheckboxes.toString());
+      
   }
 }
-
-
