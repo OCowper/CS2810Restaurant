@@ -23,4 +23,10 @@ public class Menu {
       Stage window = (Stage) customerbtn.getScene().getWindow();
       window.setScene(new Scene(root, 600, 400));
     }
+    
+    public void handleStaffLoginBtn() throws IOException {
+      Parent root = FXMLLoader.load(getClass().getResource("staffLogin.fxml"));
+      Stage window = (Stage) customerbtn.getScene().getWindow();
+      window.setScene(new Scene(root, 600, 400));
+    }
 }
