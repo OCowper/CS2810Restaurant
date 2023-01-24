@@ -41,5 +41,10 @@ To implement this feature, we needed to:
 - Add a button onto Main Menu which is linked to a handle method to swap scenes
 - Add another button on the Customer Menu screen which is linked to a handle method to swap scenes.
 
+Connecting Main Menu x Staff Login GUI
+User Story:As a staff member I want to be able to go from the Main Menu to the Staff Login page, and from the Staff Login page Screen to the Main Menu.
 
-
+To implement this feature, we needed to:
+- Maintain our current Driver Class
+- Create a handle method for swapping from Main Menu to Staff Login Screen
+- Create a handle method for swapping from Staff Login Screen to Main Menu
