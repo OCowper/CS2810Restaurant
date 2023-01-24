@@ -121,10 +121,13 @@ public class MainView {
     searchbar.setOnAction(e -> handleSearchbarAction());
   }
 
+  private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
+  
   @FXML
   private void handleSearchbarAction() {
       String text = searchbar.getText();
       matchingCheckboxes.clear();
+      matchingCheckboxes.addAll(previouslySelectedCheckboxes);
       for (Node node : vbox.getChildren()) {
           if (node instanceof CheckBox) {
               CheckBox checkBox = (CheckBox) node;
@@ -132,18 +135,23 @@ public class MainView {
                   checkBox.setSelected(true);
                   if (checkBox.isSelected()) {
                       matchingCheckboxes.add(checkBox);
-                  }
+                      }
               } else {
-                  checkBox.setSelected(false);
+                  if(!previouslySelectedCheckboxes.contains(checkBox)){
+                      checkBox.setSelected(false);
+                  }
               }
           }
       }
+      previouslySelectedCheckboxes.clear();
+      previouslySelectedCheckboxes.addAll(matchingCheckboxes);
+
       StringBuilder selectedCheckboxes = new StringBuilder();
       for (CheckBox checkbox : matchingCheckboxes) {
           selectedCheckboxes.append(checkbox.getText()).append(", ");
       }
       userselections.setText(selectedCheckboxes.toString());
   }
-
-
 }
+
+
