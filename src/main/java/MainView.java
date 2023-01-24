@@ -127,58 +127,83 @@ public class MainView {
 
 
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
+  private Map<CheckBox, Double> itemCosts = new HashMap<>();
+  private double totalCost = 0;
 
-  
   public void initialize() {
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
-    for (Node node : vbox.getChildren()) {
-        if (node instanceof CheckBox) {
-            CheckBox checkbox = (CheckBox) node;
-            checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
-        }
-    }
-}
+    itemCosts.put(one, 8.00);
+    itemCosts.put(two, 8.00);
+    itemCosts.put(three, 8.00);
+    itemCosts.put(four, 8.00);
+    itemCosts.put(five, 8.00);
+    itemCosts.put(six, 8.00);
+    itemCosts.put(seven, 8.00);
+    itemCosts.put(eight, 8.00);
+    itemCosts.put(nine, 8.00);
+    itemCosts.put(ten, 8.00);
+    itemCosts.put(eleven, 8.00);
+    itemCosts.put(twelve, 8.00);
+    itemCosts.put(thirteen, 8.00);
+    itemCosts.put(fourteen, 8.00);
+    itemCosts.put(fifteen, 8.00);
+    itemCosts.put(sixteen, 8.00);
+    itemCosts.put(seventeen, 8.00);
+    itemCosts.put(eightteen, 8.00);
+    itemCosts.put(nineteen, 8.00);
+    itemCosts.put(twenty, 8.00);
 
-private void handleCheckboxClick(CheckBox checkbox) {
+    for (Node node : vbox.getChildren()) {
+      if (node instanceof CheckBox) {
+        CheckBox checkbox = (CheckBox) node;
+        checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
+      }
+    }
+  }
+
+  private void handleCheckboxClick(CheckBox checkbox) {
     if (checkbox.isSelected()) {
-        userselections.appendText(checkbox.getText() + ", ");
+      userselections.appendText(checkbox.getText() + ", ");
+      totalCost += itemCosts.get(checkbox);
+      totaltxt.setText("£" + Double.toString(totalCost));
+    } else {
+      userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
+      totalCost -= itemCosts.get(checkbox);
+      totaltxt.setText("£" + Double.toString(totalCost));
     }
-    else {
-        userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
-    }
-}
+  }
 
   private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
- 
+
   @FXML
   private void handleSearchbarAction() {
-      String text = searchbar.getText();
-      matchingCheckboxes.clear();
-      matchingCheckboxes.addAll(previouslySelectedCheckboxes);
-      for (Node node : vbox.getChildren()) {
-          if (node instanceof CheckBox) {
-              CheckBox checkBox = (CheckBox) node;
-              if (checkBox.getText().toLowerCase().contains(text.toLowerCase())) {
-                  checkBox.setSelected(true);
-                  if (checkBox.isSelected()) {
-                      matchingCheckboxes.add(checkBox);
-                      }
-              } else {
-                  if(!previouslySelectedCheckboxes.contains(checkBox)){
-                      checkBox.setSelected(false);
-                  }
-              }
+    String text = searchbar.getText();
+    matchingCheckboxes.clear();
+    matchingCheckboxes.addAll(previouslySelectedCheckboxes);
+    for (Node node : vbox.getChildren()) {
+      if (node instanceof CheckBox) {
+        CheckBox checkBox = (CheckBox) node;
+        if (checkBox.getText().toLowerCase().contains(text.toLowerCase())) {
+          checkBox.setSelected(true);
+          if (checkBox.isSelected()) {
+            matchingCheckboxes.add(checkBox);
+          } else {
+            if (!previouslySelectedCheckboxes.contains(checkBox)) {
+              checkBox.setSelected(false);
+            }
           }
+        }
       }
       previouslySelectedCheckboxes.clear();
       previouslySelectedCheckboxes.addAll(matchingCheckboxes);
 
       StringBuilder selectedCheckboxes = new StringBuilder();
       for (CheckBox checkbox : matchingCheckboxes) {
-          selectedCheckboxes.append(checkbox.getText()).append(", ");
+        selectedCheckboxes.append(checkbox.getText()).append(", ");
       }
       userselections.setText(selectedCheckboxes.toString());
-      
+
+    }
   }
 }
