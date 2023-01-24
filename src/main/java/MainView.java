@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
@@ -61,6 +62,9 @@ public class MainView {
 
   @FXML
   private TextField searchbar;
+
+  @FXML
+  private ListView<?> searchlist;
 
   @FXML
   private Label selectionlbl;
@@ -129,7 +133,7 @@ public class MainView {
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
-
+  
   public void initialize() {
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
@@ -155,55 +159,60 @@ public class MainView {
     itemCosts.put(twenty, 8.00);
 
     for (Node node : vbox.getChildren()) {
-      if (node instanceof CheckBox) {
-        CheckBox checkbox = (CheckBox) node;
-        checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
-      }
+        if (node instanceof CheckBox) {
+            CheckBox checkbox = (CheckBox) node;
+            checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
+        }
     }
-  }
+}
 
-  private void handleCheckboxClick(CheckBox checkbox) {
+private void handleCheckboxClick(CheckBox checkbox) {
     if (checkbox.isSelected()) {
-      userselections.appendText(checkbox.getText() + ", ");
-      totalCost += itemCosts.get(checkbox);
-      totaltxt.setText("£" + Double.toString(totalCost));
-    } else {
-      userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
-      totalCost -= itemCosts.get(checkbox);
-      totaltxt.setText("£" + Double.toString(totalCost));
+        userselections.appendText(checkbox.getText() + ", ");
+        totalCost += itemCosts.get(checkbox);
+        totaltxt.setText("£" + Double.toString(totalCost));
     }
-  }
+    else {
+        userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
+        totalCost -= itemCosts.get(checkbox);
+        totaltxt.setText("£" + Double.toString(totalCost));
+    }
+}
 
   private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
-
+ 
   @FXML
   private void handleSearchbarAction() {
-    String text = searchbar.getText();
-    matchingCheckboxes.clear();
-    matchingCheckboxes.addAll(previouslySelectedCheckboxes);
-    for (Node node : vbox.getChildren()) {
-      if (node instanceof CheckBox) {
-        CheckBox checkBox = (CheckBox) node;
-        if (checkBox.getText().toLowerCase().contains(text.toLowerCase())) {
-          checkBox.setSelected(true);
-          if (checkBox.isSelected()) {
-            matchingCheckboxes.add(checkBox);
-          } else {
-            if (!previouslySelectedCheckboxes.contains(checkBox)) {
-              checkBox.setSelected(false);
-            }
+      String text = searchbar.getText();
+      matchingCheckboxes.clear();
+      matchingCheckboxes.addAll(previouslySelectedCheckboxes);
+      for (Node node : vbox.getChildren()) {
+          if (node instanceof CheckBox) {
+              CheckBox checkBox = (CheckBox) node;
+              if (checkBox.getText().toLowerCase().contains(text.toLowerCase())) {
+                  checkBox.setSelected(true);
+                  if (checkBox.isSelected()) {
+                      matchingCheckboxes.add(checkBox);
+                      totalCost += itemCosts.get(checkBox);
+                      } else {
+                        totalCost -= itemCosts.get(checkBox);
+                      }
+              } else {
+                  if(!previouslySelectedCheckboxes.contains(checkBox)){
+                      checkBox.setSelected(false);
+                  }
+              } 
           }
-        }
       }
       previouslySelectedCheckboxes.clear();
       previouslySelectedCheckboxes.addAll(matchingCheckboxes);
 
       StringBuilder selectedCheckboxes = new StringBuilder();
       for (CheckBox checkbox : matchingCheckboxes) {
-        selectedCheckboxes.append(checkbox.getText()).append(", ");
+          selectedCheckboxes.append(checkbox.getText()).append(", ");
       }
       userselections.setText(selectedCheckboxes.toString());
-
-    }
+      totaltxt.setText("£" + String.valueOf(totalCost));
+      
   }
 }
