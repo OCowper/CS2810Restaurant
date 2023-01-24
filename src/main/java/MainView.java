@@ -1,12 +1,9 @@
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
@@ -64,9 +61,6 @@ public class MainView {
   private TextField searchbar;
 
   @FXML
-  private ListView<?> searchlist;
-
-  @FXML
   private Label selectionlbl;
 
   @FXML
@@ -106,15 +100,6 @@ public class MainView {
   private CheckBox three;
 
   @FXML
-  private Label titlelbl;
-
-  @FXML
-  private Label totallbl;
-
-  @FXML
-  private TextField totaltxt;
-
-  @FXML
   private CheckBox twelve;
 
   @FXML
@@ -128,4 +113,37 @@ public class MainView {
 
   @FXML
   private VBox vbox;
+
+  private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
+  
+  public void initialize() {
+    scrollpane.setContent(vbox);
+    searchbar.setOnAction(e -> handleSearchbarAction());
+  }
+
+  @FXML
+  private void handleSearchbarAction() {
+      String text = searchbar.getText();
+      matchingCheckboxes.clear();
+      for (Node node : vbox.getChildren()) {
+          if (node instanceof CheckBox) {
+              CheckBox checkBox = (CheckBox) node;
+              if (checkBox.getText().toLowerCase().contains(text.toLowerCase())) {
+                  checkBox.setSelected(true);
+                  if (checkBox.isSelected()) {
+                      matchingCheckboxes.add(checkBox);
+                  }
+              } else {
+                  checkBox.setSelected(false);
+              }
+          }
+      }
+      StringBuilder selectedCheckboxes = new StringBuilder();
+      for (CheckBox checkbox : matchingCheckboxes) {
+          selectedCheckboxes.append(checkbox.getText()).append(", ");
+      }
+      userselections.setText(selectedCheckboxes.toString());
+  }
+
+
 }
