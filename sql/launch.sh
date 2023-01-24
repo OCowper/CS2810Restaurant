@@ -8,4 +8,4 @@ docker run --volume=PROJECT-pg:/var/lib/postgresql/data --name=PROJECTDB -p 5432
 # docker stop PROJECTDB 
 # to start it up again run:
 # docker start PROJECTDB
- 
+# the address will be localhost:5432
