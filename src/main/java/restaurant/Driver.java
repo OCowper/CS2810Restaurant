@@ -6,7 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Driver extends Application{
+/**
+ * Starts the application.
+ *
+ * @author Irina Gubaciova, Mathushan Santhan, Manpreet Kaur
+ */
+public class Driver extends Application {
 
   public static void main(String[] args) {
     launch(args);
