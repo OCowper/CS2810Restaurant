@@ -8,7 +8,7 @@ package restaurant;
 public class Order {
   
   // fields representing information about an order. confirmed is the only mutable.
-  private int ID;
+  private int orderId;
   private String[] items;
   private int tableNum;
   private float total;

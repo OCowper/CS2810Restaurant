@@ -15,7 +15,7 @@ public class EstablishConnection {
   /**
    * Establishes a connection to the database based on user id and password. Static.
    */
-  public static void establishConnection() {
+  public static Connection establishConnection() {
 
     Scanner userInput = new Scanner(System.in);
     System.out.println("Enter your username: ");
@@ -48,6 +48,7 @@ public class EstablishConnection {
       System.out.println("connection failed");
       System.exit(1);
     }
+    return connection;
 
   }
 
