@@ -48,7 +48,7 @@ public class StaffLogin {
    * @throws IOException throws if exception occurs
    */
   public void handleStaffRtnBtn() throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
     Stage window = (Stage) returnBtn.getScene().getWindow();
     window.setScene(new Scene(root, 600, 400));
   }

@@ -239,7 +239,7 @@ public class MainView {
    * @throws IOException if an IO error occurs
    */
   public void handleCustomerRtnBtn() throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
+    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
     Stage window = (Stage) rtnbtn.getScene().getWindow();
     window.setScene(new Scene(root, 600, 400));
   }

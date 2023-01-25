@@ -31,7 +31,7 @@ public class Menu {
    * @throws IOException if an IO error occurs
    */
   public void handleCustomerBtn() throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("model.fxml"));
+    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("model.fxml"));
     Stage window = (Stage) customerbtn.getScene().getWindow();
     window.setScene(new Scene(root, 600, 400));
   }
@@ -42,7 +42,7 @@ public class Menu {
    * @throws IOException if an IO error occurs
    */
   public void handleStaffLoginBtn() throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("staffLogin.fxml"));
+    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("staffLogin.fxml"));
     Stage window = (Stage) customerbtn.getScene().getWindow();
     window.setScene(new Scene(root, 600, 400));
   }
