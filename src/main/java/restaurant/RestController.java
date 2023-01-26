@@ -19,6 +19,11 @@ public class RestController implements Observer {
    */
   public RestController() {}
   
+  /**
+   * Constructs an instance of the controller containing the view.
+   *
+   * @param view the current view representing the current screen.
+   */
   public RestController(MainView view) {
     this.view = view;
     this.view.addObservers(this);

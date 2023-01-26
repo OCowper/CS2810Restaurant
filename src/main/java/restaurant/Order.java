@@ -1,5 +1,7 @@
 package restaurant;
 
+import java.util.List;
+
 /**
  * Data storage class to collate all information about an order.
  *
@@ -9,7 +11,7 @@ public class Order {
   
   // fields representing information about an order. confirmed is the only mutable.
   private int orderId;
-  private String[] items;
+  private List<String> items;
   private int tableNum;
   private float total;
   private Boolean confirmed = false;
@@ -26,7 +28,7 @@ public class Order {
    * @param tableNum the number of the table ordered from
    * @param total total cost of the order
    */
-  public Order(String[] items, int tableNum, float total) {
+  public Order(List<String> items, int tableNum, float total) {
     this.items = items;
     this.tableNum = tableNum;
     this.total = total;
@@ -37,7 +39,7 @@ public class Order {
    *
    * @return list of items ordered by the customer.
    */
-  public String[] getItems() {
+  public List<String> getItems() {
     return items;
   }
   

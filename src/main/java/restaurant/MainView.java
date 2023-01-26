@@ -1,8 +1,10 @@
 package restaurant;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -247,8 +249,11 @@ public class MainView implements Subject {
   
   @FXML
   void isPressed(ActionEvent event) {
-    String[] orderList = {"test1", "test2", "test3"};
-    curOrder = new Order(orderList, 54, 27.60f);
+    List<String> orderList = new ArrayList<String>();
+    for (CheckBox checkbox : matchingCheckboxes) {
+      orderList.add(checkbox.getText());
+    }
+    curOrder = new Order(orderList, Integer.parseInt(tablenotxt.getText()), (float)totalCost);
     notifyObservers(obs);
   }
   
