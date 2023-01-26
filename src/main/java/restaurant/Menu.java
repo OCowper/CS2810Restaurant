@@ -31,9 +31,12 @@ public class Menu {
    * @throws IOException if an IO error occurs
    */
   public void handleCustomerBtn() throws IOException {
-    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("model.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("model.fxml"));
     Stage window = (Stage) customerbtn.getScene().getWindow();
-    window.setScene(new Scene(root, 600, 400));
+    Scene scene = new Scene(loader.load(), 600, 400);
+    new RestController(loader.getController());
+    window.setScene(scene);
+
   }
 
   /**

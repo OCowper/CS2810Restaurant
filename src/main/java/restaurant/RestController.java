@@ -11,11 +11,18 @@ public class RestController implements Observer {
 
   // holds the current order
   private Order curOrder;
+  //holds the current view
+  private MainView view;
   
   /**
    * Constructs an empty instance of the controller.
    */
   public RestController() {}
+  
+  public RestController(MainView view) {
+    this.view = view;
+    this.view.addObservers(this);
+  }
 
 
   /**
@@ -39,7 +46,7 @@ public class RestController implements Observer {
   @Override
   public void update(Order curOrder) {
     this.curOrder = curOrder;
-    model.retrieveOrder(curOrder);
+    storeOrder();
     
   }
 
@@ -47,5 +54,10 @@ public class RestController implements Observer {
   public void update(Boolean confirmed) {
     curOrder.setConfirmed(confirmed);
     
+  }
+  
+  private void storeOrder() {
+    model.retrieveOrder(curOrder);
+    view.confirmRecieved();
   }
 }

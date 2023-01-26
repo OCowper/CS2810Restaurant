@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -25,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author Irina Gubaciova, Mathushan Santhan, Manpreet Kaur
  */
-public class MainView {
+public class MainView implements Subject {
 
   @FXML
   private AnchorPane anchorpane;
@@ -242,5 +243,33 @@ public class MainView {
     Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
     Stage window = (Stage) rtnbtn.getScene().getWindow();
     window.setScene(new Scene(root, 600, 400));
+  }
+  
+  @FXML
+  void isPressed(ActionEvent event) {
+    String[] orderList = {"test1", "test2", "test3"};
+    curOrder = new Order(orderList, 54, 27.60f);
+    notifyObservers(obs);
+  }
+  
+  public Observer obs;
+  private Order curOrder;
+
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
+    
+  }
+
+  @Override
+  public void notifyObservers(Observer obs) {
+    obs.update(curOrder);
+  }
+  
+  /**
+   * temporary method to confirm the order has made it.
+   */
+  public void confirmRecieved() {
+    titlelbl.setText("recieved");
   }
 }

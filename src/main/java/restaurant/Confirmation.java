@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 /**
  * this class will be used to confirm the orders.
- * 
+ *
  * @author zjac311, zkac355
  *
  */
@@ -22,9 +22,9 @@ public class Confirmation {
    */
   public static void confirm(int id, Connection connection) {
     PreparedStatement stmt = null;
-    String SQL = "UPDATE Orders, SET confirmed = true, WHERE id = ?";
+    String tempStmt = "UPDATE Orders, SET confirmed = true, WHERE id = ?";
     try {
-      stmt = connection.prepareStatement(SQL);
+      stmt = connection.prepareStatement(tempStmt);
       stmt.setInt(1, id);
       stmt.executeUpdate();
     } catch (SQLException e) {
