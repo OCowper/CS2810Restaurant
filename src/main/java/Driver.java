@@ -4,8 +4,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Driver extends Application{
+/**
+ * 
+ * @author ZLAC183
+ *
+ */
+public class Driver extends Application {
 
+  /**
+   * @param args
+   */
   public static void main(String[] args) {
     launch(args);
 
@@ -15,11 +23,11 @@ public class Driver extends Application{
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
     Scene scene = new Scene(root, 600, 400); // Creates Scene and Size
-    primaryStage.setScene(scene); //Sets the Primary Stage as Scene
-    primaryStage.setResizable(false); //Makes GUI not resizeable
-    primaryStage.show(); //Displays GUI
-    
-    
+    primaryStage.setScene(scene); // Sets the Primary Stage as Scene
+    primaryStage.setResizable(false); // Makes GUI not resizeable
+    primaryStage.show(); // Displays GUI
+
+
   }
 
 }

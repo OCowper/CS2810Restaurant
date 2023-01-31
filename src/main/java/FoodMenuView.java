@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,7 +19,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainView {
+/**
+ * Food menu view. Lets user to view, search and select items they like, as well as send an order.
+ * Defines the behavior of all the associated interactive elements.
+ *
+ * @author ZLAC183
+ *
+ */
+public class FoodMenuView {
 
   @FXML
   private AnchorPane anchorpane;
@@ -141,7 +149,7 @@ public class MainView {
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
-  
+
   public void initialize() {
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
@@ -167,66 +175,73 @@ public class MainView {
     itemCosts.put(twenty, 8.00);
 
     for (Node node : vbox.getChildren()) {
-        if (node instanceof CheckBox) {
-            CheckBox checkbox = (CheckBox) node;
-            checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
-        }
+      if (node instanceof CheckBox) {
+        CheckBox checkbox = (CheckBox) node;
+        checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
+      }
     }
-}
+  }
 
-private void handleCheckboxClick(CheckBox checkbox) {
+  private void handleCheckboxClick(CheckBox checkbox) {
     if (checkbox.isSelected()) {
-        userselections.appendText(checkbox.getText() + ", ");
-        totalCost += itemCosts.get(checkbox);
-        totaltxt.setText("£" + Double.toString(totalCost));
+      userselections.appendText(checkbox.getText() + ", ");
+      totalCost += itemCosts.get(checkbox);
+      totaltxt.setText("£" + Double.toString(totalCost));
+    } else {
+      userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
+      totalCost -= itemCosts.get(checkbox);
+      totaltxt.setText("£" + Double.toString(totalCost));
     }
-    else {
-        userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
-        totalCost -= itemCosts.get(checkbox);
-        totaltxt.setText("£" + Double.toString(totalCost));
-    }
-}
+  }
 
   private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
- 
+
   @FXML
   private void handleSearchbarAction() {
-      String text = searchbar.getText();
-      matchingCheckboxes.clear();
-      matchingCheckboxes.addAll(previouslySelectedCheckboxes);
-      for (Node node : vbox.getChildren()) {
-          if (node instanceof CheckBox) {
-              CheckBox checkBox = (CheckBox) node;
-              if (checkBox.getText().toLowerCase().contains(text.toLowerCase())) {
-                  checkBox.setSelected(true);
-                  if (checkBox.isSelected()) {
-                      matchingCheckboxes.add(checkBox);
-                      totalCost += itemCosts.get(checkBox);
-                      } else {
-                        totalCost -= itemCosts.get(checkBox);
-                      }
-              } else {
-                  if(!previouslySelectedCheckboxes.contains(checkBox)){
-                      checkBox.setSelected(false);
-                  }
-              } 
+    String text = searchbar.getText();
+    matchingCheckboxes.clear();
+    matchingCheckboxes.addAll(previouslySelectedCheckboxes);
+    for (Node node : vbox.getChildren()) {
+      if (node instanceof CheckBox) {
+        CheckBox checkBox = (CheckBox) node;
+        if (checkBox.getText().toLowerCase().contains(text.toLowerCase())) {
+          checkBox.setSelected(true);
+          if (checkBox.isSelected()) {
+            matchingCheckboxes.add(checkBox);
+            totalCost += itemCosts.get(checkBox);
+          } else {
+            totalCost -= itemCosts.get(checkBox);
           }
+        } else {
+          if (!previouslySelectedCheckboxes.contains(checkBox)) {
+            checkBox.setSelected(false);
+          }
+        }
       }
-      previouslySelectedCheckboxes.clear();
-      previouslySelectedCheckboxes.addAll(matchingCheckboxes);
+    }
+    previouslySelectedCheckboxes.clear();
+    previouslySelectedCheckboxes.addAll(matchingCheckboxes);
 
-      StringBuilder selectedCheckboxes = new StringBuilder();
-      for (CheckBox checkbox : matchingCheckboxes) {
-          selectedCheckboxes.append(checkbox.getText()).append(", ");
-      }
-      userselections.setText(selectedCheckboxes.toString());
-      totaltxt.setText("£" + String.valueOf(totalCost));
-      
+    StringBuilder selectedCheckboxes = new StringBuilder();
+    for (CheckBox checkbox : matchingCheckboxes) {
+      selectedCheckboxes.append(checkbox.getText()).append(", ");
+    }
+    userselections.setText(selectedCheckboxes.toString());
+    totaltxt.setText("£" + String.valueOf(totalCost));
+
   }
-  
-  public void handleCustomerRtnBtn() throws IOException {
-    Parent root = FXMLLoader.load(getClass().getResource("menu.fxml"));
-    Stage window = (Stage) rtnbtn.getScene().getWindow();
-    window.setScene(new Scene(root, 600, 400));
+
+  /**
+   * @param event
+   * @throws IOException
+   */
+  public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
+    Parent startViewParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+    Scene startView = new Scene(startViewParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    window.setScene(startView);
+    window.show();
   }
 }

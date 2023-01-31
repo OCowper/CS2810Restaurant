@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FoodMenuView">
    <children>
       <ScrollPane fx:id="scrollpane" hbarPolicy="NEVER" layoutX="14.0" layoutY="173.0" maxHeight="1.7976931348623157E308" prefHeight="213.0" prefWidth="200.0" vbarPolicy="ALWAYS" vmax="2.0">
         <content>
@@ -62,20 +62,20 @@
          </font>
       </TextField>
       <Separator fx:id="seperator" layoutX="394.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="10.0" />
-      <Label fx:id="selectionlbl" layoutX="421.0" layoutY="18.0" text="YOUR SELECTION">
+      <Label layoutX="421.0" layoutY="18.0" text="YOUR SELECTION">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
       <TextField fx:id="userselections" disable="true" layoutX="424.0" layoutY="49.0" prefHeight="144.0" prefWidth="149.0" />
-      <Label fx:id="tablelbl" layoutX="452.0" layoutY="200.0" text="TABLE NUMBER:">
+      <Label layoutX="452.0" layoutY="200.0" text="TABLE NUMBER:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="tablenotxt" layoutX="425.0" layoutY="217.0" />
       <Button fx:id="submitbtn" layoutX="447.0" layoutY="309.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="105.0" text="PLACE ORDER" />
-      <Label fx:id="totallbl" layoutX="479.0" layoutY="250.0" text="TOTAL:">
+      <Label layoutX="479.0" layoutY="250.0" text="TOTAL:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
