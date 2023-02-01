@@ -2,8 +2,11 @@ package restaurant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 /**
  * Testing for the model class.
@@ -14,7 +17,7 @@ public class RestModelTest {
 
   private RestModel testModel;
   private RestController testController;
-  private String[] orderList = {"cake", "fanta", "crisps"};
+  List<String> itemList = new ArrayList<String>();
   private Order testOrder;
 
   /**
@@ -24,7 +27,10 @@ public class RestModelTest {
   public void setup() {
     testController = new RestController();
     testModel = new RestModel(testController);
-    testOrder = new Order(orderList, 54, 27.60f);
+    itemList.add("cake");
+    itemList.add("fanta");
+    itemList.add("sweets");
+    testOrder = new Order(itemList, 54, 27.60f);
 
   }
 
@@ -41,7 +47,7 @@ public class RestModelTest {
   @Test // test 3
   void testGetOrder() {
     testController.update(testOrder);
-    assertEquals(testController.returnModel().getOrder().getItems()[0], "cake",
+    assertEquals(testController.returnModel().getOrder().getItems().get(0), "cake",
         "first item model should be cake");
   } // refactored to work with new order getters
 

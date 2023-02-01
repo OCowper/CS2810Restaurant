@@ -253,7 +253,7 @@ public class MainView implements Subject {
     for (CheckBox checkbox : matchingCheckboxes) {
       orderList.add(checkbox.getText());
     }
-    curOrder = new Order(orderList, Integer.parseInt(tablenotxt.getText()), (float)totalCost);
+    curOrder = new Order(orderList, Integer.parseInt(tablenotxt.getText()), (float) totalCost);
     notifyObservers(obs);
   }
   

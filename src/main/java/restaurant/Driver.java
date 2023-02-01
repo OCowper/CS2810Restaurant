@@ -1,5 +1,6 @@
 package restaurant;
 
+import java.sql.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
  * @author Irina Gubaciova, Mathushan Santhan, Manpreet Kaur, zkac355
  */
 public class Driver extends Application {
+  
 
   /**
    * Initialises javafx and launches the window.

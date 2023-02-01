@@ -1,20 +1,25 @@
 package restaurant;
 
+import java.sql.Connection;
+
+
 /**
  * Behaviour handler for the system.
  *
  * @author zkac355
  */
 public class RestModel implements Subject {
-  
+
   private Order curOrder;
   private Observer obs;
-  
+
+  private Connection connection = EstablishConnection.establishConnection();
+
   /**
    * Constructs an empty instance of the model.
    */
   public RestModel() {}
-  
+
   /**
    * Constructs an instance of the model containing the controller.
    *
@@ -23,16 +28,17 @@ public class RestModel implements Subject {
   public RestModel(Observer controller) {
     addObservers(controller);
   }
-  
+
   /**
    * Collects the current order from the controller.
    */
   public void retrieveOrder(Order curOrder) {
     this.curOrder = curOrder;
+    insertOrder.insert(curOrder, connection);
   }
-  
+
   /**
-   * Returns the current order. 
+   * Returns the current order.
    *
    * @return the order to be returned.
    */
@@ -43,13 +49,13 @@ public class RestModel implements Subject {
   @Override
   public void addObservers(Observer obs) {
     this.obs = obs;
-    
+
   }
 
   @Override
   public void notifyObservers(Observer obs) {
     obs.update(true);
-    
+
   }
 
 }

@@ -1,5 +1,7 @@
 package restaurant;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -18,7 +20,10 @@ public class OrderTest {
   
   @Test // test 2
   void testConstructor() {
-    String[] itemList = {"Cake", "Fanta", "Steak"};
+    List<String> itemList = new ArrayList<String>();
+    itemList.add("cake");
+    itemList.add("fanta");
+    itemList.add("sweets");
     testOrder = new Order(itemList, 54, 27.60f);
   }
 

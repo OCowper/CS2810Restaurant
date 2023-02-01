@@ -1,5 +1,5 @@
 
-CREATE TABLE Staff(
+CREATE TABLE IF NOT EXISTS Staff(
     staff_ID varchar(15) NOT NULL,
     password varchar(15) NOT NULL,
     first_Name varchar(15) NOT NULL,
@@ -11,16 +11,8 @@ CREATE TABLE Staff(
     primary key (staff_ID)
 );
 
-CREATE TABLE Orders(
-    order_Num varchar(15),
-    order_Description varchar(100),
-    table_Num varchar(15),
-    price numeric(1000, 1),
-    confirm boolean, 
-    primary key (order_Num),
-);
 
-CREATE TABLE Bookings(
+CREATE TABLE IF NOT EXISTS Bookings(
     booking_Num varchar(15),
     guest_Amount numeric(30, 1),
     host_Email varchar(15),
@@ -29,14 +21,14 @@ CREATE TABLE Bookings(
     primary key (booking_Num)
 );
 
-CREATE TABLE Covers(
+CREATE TABLE IF NOT EXISTS Covers(
     booking_Num varchar(15),
     cover_Date varchar(15),
     cover_Amount numeric(1000, 1),
     foreign key (booking_Num) references Bookings(booking_Num)
 );
 
-CREATE TABLE Menu(
+CREATE TABLE IF NOT EXISTS Menu(
     item_Num varchar(15),
     item_Name varchar(30),
     item_Description varchar(1000),

@@ -30,9 +30,10 @@ public class EstablishConnection {
     Connection connection = null;
     try {
       String protocol = "jdbc:postgresql://";
-      String databaseName = "/CS2855/";
+      String databaseName = "/CS2855%2F";
       String fullUrl = protocol + database + databaseName + user;
       connection = DriverManager.getConnection(fullUrl, user, password);
+      System.out.println(fullUrl);
     } catch (SQLException e) {
       String errorMsg = e.getMessage();
       if (errorMsg.contains("authentication failed")) {

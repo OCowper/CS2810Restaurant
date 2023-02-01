@@ -28,7 +28,7 @@ public class insertOrder {
     String itemsString = String.join(":", order.getItems());
 
     PreparedStatement stmt = null;
-    String SQL = "INSERT INTO Orders(orderId, items, tableNum, total) VALUES (?,?,?,?, False)";
+    String SQL = "INSERT INTO Orders(order_Num, order_Description, table_Num, price, confirm) VALUES ( ? , ? , ? , ? , FALSE)";
     try {
       stmt = connection.prepareStatement(SQL);
       stmt.setInt(1, Id);
