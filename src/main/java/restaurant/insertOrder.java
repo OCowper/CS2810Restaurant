@@ -67,4 +67,32 @@ public class insertOrder {
     return Id; // returns the orderID 
     
   }
+
+  public static int editOrder(Connection connection, Order newOrder, String waiterID, int orderID)
+  { 
+    // edits the order where it replaces it with everything within the order, so it is a completely new order under same orderID, 
+    // another simple way we can do this is by adding the edits to the end of the order 
+    // description and just changing the new price.
+    // not sure at the moment will discuss.
+    String updateStatement = "UPDATE Orders"
+            + " SET order_Num = ' " + orderID + "',"
+            + " order_Description = ' " + newOrder.getItems() + "',"
+            + " tableNum = ' " + newOrder.getTableNum() + "',"
+            + " price = ' " + newOrder.getTotal() + "',"
+            + " confirm = TRUE,"
+            + " waiter_id = '" + waiterID + "'"
+            + "WHERE order_Num = '" + orderID + "';";
+    try {
+      ResultSet rs = Operations.executeQuery(connection, updateStatement);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    
+    return orderID;
+    
+    
+    
+  }
 }
