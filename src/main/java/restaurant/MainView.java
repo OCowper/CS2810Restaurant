@@ -249,11 +249,7 @@ public class MainView implements Subject {
   
   @FXML
   void isPressed(ActionEvent event) {
-    List<String> orderList = new ArrayList<String>();
-    for (CheckBox checkbox : matchingCheckboxes) {
-      orderList.add(checkbox.getText());
-    }
-    curOrder = new Order(orderList, Integer.parseInt(tablenotxt.getText()), (float) totalCost);
+    curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()), (float) totalCost);
     notifyObservers(obs);
   }
   

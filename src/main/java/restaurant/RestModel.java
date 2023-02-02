@@ -34,7 +34,7 @@ public class RestModel implements Subject {
    */
   public void retrieveOrder(Order curOrder) {
     this.curOrder = curOrder;
-    insertOrder.insert(curOrder, connection);
+    InsertOrder.insert(curOrder, connection, "Oscar", "Cowper");
   }
 
   /**

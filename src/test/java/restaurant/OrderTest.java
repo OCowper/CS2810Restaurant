@@ -20,10 +20,7 @@ public class OrderTest {
   
   @Test // test 2
   void testConstructor() {
-    List<String> itemList = new ArrayList<String>();
-    itemList.add("cake");
-    itemList.add("fanta");
-    itemList.add("sweets");
+    String itemList = "cake, fanta, sweets";
     testOrder = new Order(itemList, 54, 27.60f);
   }
 
