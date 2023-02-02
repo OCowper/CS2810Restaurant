@@ -11,10 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * Handles the staff login page interactions.
- *
- * @author ZLAC183
- *
+ * @author Mathushan, Manpreet
  */
 public class StaffLoginView {
 
@@ -62,5 +59,16 @@ public class StaffLoginView {
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(startView);
     window.show();
+  }
+
+  @FXML
+  public void handleLoginBtn(ActionEvent event) throws IOException {
+    if (idTxt.getText().equals("123") && passwordTxt.getText().equals("123")) {
+      Parent startViewParent = FXMLLoader.load(getClass().getResource("KitchenScreen.fxml"));
+      Scene startView = new Scene(startViewParent);
+      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      window.setScene(startView);
+      window.show();
+    }
   }
 }

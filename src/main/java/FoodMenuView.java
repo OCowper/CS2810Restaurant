@@ -20,11 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * Food menu view. Lets user to view, search and select items they like, as well as send an order.
- * Defines the behavior of all the associated interactive elements.
- *
- * @author ZLAC183
- *
+ * @author Mathushan, Manpreet, Irina
  */
 public class FoodMenuView {
 

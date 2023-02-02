@@ -10,11 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
- * Initial application view with two options: View food menu and Staff Login. Defines the behavior
- * of the buttons.
- *
- * @author ZLAC183
- *
+ * @author Mathushan, Manpreet, Irina
  */
 public class StartView {
 

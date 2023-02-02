@@ -4,15 +4,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * 
- * @author ZLAC183
- *
- */
+
 public class Driver extends Application {
 
   /**
-   * @param args
+   * @author Mathushan, Manpreet, Irina
    */
   public static void main(String[] args) {
     launch(args);
