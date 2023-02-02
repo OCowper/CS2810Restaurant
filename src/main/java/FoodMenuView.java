@@ -236,7 +236,7 @@ public class FoodMenuView {
    * @throws IOException
    */
   public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("menu.fxml"));
+    Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
