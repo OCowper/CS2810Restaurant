@@ -1,10 +1,8 @@
 package restaurant;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -246,27 +244,28 @@ public class MainView implements Subject {
     Stage window = (Stage) rtnbtn.getScene().getWindow();
     window.setScene(new Scene(root, 600, 400));
   }
-  
+
   @FXML
   void isPressed(ActionEvent event) {
-    curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()), (float) totalCost);
+    curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()),
+        (float) totalCost);
     notifyObservers(obs);
   }
-  
+
   public Observer obs;
   private Order curOrder;
 
   @Override
   public void addObservers(Observer obs) {
     this.obs = obs;
-    
+
   }
 
   @Override
   public void notifyObservers(Observer obs) {
     obs.update(curOrder);
   }
-  
+
   /**
    * temporary method to confirm the order has made it.
    */

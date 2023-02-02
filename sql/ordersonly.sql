@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Orders(
-    order_Num varchar(15),
+    order_Num numeric(5, 0),
     order_Description varchar(100),
-    table_Num varchar(15),
+    table_Num numeric(5, 0),
     price numeric(1000, 1),
     confirm boolean, 
     waiter_id varchar(15),	 

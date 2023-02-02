@@ -1,7 +1,5 @@
 package restaurant;
 
-import java.util.List;
-
 /**
  * Data storage class to collate all information about an order.
  *
@@ -9,7 +7,7 @@ import java.util.List;
  */
 public class Order {
   
-  // fields representing information about an order. confirmed is the only mutable.
+  // fields representing information about an order. confirmed and ID are the only mutable.
   private int orderId;
   private String items;
   private int tableNum;
@@ -32,6 +30,15 @@ public class Order {
     this.items = items;
     this.tableNum = tableNum;
     this.total = total;
+  }
+  
+  /**
+   * Returns the ID of the order.
+   *
+   * @return the ID.
+   */
+  public int getId() {
+    return orderId;
   }
   
   /**
@@ -68,6 +75,15 @@ public class Order {
    */
   public boolean getConfirmed() {
     return confirmed;
+  }
+  
+  /**
+   * Sets the order Id.
+   *
+   * @param orderId the ID of the order.
+   */
+  public void setId(int orderId) {
+    this.orderId = orderId;
   }
   
   /**

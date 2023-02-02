@@ -46,7 +46,6 @@ public class InsertOrder {
       // executes query for the waiterID
       while (ws.next()) {
         waiterId = ws.getString(1);
-        System.out.println(waiterId);
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -59,7 +58,6 @@ public class InsertOrder {
       ResultSet rs = Operations.executeQuery(connection, findNewId);
       while (rs.next()) {
         newId = rs.getInt(1) + 1;
-        System.out.println(newId);
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -108,7 +106,7 @@ public class InsertOrder {
             + " price = ' " + newOrder.getTotal() + "'," + " confirm = TRUE," + " waiter_id = '"
             + waiterId + "'" + "WHERE order_Num = '" + orderId + "';";
     try {
-      ResultSet rs = Operations.executeQuery(connection, updateStatement);
+      Operations.executeQuery(connection, updateStatement);
     } catch (Exception e) {
       e.printStackTrace();
     }
