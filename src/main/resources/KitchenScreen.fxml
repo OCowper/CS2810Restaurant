@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane fx:id="backgroundDisplay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KitchenScreen">
+   <children>
+      <Line endX="-2.0" endY="289.9141845703125" layoutX="276.0" layoutY="219.0" startX="-2.0" startY="-225.7071075439453" />
+      <Line endX="15.0" endY="249.0" layoutX="507.0" layoutY="250.0" startX="15.0" startY="-251.0" />
+      <ScrollBar layoutX="257.0" orientation="VERTICAL" prefHeight="501.0" prefWidth="17.0" />
+      <ScrollBar layoutX="505.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="500.0" prefWidth="17.0" />
+      <Text fx:id="newOrders" layoutX="85.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New In">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="orderHistory" layoutX="632.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="History">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text fx:id="inProgressOrders" layoutX="353.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Progress">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <ListView fx:id="newOrdersList" layoutX="14.0" layoutY="60.0" prefHeight="422.0" prefWidth="229.0" />
+      <ListView fx:id="inProgressOrdersList" layoutX="285.0" layoutY="61.0" prefHeight="422.0" prefWidth="206.0" />
+      <ListView fx:id="orderHistoryList" layoutX="541.0" layoutY="61.0" prefHeight="422.0" prefWidth="239.0" />
+   </children>
+</Pane>
