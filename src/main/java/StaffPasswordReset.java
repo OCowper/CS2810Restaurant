@@ -7,24 +7,29 @@ import javafx.scene.text.Text;
 
 public class StaffPasswordReset {
 
-    @FXML
-    private Pane Background;
+  @FXML
+  private Pane Background;
 
-    @FXML
-    private TextField CustomerID;
+  @FXML
+  private TextField CustomerID;
 
-    @FXML
-    private TextField Email;
+  @FXML
+  private TextField Email;
 
-    @FXML
-    private Text PromptText;
+  @FXML
+  private Text PromptText;
 
-    @FXML
-    private Button ResetLink;
+  @FXML
+  private Button ResetLink;
+
+  @FXML
+  private Button returnbtn;
 
     @FXML
     void isPressed(ActionEvent event) {
 
     }
+    
+    
 
 }

@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="StaffLoginView">
    <children>
       <Label fx:id="idLbl" layoutX="155.0" layoutY="130.0" text="ID:">
@@ -28,7 +27,7 @@
       </Label>
       <Button fx:id="returnBtn" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleStaffRtnBtn" prefHeight="25.0" prefWidth="135.0" text="return to menu" />
       <Button fx:id="loginBtn" layoutX="228.0" layoutY="235.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="145.0" text="login" />
-      <Button fx:id="forgotBtn" layoutX="367.0" layoutY="191.0" mnemonicParsing="false" prefHeight="15.0" prefWidth="75.0" text="forgot password">
+      <Button fx:id="forgotBtn" layoutX="367.0" layoutY="191.0" mnemonicParsing="false" onAction="#handleforgotBtn" prefHeight="15.0" prefWidth="75.0" text="forgot password">
          <font>
             <Font size="8.0" />
          </font>

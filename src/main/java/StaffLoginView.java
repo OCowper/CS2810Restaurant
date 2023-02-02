@@ -51,9 +51,15 @@ public class StaffLoginView {
   public void handleStaffRtnBtn(ActionEvent event) throws IOException {
     Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    window.setScene(startView);
+    window.show();
+  }
 
+  public void handleforgotBtn(ActionEvent event) throws IOException {
+    Parent startViewParent = FXMLLoader.load(getClass().getResource("StaffPasswordReset.fxml"));
+    Scene startView = new Scene(startViewParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(startView);
     window.show();
   }
