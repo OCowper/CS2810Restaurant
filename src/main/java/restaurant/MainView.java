@@ -1,8 +1,12 @@
 package restaurant;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -232,6 +236,66 @@ public class MainView implements Subject {
     userselections.setText(selectedCheckboxes.toString());
     totaltxt.setText("£" + String.valueOf(totalCost));
 
+  }
+
+
+  /**
+   * An inner class representing a single item form the menu to be shown to the customer.
+   *
+   */
+  private class MenuItem {
+    private String itemName;
+    private String price;
+    private String category;
+    private String description;
+
+    public MenuItem(String name, String pr, String cat, String descr) {
+      this.itemName = name;
+      this.price = pr;
+      this.category = cat;
+      this.description = descr;
+    }
+
+    public String getName() {
+      return itemName;
+    }
+
+    public String getCategory() {
+      return category;
+    }
+
+    @Override
+    public String toString() {
+      return itemName + " " + price;
+    }
+  }
+
+  /**
+   * Queries the database for all available items on the menu, transforms the result into a list of
+   * MenuItem classes and returns it. !!!!!!!!!!!!!!!!!!!The transformation code in the try block is
+   * a placeholder and needs to be changed according to the database structure!!!!!!!!!!!!!!!!
+   *
+   * @param connection database conneciton
+   * @return a list of menu items represented by a MenuItem class
+   */
+  private Map<String, List<MenuItem>> queryItemsFromDb(Connection connection) {
+    Map<String, List<MenuItem>> map = new HashMap<String, List<MenuItem>>();
+    String query = "SELECT ALL FROM Menu";
+    try {
+      ResultSet rs = Operations.executeQuery(connection, query);
+      // ResultSetMetaData rsmd = rs.getMetaData();
+      // int columnsNumber = rsmd.getColumnCount();
+      while (rs.next()) {
+        String key = rs.getString("category").trim().toLowerCase();
+        MenuItem toAdd = new MenuItem(rs.getString("cat"), rs.getString("itemName"),
+            rs.getString("price"), rs.getString("description"));
+        // adds a new value to the list of items. Handles keys that are not present
+        map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return map;
   }
 
   /**
