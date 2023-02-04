@@ -11,7 +11,6 @@ import java.util.Scanner;
  * @author zkac355
  */
 public class EstablishConnection {
-
   /**
    * Establishes a connection to the database based on user id and password. Static.
    */
@@ -50,8 +49,6 @@ public class EstablishConnection {
       System.exit(1);
     }
     return connection;
-
   }
+ }
 
-
-}

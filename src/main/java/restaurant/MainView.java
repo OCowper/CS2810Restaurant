@@ -42,37 +42,7 @@ public class MainView implements Subject {
   private Label drinks;
 
   @FXML
-  private CheckBox eight;
-
-  @FXML
-  private CheckBox eightteen;
-
-  @FXML
-  private CheckBox eleven;
-
-  @FXML
-  private CheckBox fifteen;
-
-  @FXML
-  private CheckBox five;
-
-  @FXML
-  private CheckBox four;
-
-  @FXML
-  private CheckBox fourteen;
-
-  @FXML
   private Label mains;
-
-  @FXML
-  private CheckBox nine;
-
-  @FXML
-  private CheckBox nineteen;
-
-  @FXML
-  private CheckBox one;
 
   @FXML
   private Button rtnbtn;
@@ -93,18 +63,6 @@ public class MainView implements Subject {
   private Separator seperator;
 
   @FXML
-  private CheckBox seven;
-
-  @FXML
-  private CheckBox seventeen;
-
-  @FXML
-  private CheckBox six;
-
-  @FXML
-  private CheckBox sixteen;
-
-  @FXML
   private Label starters;
 
   @FXML
@@ -117,15 +75,6 @@ public class MainView implements Subject {
   private TextField tablenotxt;
 
   @FXML
-  private CheckBox ten;
-
-  @FXML
-  private CheckBox thirteen;
-
-  @FXML
-  private CheckBox three;
-
-  @FXML
   private Label titlelbl;
 
   @FXML
@@ -134,14 +83,6 @@ public class MainView implements Subject {
   @FXML
   private TextField totaltxt;
 
-  @FXML
-  private CheckBox twelve;
-
-  @FXML
-  private CheckBox twenty;
-
-  @FXML
-  private CheckBox two;
 
   @FXML
   private TextField userselections;
@@ -153,34 +94,22 @@ public class MainView implements Subject {
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
-
+  
   /**
    * Initialises item costs.
    */
-  public void initialize() {
+   public void initialize() {
+    Map<String, List<MenuItem>> itemsMap = queryItemsFromDb(RestModel.getConnection());
+    // populating the menu with item categories and items
+    for (String key : itemsMap.keySet()) {
+      vbox.getChildren().add(new Label(key));
+      for (MenuItem item : itemsMap.get(key)) {
+        vbox.getChildren().add(new CheckBox(item.toString()));
+      }
+    }
+
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
-    itemCosts.put(one, 8.00);
-    itemCosts.put(two, 8.00);
-    itemCosts.put(three, 8.00);
-    itemCosts.put(four, 8.00);
-    itemCosts.put(five, 8.00);
-    itemCosts.put(six, 8.00);
-    itemCosts.put(seven, 8.00);
-    itemCosts.put(eight, 8.00);
-    itemCosts.put(nine, 8.00);
-    itemCosts.put(ten, 8.00);
-    itemCosts.put(eleven, 8.00);
-    itemCosts.put(twelve, 8.00);
-    itemCosts.put(thirteen, 8.00);
-    itemCosts.put(fourteen, 8.00);
-    itemCosts.put(fifteen, 8.00);
-    itemCosts.put(sixteen, 8.00);
-    itemCosts.put(seventeen, 8.00);
-    itemCosts.put(eightteen, 8.00);
-    itemCosts.put(nineteen, 8.00);
-    itemCosts.put(twenty, 8.00);
-
     for (Node node : vbox.getChildren()) {
       if (node instanceof CheckBox) {
         CheckBox checkbox = (CheckBox) node;
@@ -237,8 +166,7 @@ public class MainView implements Subject {
     totaltxt.setText("£" + String.valueOf(totalCost));
 
   }
-
-
+  
   /**
    * An inner class representing a single item form the menu to be shown to the customer.
    *
@@ -256,10 +184,6 @@ public class MainView implements Subject {
       this.description = descr;
     }
 
-    public String getName() {
-      return itemName;
-    }
-
     public String getCategory() {
       return category;
     }
@@ -269,7 +193,7 @@ public class MainView implements Subject {
       return itemName + " " + price;
     }
   }
-
+  
   /**
    * Queries the database for all available items on the menu, transforms the result into a list of
    * MenuItem classes and returns it. !!!!!!!!!!!!!!!!!!!The transformation code in the try block is

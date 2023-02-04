@@ -13,7 +13,7 @@ public class RestModel implements Subject {
   private Order curOrder;
   private Observer obs;
 
-  private Connection connection = EstablishConnection.establishConnection();
+  private static Connection connection = EstablishConnection.establishConnection();
 
   /**
    * Constructs an empty instance of the model.
@@ -34,7 +34,7 @@ public class RestModel implements Subject {
    */
   public void retrieveOrder(Order curOrder) {
     this.curOrder = curOrder;
-    curOrder.setId(InsertOrder.insert(curOrder, connection, "Oscar", "Cowper")); 
+    curOrder.setId(InsertOrder.insert(curOrder, connection, "Oscar", "Cowper"));
   }
 
   /**
@@ -57,5 +57,8 @@ public class RestModel implements Subject {
     obs.update(true);
 
   }
-
+  
+  public static Connection getConnection() {
+    return connection;
+  }
 }
