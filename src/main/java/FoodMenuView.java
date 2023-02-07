@@ -1,6 +1,8 @@
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +25,7 @@ import javafx.stage.Stage;
  * @author Mathushan, Manpreet, Irina
  */
 public class FoodMenuView {
+
 
   @FXML
   private AnchorPane anchorpane;
@@ -226,6 +229,30 @@ public class FoodMenuView {
     totaltxt.setText("£" + String.valueOf(totalCost));
 
   }
+
+  public void handleSubmitBtnAction(ActionEvent event) throws IOException {
+    List<String> orderList = new ArrayList<>();
+    
+    for (Node node : vbox.getChildren()) {
+      if (node instanceof CheckBox) {
+        CheckBox checkbox = (CheckBox) node;
+        if (checkbox.isSelected()) {
+          orderList.add(checkbox.getText());
+        }
+      }
+    }
+
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("KitchenScreen.fxml"));
+    Parent root = loader.load();
+    KitchenScreen orderListController = loader.getController();
+    orderListController.setOrderList(orderList);
+    
+    Scene scene = new Scene(root);
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    stage.show();
+  }
+
 
   /**
    * @param event
