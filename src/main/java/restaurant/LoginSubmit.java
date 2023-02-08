@@ -21,7 +21,6 @@ public class LoginSubmit {
    */
   public static Boolean submitLogin(Connection connection, String staffId, String password) {
     String query = "SELECT password FROM staff WHERE staff_id = '" + staffId + "';";
-    System.out.println(query);
     String trialPswd = "null";
     try {
       ResultSet rs = Operations.executeQuery(connection, query);
