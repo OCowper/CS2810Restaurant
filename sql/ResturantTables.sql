@@ -37,3 +37,4 @@ CREATE TABLE IF NOT EXISTS Menu(
     item_Type varchar(100), /* drink / starters / mains ect */
     primary key (item_Num)
 );
+

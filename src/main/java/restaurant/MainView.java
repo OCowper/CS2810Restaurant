@@ -119,13 +119,15 @@ public class MainView implements Subject {
   }
 
   private void handleCheckboxClick(CheckBox checkbox) {
+    String item = checkbox.getText();
+    double price = Double.parseDouble(item.split(" ")[1]);
     if (checkbox.isSelected()) {
-      userselections.appendText(checkbox.getText() + ", ");
-      totalCost += itemCosts.get(checkbox);
+      userselections.appendText(item + ",");
+      totalCost += price;
       totaltxt.setText("£" + Double.toString(totalCost));
     } else {
-      userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
-      totalCost -= itemCosts.get(checkbox);
+      userselections.setText(userselections.getText().replace(item + ",", ""));
+      totalCost -= price;
       totaltxt.setText("£" + Double.toString(totalCost));
     }
   }
@@ -204,15 +206,15 @@ public class MainView implements Subject {
    */
   private Map<String, List<MenuItem>> queryItemsFromDb(Connection connection) {
     Map<String, List<MenuItem>> map = new HashMap<String, List<MenuItem>>();
-    String query = "SELECT ALL FROM Menu";
+    String query = "SELECT * FROM public.menu;";
     try {
       ResultSet rs = Operations.executeQuery(connection, query);
       // ResultSetMetaData rsmd = rs.getMetaData();
       // int columnsNumber = rsmd.getColumnCount();
       while (rs.next()) {
-        String key = rs.getString("category").trim().toLowerCase();
-        MenuItem toAdd = new MenuItem(rs.getString("cat"), rs.getString("itemName"),
-            rs.getString("price"), rs.getString("description"));
+        String key = rs.getString("item_type").trim().toLowerCase();
+        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_num"),
+            rs.getString("item_type"), rs.getString("item_description"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }
