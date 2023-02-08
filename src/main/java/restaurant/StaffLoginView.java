@@ -51,7 +51,7 @@ public class StaffLoginView {
    */
   @FXML
   public void handleStaffRtnBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));
+    Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(startView);
@@ -66,7 +66,7 @@ public class StaffLoginView {
    */
   @FXML
   public void handleforgotBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("StaffPasswordReset.fxml"));
+    Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("StaffPasswordReset.fxml"));
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(startView);
@@ -82,7 +82,7 @@ public class StaffLoginView {
   @FXML
   public void handleLoginBtn(ActionEvent event) throws IOException {
     if (idTxt.getText().equals("123") && passwordTxt.getText().equals("123")) {
-      Parent startViewParent = FXMLLoader.load(getClass().getResource("KitchenScreen.fxml"));
+      Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
       Scene startView = new Scene(startViewParent);
       Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
       window.setScene(startView);

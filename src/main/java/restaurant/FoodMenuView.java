@@ -242,7 +242,7 @@ public class FoodMenuView implements Subject {
    * @throws IOException if an IO error occurs
    */
   public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));
+    Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

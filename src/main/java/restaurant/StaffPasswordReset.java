@@ -47,7 +47,7 @@ public class StaffPasswordReset {
    */
   @FXML
   public void handleForgotPassReturn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));
+    Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(startView);
