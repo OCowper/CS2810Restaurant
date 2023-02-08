@@ -1,6 +1,7 @@
 package restaurant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.sql.Connection;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,6 +36,12 @@ public class LoginSubmitTest {
   
   @Test // test 2
   void testMatch() {
+    flag = LoginSubmit.submitLogin(connection, "12345", "pass1");
+    assertEquals(flag, true, "flag should be true");
+  }
+  
+  @Test // test 3
+  void testDb() {
     flag = LoginSubmit.submitLogin(connection, "12345", "pass1");
     assertEquals(flag, true, "flag should be true");
   }
