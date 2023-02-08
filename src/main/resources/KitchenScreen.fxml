@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="backgroundDisplay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="KitchenScreen">
+<Pane fx:id="backgroundDisplay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.KitchenScreen">
    <children>
       <Line endX="-2.0" endY="289.9141845703125" layoutX="276.0" layoutY="219.0" startX="-2.0" startY="-225.7071075439453" />
       <Line endX="15.0" endY="249.0" layoutX="507.0" layoutY="250.0" startX="15.0" startY="-251.0" />
