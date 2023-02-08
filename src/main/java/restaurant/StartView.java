@@ -35,11 +35,13 @@ public class StartView {
    * @throws IOException when there is a problem with loading the fxml file
    */
   public void handleCustomerBtn(ActionEvent event) throws IOException {
-    Parent foodMenuparent = FXMLLoader.load(getClass().getResource("model.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("model.fxml"));
+    
+    Parent foodMenuparent = loader.load();
     Scene foodMenu = new Scene(foodMenuparent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+    new RestController(loader.getController());
     window.setScene(foodMenu);
     window.show();
 
@@ -52,7 +54,7 @@ public class StartView {
    * @throws IOException when there is a problem with loading the .fxml file
    */
   public void handleStaffLoginBtn(ActionEvent event) throws IOException {
-    Parent staffLodinParent = FXMLLoader.load(getClass().getResource("staffLogin.fxml"));
+    Parent staffLodinParent = FXMLLoader.load(getClass().getClassLoader().getResource("staffLogin.fxml"));
     Scene staffLogin = new Scene(staffLodinParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

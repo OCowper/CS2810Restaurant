@@ -25,7 +25,7 @@ public class Driver extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("menu.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
     Scene scene = new Scene(loader.load(), 600, 400); // Creates Scene and Size
     primaryStage.setScene(scene); //Sets the Primary Stage as Scene
     primaryStage.setResizable(false); //Makes GUI not resizeable
