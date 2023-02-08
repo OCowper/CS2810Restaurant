@@ -26,7 +26,8 @@ import javafx.stage.Stage;
  *
  * @author Irina Gubaciova, Mathushan Santhan, Manpreet Kaur
  */
-public class MainView implements Subject {
+public class FoodMenuView implements Subject {
+
 
   @FXML
   private AnchorPane anchorpane;
@@ -149,7 +150,7 @@ public class MainView implements Subject {
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
-
+  
   /**
    * Initialises item costs.
    */
@@ -235,14 +236,18 @@ public class MainView implements Subject {
   }
 
   /**
-   * Handles when the customer button is pressed.
-   *
-   * @throws IOException if an IO error occurs
+   * @param event
+   * @throws IOException
    */
-  public void handleCustomerRtnBtn() throws IOException {
-    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("menu.fxml"));
-    Stage window = (Stage) rtnbtn.getScene().getWindow();
-    window.setScene(new Scene(root, 600, 400));
+  public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
+    Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));
+    Scene startView = new Scene(startViewParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    window.setScene(startView);
+    window.show();
+
   }
 
   @FXML
