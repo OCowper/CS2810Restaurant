@@ -1,3 +1,5 @@
+package restaurant;
+
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
+ * View representing the startup screen.
+ *
  * @author Mathushan, Manpreet, Irina
  */
 public class StartView {

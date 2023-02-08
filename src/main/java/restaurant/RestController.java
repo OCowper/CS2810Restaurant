@@ -12,7 +12,7 @@ public class RestController implements Observer {
   // holds the current order
   private Order curOrder;
   // holds the current view
-  private MainView view;
+  private FoodMenuView view;
 
   private String userId;
 
@@ -28,7 +28,7 @@ public class RestController implements Observer {
    *
    * @param view the current view representing the current screen.
    */
-  public RestController(MainView view) {
+  public RestController(FoodMenuView view) {
     this.view = view;
     this.view.addObservers(this);
   }
@@ -68,7 +68,7 @@ public class RestController implements Observer {
 
   @Override
   public void update(Boolean confirmed) {
-    if (view.getClass() == MainView.class) {
+    if (view.getClass() == FoodMenuView.class) {
       curOrder.setConfirmed(confirmed);
     }
     // else if (view.getClass() == LoginView.class) {

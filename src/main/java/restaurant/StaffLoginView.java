@@ -1,3 +1,5 @@
+package restaurant;
+
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
+ * Defines the view for staff login.
+ *
  * @author Mathushan, Manpreet
  */
 public class StaffLoginView {
@@ -45,6 +49,7 @@ public class StaffLoginView {
    * @param event "returnBtn" button pressed
    * @throws IOException when there is a problem with loading the .fxml file
    */
+  @FXML
   public void handleStaffRtnBtn(ActionEvent event) throws IOException {
     Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
@@ -53,6 +58,13 @@ public class StaffLoginView {
     window.show();
   }
 
+  /**
+   * Handles pressing the forgot password button.
+   *
+   * @param event the button press event.
+   * @throws IOException if an IO error occurs.
+   */
+  @FXML
   public void handleforgotBtn(ActionEvent event) throws IOException {
     Parent startViewParent = FXMLLoader.load(getClass().getResource("StaffPasswordReset.fxml"));
     Scene startView = new Scene(startViewParent);
@@ -61,6 +73,12 @@ public class StaffLoginView {
     window.show();
   }
 
+  /**
+   * Handles pressing the login button.
+   *
+   * @param event the button press event.
+   * @throws IOException if an IO errors occurs.
+   */
   @FXML
   public void handleLoginBtn(ActionEvent event) throws IOException {
     if (idTxt.getText().equals("123") && passwordTxt.getText().equals("123")) {

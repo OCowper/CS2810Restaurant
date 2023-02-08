@@ -236,8 +236,10 @@ public class FoodMenuView implements Subject {
   }
 
   /**
-   * @param event
-   * @throws IOException
+   * Handles when the return button is pressed.
+   *
+   * @param event the button press event
+   * @throws IOException if an IO error occurs
    */
   public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
     Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));

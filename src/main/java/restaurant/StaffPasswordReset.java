@@ -1,3 +1,5 @@
+package restaurant;
+
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,34 +12,40 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 /**
+ * View representing the Password Reset screen.
+ *
  * @author Mathushan, Manpreet
  */
 public class StaffPasswordReset {
 
   @FXML
-  private Pane Background;
+  private Pane background;
 
   @FXML
-  private TextField CustomerID;
+  private TextField customerId;
 
   @FXML
-  private TextField Email;
+  private TextField email;
 
   @FXML
-  private Text PromptText;
+  private Text promptText;
 
   @FXML
-  private Button ResetLink;
+  private Button resetLink;
 
   @FXML
   private Button returnbtn;
 
+
+  /**
+   * Handles the go back button.
+   *
+   * @param event the event of the button press
+   * @throws IOException if an IO exception occurs
+   */
   @FXML
-  void isPressed(ActionEvent event) {
-
-  }
-
   public void handleForgotPassReturn(ActionEvent event) throws IOException {
     Parent startViewParent = FXMLLoader.load(getClass().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
