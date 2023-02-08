@@ -6,19 +6,23 @@ package restaurant;
  * @author zkac355
  */
 public class RestController implements Observer {
-  
+
   private RestModel model = new RestModel(this);
 
   // holds the current order
   private Order curOrder;
-  //holds the current view
+  // holds the current view
   private MainView view;
-  
+
+  private String userId;
+
+  private String password;
+
   /**
    * Constructs an empty instance of the controller.
    */
   public RestController() {}
-  
+
   /**
    * Constructs an instance of the controller containing the view.
    *
@@ -38,7 +42,7 @@ public class RestController implements Observer {
   public Order returnOrder() {
     return curOrder;
   }
-  
+
   /**
    * Returns the instance of the current model.
    *
@@ -49,20 +53,38 @@ public class RestController implements Observer {
   }
 
   @Override
+  public void update(String userId, String password) {
+    this.userId = userId;
+    this.password = password;
+    login();
+  }
+
+  @Override
   public void update(Order curOrder) {
     this.curOrder = curOrder;
     storeOrder();
-    
+
   }
 
   @Override
   public void update(Boolean confirmed) {
-    curOrder.setConfirmed(confirmed);
-    
+    if (view.getClass() == MainView.class) {
+      curOrder.setConfirmed(confirmed);
+    }
+    // else if (view.getClass() == LoginView.class) {
+    // TODO IMPLEMENT WHEN MERGED
+    // }
+
   }
-  
+
+
+
   private void storeOrder() {
     model.retrieveOrder(curOrder);
     view.confirmRecieved();
+  }
+
+  private void login() {
+    model.acceptLogin(userId, password);
   }
 }

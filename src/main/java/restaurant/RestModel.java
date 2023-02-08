@@ -12,7 +12,6 @@ public class RestModel implements Subject {
 
   private Order curOrder;
   private Observer obs;
-
   private Connection connection = EstablishConnection.establishConnection();
 
   /**
@@ -36,6 +35,17 @@ public class RestModel implements Subject {
     this.curOrder = curOrder;
     curOrder.setId(InsertOrder.insert(curOrder, connection, "Oscar", "Cowper")); 
   }
+  
+  /**
+   * Submits the login and returns back to the controller the result.
+   *
+   * @param userId the submitted userID
+   * @param password the submitted password
+   */
+  public void acceptLogin(String userId, String password) {
+    obs.update(LoginSubmit.submitLogin(connection, userId, password));
+    
+  }
 
   /**
    * Returns the current order.
@@ -57,5 +67,7 @@ public class RestModel implements Subject {
     obs.update(true);
 
   }
+
+  
 
 }
