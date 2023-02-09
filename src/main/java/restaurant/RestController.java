@@ -112,4 +112,10 @@ public class RestController implements Observer {
     model.confirmOrder(orderId);
     
   }
+
+  @Override
+  public ResultSet getMenuItems() {
+    return model.getMenu();
+    
+  }
 }

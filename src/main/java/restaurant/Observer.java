@@ -57,4 +57,11 @@ public interface Observer {
    */
   public void confirmOrder(String topId);
 
+  /**
+   * Retrives menu items stored in the database.
+   *
+   * @return result set containing menu items.
+   */
+  public ResultSet getMenuItems();
+
 }

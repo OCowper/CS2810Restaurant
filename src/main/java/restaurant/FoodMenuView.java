@@ -1,8 +1,8 @@
 package restaurant;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -95,12 +95,12 @@ public class FoodMenuView implements Subject, ViewInterface {
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
-  
+
   /**
    * Initialises item costs.
    */
-   public void initialize() {
-    Map<String, List<MenuItem>> itemsMap = queryItemsFromDb(RestModel.getConnection());
+  public void initializeAfter() {
+    Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
     // populating the menu with item categories and items
     for (String key : itemsMap.keySet()) {
       vbox.getChildren().add(new Label(key));
@@ -169,7 +169,7 @@ public class FoodMenuView implements Subject, ViewInterface {
     totaltxt.setText("£" + String.valueOf(totalCost));
 
   }
-  
+
   /**
    * An inner class representing a single item form the menu to be shown to the customer.
    *
@@ -196,7 +196,7 @@ public class FoodMenuView implements Subject, ViewInterface {
       return itemName + " " + price;
     }
   }
-  
+
   /**
    * Queries the database for all available items on the menu, transforms the result into a list of
    * MenuItem classes and returns it. !!!!!!!!!!!!!!!!!!!The transformation code in the try block is
@@ -205,13 +205,15 @@ public class FoodMenuView implements Subject, ViewInterface {
    * @param connection database conneciton
    * @return a list of menu items represented by a MenuItem class
    */
-  private Map<String, List<MenuItem>> queryItemsFromDb(Connection connection) {
+  private Map<String, List<MenuItem>> queryItemsFromDb() {
+
+
+
     Map<String, List<MenuItem>> map = new HashMap<String, List<MenuItem>>();
-    String query = "SELECT * FROM public.menu;";
+    ResultSet rs = obs.getMenuItems();
+    // ResultSetMetaData rsmd = rs.getMetaData();
+    // int columnsNumber = rsmd.getColumnCount();
     try {
-      ResultSet rs = Operations.executeQuery(connection, query);
-      // ResultSetMetaData rsmd = rs.getMetaData();
-      // int columnsNumber = rsmd.getColumnCount();
       while (rs.next()) {
         String key = rs.getString("item_type").trim().toLowerCase();
         MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_num"),
@@ -219,7 +221,7 @@ public class FoodMenuView implements Subject, ViewInterface {
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }
-    } catch (Exception e) {
+    } catch (SQLException e) {
       e.printStackTrace();
     }
     return map;
@@ -232,12 +234,12 @@ public class FoodMenuView implements Subject, ViewInterface {
    * @throws IOException if an IO error occurs
    */
   public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
-    Parent startViewParent =
-        FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
 
@@ -264,20 +266,12 @@ public class FoodMenuView implements Subject, ViewInterface {
     obs.update(curOrder);
   }
 
-  /**
-   * temporary method to confirm the order has made it.
-   */
-  public void confirmRecieved() {
-    titlelbl.setText("recieved");
-  }
-
   @Override
-  public void acceptBoolean(Boolean bool) {
-  }
+  public void acceptBoolean(Boolean bool) {}
 
   @Override
   public void startup() {
-    // TODO Auto-generated method stub
     
+    initializeAfter();
   }
 }

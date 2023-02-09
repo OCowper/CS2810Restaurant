@@ -36,12 +36,12 @@ public class StartView implements Subject, ViewInterface {
    */
   public void handleCustomerBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("model.fxml"));
-
     Parent foodMenuparent = loader.load();
+    
     Scene foodMenu = new Scene(foodMenuparent);
-
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();  
     obs.setView(loader.getController());
+    obs.orderStartup();
     window.setScene(foodMenu);
     window.show();
 
