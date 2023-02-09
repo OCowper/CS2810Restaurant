@@ -28,5 +28,12 @@ public interface Observer {
    * @param password the submitted password
    */
   public void update(String userId, String password);
+  
+  /**
+   * Changes the view being observed.
+   *
+   * @param view the new view.
+   */
+  public void setView(ViewInterface view);
 
 }

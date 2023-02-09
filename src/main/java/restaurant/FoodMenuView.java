@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  *
  * @author Irina Gubaciova, Mathushan Santhan, Manpreet Kaur
  */
-public class FoodMenuView implements Subject {
+public class FoodMenuView implements Subject, ViewInterface {
 
 
   @FXML
@@ -150,7 +150,7 @@ public class FoodMenuView implements Subject {
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
-  
+
   /**
    * Initialises item costs.
    */
@@ -242,7 +242,8 @@ public class FoodMenuView implements Subject {
    * @throws IOException if an IO error occurs
    */
   public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    Parent startViewParent =
+        FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -278,5 +279,9 @@ public class FoodMenuView implements Subject {
    */
   public void confirmRecieved() {
     titlelbl.setText("recieved");
+  }
+
+  @Override
+  public void acceptBoolean(Boolean bool) {
   }
 }

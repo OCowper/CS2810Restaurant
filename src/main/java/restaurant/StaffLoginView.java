@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  *
  * @author Mathushan, Manpreet
  */
-public class StaffLoginView {
+public class StaffLoginView implements Subject, ViewInterface {
 
   @FXML
   private Button forgotBtn;
@@ -51,7 +51,8 @@ public class StaffLoginView {
    */
   @FXML
   public void handleStaffRtnBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    Parent startViewParent =
+        FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     window.setScene(startView);
@@ -66,9 +67,12 @@ public class StaffLoginView {
    */
   @FXML
   public void handleforgotBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("StaffPasswordReset.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("StaffPasswordReset.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
   }
@@ -81,12 +85,41 @@ public class StaffLoginView {
    */
   @FXML
   public void handleLoginBtn(ActionEvent event) throws IOException {
-    if (idTxt.getText().equals("123") && passwordTxt.getText().equals("123")) {
-      Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
+    notifyObservers(obs);
+    if (valid) {
+      FXMLLoader loader =
+          new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
+      Parent startViewParent = loader.load();
       Scene startView = new Scene(startViewParent);
       Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      obs.setView(loader.getController());
       window.setScene(startView);
       window.show();
+      valid = false;
+    } else {
+      titleLbl.setText("Please Try Again");
     }
+  }
+
+  public Observer obs;
+
+  public Boolean valid;
+
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
+
+  }
+
+  @Override
+  public void notifyObservers(Observer obs) {
+    obs.update(idTxt.getText(), passwordTxt.getText());
+
+  }
+
+
+  @Override
+  public void acceptBoolean(Boolean bool) {
+    valid = bool;
   }
 }

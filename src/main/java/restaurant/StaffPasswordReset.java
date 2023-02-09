@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  *
  * @author Mathushan, Manpreet
  */
-public class StaffPasswordReset {
+public class StaffPasswordReset implements Subject, ViewInterface {
 
   @FXML
   private Pane background;
@@ -47,11 +47,36 @@ public class StaffPasswordReset {
    */
   @FXML
   public void handleForgotPassReturn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
+  }
+
+  public Observer obs;
+
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
+
+  }
+
+
+  @Override
+  public void notifyObservers(Observer obs) {
+    // TODO Auto-generated method stub
+
+  }
+
+
+  @Override
+  public void acceptBoolean(Boolean bool) {
+    // TODO Auto-generated method stub
+
   }
 
 }
