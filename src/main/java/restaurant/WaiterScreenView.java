@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  * @author Mathushan, Manpreet
  */
-public class WaiterScreenView {
+public class WaiterScreenView implements Subject, ViewInterface {
 
   @FXML
   private Text activeOrdersHeading;
@@ -125,5 +125,25 @@ public class WaiterScreenView {
 
     window.setScene(startView);
     window.show();
+  }
+  
+  public Observer obs;
+
+  @Override
+  public void acceptBoolean(Boolean bool) {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
+    
+  }
+
+  @Override
+  public void notifyObservers(Observer obs) {
+    // TODO Auto-generated method stub
+    
   }
 }

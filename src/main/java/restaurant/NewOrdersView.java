@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author Mathushan, Manpreet
  */
-public class NewOrdersView {
+public class NewOrdersView implements ViewInterface, Subject {
 
   @FXML
   private CheckBox acceptCheckBox;
@@ -102,7 +102,7 @@ public class NewOrdersView {
     window.setScene(startView);
     window.show();
   }
-  
+
   /**
    * Handling for if a user presses the Active Order button.
    *
@@ -119,7 +119,7 @@ public class NewOrdersView {
     window.setScene(startView);
     window.show();
   }
-  
+
   /**
    * Handling if a user presses the All Order button.
    *
@@ -136,5 +136,19 @@ public class NewOrdersView {
     window.setScene(startView);
     window.show();
   }
+
+  public Observer obs;
+
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
+
+  }
+
+  @Override
+  public void notifyObservers(Observer obs) {}
+
+  @Override
+  public void acceptBoolean(Boolean bool) {}
 
 }

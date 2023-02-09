@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  *
  * @author Mathushan, Manpreet
  */
-public class StaffPanel {
+public class StaffPanel implements ViewInterface, Subject {
 
   @FXML
   private Button logoutBtn;
@@ -44,7 +44,7 @@ public class StaffPanel {
     window.setScene(startView);
     window.show();
   }
-  
+
   /**
    * Handling for if a user presses the waiter view button.
    *
@@ -59,7 +59,7 @@ public class StaffPanel {
     window.setScene(startView);
     window.show();
   }
-  
+
   /**
    * Handling for if the user presses Log Out.
    *
@@ -74,5 +74,23 @@ public class StaffPanel {
     window.setScene(startView);
     window.show();
   }
-  
+
+  public Observer obs;
+
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
+
+  }
+
+  @Override
+  public void notifyObservers(Observer obs) {
+
+  }
+
+  @Override
+  public void acceptBoolean(Boolean bool) {
+
+  }
+
 }
