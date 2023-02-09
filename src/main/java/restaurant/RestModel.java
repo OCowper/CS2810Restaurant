@@ -1,6 +1,7 @@
 package restaurant;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 
 /**
@@ -66,6 +67,16 @@ public class RestModel implements Subject {
   public void notifyObservers(Observer obs) {
     obs.update(true);
 
+  }
+
+  /**
+   * Collects a subset of all orders from the database.
+   *
+   * @return the result set of orders to be returned.
+   */
+  public ResultSet queryOrders() {
+    String query = "SELECT * FROM orders WHERE confirm = false;";
+    return Operations.executeQuery(connection, query);
   }
 
   

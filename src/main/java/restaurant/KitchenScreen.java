@@ -62,4 +62,10 @@ public class KitchenScreen implements Subject, ViewInterface {
     // TODO Auto-generated method stub
     
   }
+
+  @Override
+  public void startup() {
+    // TODO Auto-generated method stub
+    
+  }
 }

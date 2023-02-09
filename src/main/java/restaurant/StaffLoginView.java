@@ -88,7 +88,7 @@ public class StaffLoginView implements Subject, ViewInterface {
     notifyObservers(obs);
     if (valid) {
       FXMLLoader loader =
-          new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
+          new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
       Parent startViewParent = loader.load();
       Scene startView = new Scene(startViewParent);
       Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -121,5 +121,11 @@ public class StaffLoginView implements Subject, ViewInterface {
   @Override
   public void acceptBoolean(Boolean bool) {
     valid = bool;
+  }
+
+  @Override
+  public void startup() {
+    // TODO Auto-generated method stub
+    
   }
 }

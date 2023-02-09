@@ -28,4 +28,9 @@ public interface ViewInterface {
    */
   public void acceptBoolean(Boolean bool);
 
+  /**
+   * Startup methods.
+   */
+  public void startup();
+
 }

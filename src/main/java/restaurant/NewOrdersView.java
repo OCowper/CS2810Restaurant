@@ -1,6 +1,8 @@
 package restaurant;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.Pane;
@@ -23,8 +24,9 @@ import javafx.stage.Stage;
  */
 public class NewOrdersView implements ViewInterface, Subject {
 
+
   @FXML
-  private CheckBox acceptCheckBox;
+  private Button acceptButton;
 
   @FXML
   private Button activeOrdersButton;
@@ -45,7 +47,7 @@ public class NewOrdersView implements ViewInterface, Subject {
   private Text itemsHeading;
 
   @FXML
-  private ListView<?> itemsListView;
+  private ListView<String> itemsListView;
 
   @FXML
   private Button menurtn;
@@ -57,7 +59,7 @@ public class NewOrdersView implements ViewInterface, Subject {
   private Text orderNumberHeading;
 
   @FXML
-  private ListView<?> orderNumberListView;
+  private ListView<String> orderNumberListView;
 
   @FXML
   private Text orderStatusHeading;
@@ -66,13 +68,13 @@ public class NewOrdersView implements ViewInterface, Subject {
   private Text tableNumberHeading;
 
   @FXML
-  private ListView<?> tableNumberListView;
+  private ListView<String> tableNumberListView;
 
   @FXML
   private Text totalPriceHeading;
 
   @FXML
-  private ListView<?> totalPriceListView;
+  private ListView<String> totalPriceListView;
 
   @FXML
   private Separator verticalSeparator1;
@@ -94,9 +96,9 @@ public class NewOrdersView implements ViewInterface, Subject {
    */
   @FXML
   public void handleReturnMenuBtn(ActionEvent event) throws IOException {
-    
-    
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("StaffPanel.fxml"));
+
+
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
@@ -114,7 +116,8 @@ public class NewOrdersView implements ViewInterface, Subject {
    */
   @FXML
   public void handleActiveOrderBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("WaiterScreenView.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("WaiterScreenView.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
@@ -132,7 +135,8 @@ public class NewOrdersView implements ViewInterface, Subject {
    */
   @FXML
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
@@ -140,6 +144,28 @@ public class NewOrdersView implements ViewInterface, Subject {
     obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
+  }
+
+  @FXML
+  void confirmTopOrder(ActionEvent event) {
+
+  }
+
+  @FXML
+  @Override
+  public void startup() {
+    ResultSet rs = obs.returnOrders();
+    
+    try {
+      while (rs.next()) {
+        orderNumberListView.getItems().add(String.valueOf(rs.getInt(1)));
+        itemsListView.getItems().add(rs.getString(2));
+        tableNumberListView.getItems().add(String.valueOf(rs.getInt(3)));
+        totalPriceListView.getItems().add(String.valueOf(rs.getInt(4)));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   public Observer obs;

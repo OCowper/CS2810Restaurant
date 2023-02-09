@@ -1,5 +1,7 @@
 package restaurant;
 
+import java.sql.ResultSet;
+
 /**
  * Controller to facilitate communication between the view (gui) and the model (behaviour).
  *
@@ -91,5 +93,17 @@ public class RestController implements Observer {
 
   private void login() {
     model.acceptLogin(userId, password);
+  }
+
+  @Override
+  public ResultSet returnOrders() {
+    return model.queryOrders();
+    
+  }
+
+  @Override
+  public void orderStartup() {
+    view.startup();
+    
   }
 }

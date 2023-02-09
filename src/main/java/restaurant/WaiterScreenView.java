@@ -84,7 +84,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
    */
   @FXML
   public void handleReturnMenuBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("StaffPanel.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
@@ -93,7 +93,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
     window.setScene(startView);
     window.show();
   }
-  
+
   /**
    * Handling if a user presses the New Orders button.
    *
@@ -102,7 +102,8 @@ public class WaiterScreenView implements Subject, ViewInterface {
    */
   @FXML
   public void handleNewOrdersBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("NewOrdersView.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("NewOrdersView.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
@@ -111,7 +112,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
     window.setScene(startView);
     window.show();
   }
-  
+
   /**
    * Handling for if a user presses the All order button.
    *
@@ -120,7 +121,8 @@ public class WaiterScreenView implements Subject, ViewInterface {
    */
   @FXML
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
@@ -129,24 +131,30 @@ public class WaiterScreenView implements Subject, ViewInterface {
     window.setScene(startView);
     window.show();
   }
-  
+
   public Observer obs;
 
   @Override
   public void acceptBoolean(Boolean bool) {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void addObservers(Observer obs) {
     this.obs = obs;
-    
+
   }
 
   @Override
   public void notifyObservers(Observer obs) {
     // TODO Auto-generated method stub
-    
+
+  }
+
+  @Override
+  public void startup() {
+    // TODO Auto-generated method stub
+
   }
 }

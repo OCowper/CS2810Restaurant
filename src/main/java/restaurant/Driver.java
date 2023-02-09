@@ -30,7 +30,6 @@ public class Driver extends Application {
     Scene scene = new Scene(loader.load(), 600, 400); // Creates Scene and Size
     new RestController(loader.getController());
     primaryStage.setScene(scene); // Sets the Primary Stage as Scene
-    primaryStage.setResizable(false); // Makes GUI not resizeable
     primaryStage.show(); // Displays GUI
 
     

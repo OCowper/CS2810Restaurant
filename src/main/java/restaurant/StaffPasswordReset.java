@@ -79,4 +79,11 @@ public class StaffPasswordReset implements Subject, ViewInterface {
 
   }
 
+
+  @Override
+  public void startup() {
+    // TODO Auto-generated method stub
+    
+  }
+
 }

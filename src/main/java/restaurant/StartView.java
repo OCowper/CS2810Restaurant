@@ -78,4 +78,10 @@ public class StartView implements Subject, ViewInterface {
 
   @Override
   public void acceptBoolean(Boolean bool) {}
+
+  @Override
+  public void startup() {
+    // TODO Auto-generated method stub
+    
+  }
 }
