@@ -1,6 +1,8 @@
 package restaurant;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,7 +43,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
   private Text itemsHeading;
 
   @FXML
-  private ListView<?> itemsListView;
+  private ListView<String> itemsListView;
 
   @FXML
   private Button newOrdersButton;
@@ -50,7 +52,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
   private Text orderNumberHeading;
 
   @FXML
-  private ListView<?> orderNumberListView;
+  private ListView<String> orderNumberListView;
 
   @FXML
   private Button returnbtn;
@@ -59,13 +61,13 @@ public class WaiterScreenView implements Subject, ViewInterface {
   private Text tableNumberHeading;
 
   @FXML
-  private ListView<?> tableNumberListView;
+  private ListView<String> tableNumberListView;
 
   @FXML
   private Text totalPriceHeading;
 
   @FXML
-  private ListView<?> totalPriceListView;
+  private ListView<String> totalPriceListView;
 
   @FXML
   private Separator verticalSeparator1;
@@ -153,9 +155,30 @@ public class WaiterScreenView implements Subject, ViewInterface {
 
   }
 
+  @FXML
+  private void listExit() {
+    orderNumberListView.getItems().clear();
+    itemsListView.getItems().clear();
+    tableNumberListView.getItems().clear();
+    totalPriceListView.getItems().clear();
+  }
+  
+  @FXML
   @Override
   public void startup() {
-    // TODO Auto-generated method stub
+    listExit();
+    ResultSet rs = obs.returnOrders(true);
+
+    try {
+      while (rs.next()) {
+        orderNumberListView.getItems().add(String.valueOf(rs.getInt(1)));
+        itemsListView.getItems().add(rs.getString(2));
+        tableNumberListView.getItems().add(String.valueOf(rs.getInt(3)));
+        totalPriceListView.getItems().add(String.valueOf(rs.getInt(4)));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
 
   }
 }

@@ -123,6 +123,7 @@ public class NewOrdersView implements ViewInterface, Subject {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
+    obs.orderStartup();
     window.setScene(startView);
     window.show();
   }
@@ -165,7 +166,7 @@ public class NewOrdersView implements ViewInterface, Subject {
   @Override
   public void startup() {
     listExit();
-    ResultSet rs = obs.returnOrders();
+    ResultSet rs = obs.returnOrders(false);
 
     try {
       while (rs.next()) {

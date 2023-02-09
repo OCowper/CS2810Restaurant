@@ -96,8 +96,8 @@ public class RestController implements Observer {
   }
 
   @Override
-  public ResultSet returnOrders() {
-    return model.queryOrders();
+  public ResultSet returnOrders(Boolean confirm) {
+    return model.queryOrders(confirm);
     
   }
 

@@ -63,6 +63,7 @@ public class StaffPanel implements ViewInterface, Subject {
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
+    obs.orderStartup();
     window.setScene(startView);
     window.show();
   }

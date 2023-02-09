@@ -34,9 +34,9 @@ public class RestModel implements Subject {
    */
   public void retrieveOrder(Order curOrder) {
     this.curOrder = curOrder;
-    curOrder.setId(InsertOrder.insert(curOrder, connection, "Oscar", "Cowper")); 
+    curOrder.setId(InsertOrder.insert(curOrder, connection, "Oscar", "Cowper"));
   }
-  
+
   /**
    * Submits the login and returns back to the controller the result.
    *
@@ -45,7 +45,7 @@ public class RestModel implements Subject {
    */
   public void acceptLogin(String userId, String password) {
     obs.update(LoginSubmit.submitLogin(connection, userId, password));
-    
+
   }
 
   /**
@@ -74,8 +74,13 @@ public class RestModel implements Subject {
    *
    * @return the result set of orders to be returned.
    */
-  public ResultSet queryOrders() {
-    String query = "SELECT * FROM orders WHERE confirm = false order by order_num;";
+  public ResultSet queryOrders(Boolean confirm) {
+    String query = "";
+    if (confirm) {
+      query = "SELECT * FROM orders WHERE confirm = true AND order_num > 0 order by order_num;";
+    } else {
+      query = "SELECT * FROM orders WHERE confirm = false order by order_num;";
+    }
     return Operations.executeQuery(connection, query);
   }
 
@@ -86,9 +91,9 @@ public class RestModel implements Subject {
    */
   public void confirmOrder(String orderId) {
     Confirmation.confirm(Integer.parseInt(orderId), connection);
-    
+
   }
 
-  
+
 
 }

@@ -43,7 +43,7 @@ public interface Observer {
    *
    * @return the result set to be returned
    */
-  public ResultSet returnOrders();
+  public ResultSet returnOrders(Boolean confirm);
 
   /**
    * Collects orders so they can be displayed.
