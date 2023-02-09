@@ -94,11 +94,14 @@ public class NewOrdersView implements ViewInterface, Subject {
    */
   @FXML
   public void handleReturnMenuBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("StaffPanel.fxml"));
+    
+    
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("StaffPanel.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
   }
@@ -111,11 +114,12 @@ public class NewOrdersView implements ViewInterface, Subject {
    */
   @FXML
   public void handleActiveOrderBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("WaiterScreenView.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("WaiterScreenView.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
   }
@@ -128,11 +132,12 @@ public class NewOrdersView implements ViewInterface, Subject {
    */
   @FXML
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("KitchenScreen.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
   }

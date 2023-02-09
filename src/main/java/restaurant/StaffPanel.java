@@ -38,9 +38,11 @@ public class StaffPanel implements ViewInterface, Subject {
    */
   @FXML
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("NewOrdersView.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("NewOrdersView.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
   }
@@ -53,9 +55,11 @@ public class StaffPanel implements ViewInterface, Subject {
    */
   @FXML
   public void handleWaiterViewBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("WaiterScreenView.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("WaiterScreenView.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
   }
@@ -68,9 +72,11 @@ public class StaffPanel implements ViewInterface, Subject {
    */
   @FXML
   public void handleLogOutBtn(ActionEvent event) throws IOException {
-    Parent startViewParent = FXMLLoader.load(getClass().getResource("StaffLogin.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("StaffLogin.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
   }
