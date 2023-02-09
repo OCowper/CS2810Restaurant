@@ -78,7 +78,7 @@ public class RestModel implements Subject {
     String query = "";
     if (confirm) {
       query = "SELECT * FROM orders WHERE confirm = true AND order_num > 0 order by order_num;";
-    } else {
+    } else if (!confirm) {
       query = "SELECT * FROM orders WHERE confirm = false order by order_num;";
     }
     return Operations.executeQuery(connection, query);
@@ -103,5 +103,7 @@ public class RestModel implements Subject {
     String query = "SELECT * FROM public.menu;";
     return Operations.executeQuery(connection, query);
   }
+
+  
 
 }

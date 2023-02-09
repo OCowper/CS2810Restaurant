@@ -131,6 +131,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
+    obs.orderStartup();
     window.setScene(startView);
     window.show();
   }

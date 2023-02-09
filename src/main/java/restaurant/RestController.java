@@ -98,13 +98,11 @@ public class RestController implements Observer {
   @Override
   public ResultSet returnOrders(Boolean confirm) {
     return model.queryOrders(confirm);
-    
   }
 
   @Override
   public void orderStartup() {
-    view.startup();
-    
+    view.startup(); 
   }
 
   @Override
