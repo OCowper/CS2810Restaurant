@@ -1,8 +1,12 @@
 package restaurant;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,37 +43,7 @@ public class FoodMenuView implements Subject, ViewInterface {
   private Label drinks;
 
   @FXML
-  private CheckBox eight;
-
-  @FXML
-  private CheckBox eightteen;
-
-  @FXML
-  private CheckBox eleven;
-
-  @FXML
-  private CheckBox fifteen;
-
-  @FXML
-  private CheckBox five;
-
-  @FXML
-  private CheckBox four;
-
-  @FXML
-  private CheckBox fourteen;
-
-  @FXML
   private Label mains;
-
-  @FXML
-  private CheckBox nine;
-
-  @FXML
-  private CheckBox nineteen;
-
-  @FXML
-  private CheckBox one;
 
   @FXML
   private Button rtnbtn;
@@ -90,18 +64,6 @@ public class FoodMenuView implements Subject, ViewInterface {
   private Separator seperator;
 
   @FXML
-  private CheckBox seven;
-
-  @FXML
-  private CheckBox seventeen;
-
-  @FXML
-  private CheckBox six;
-
-  @FXML
-  private CheckBox sixteen;
-
-  @FXML
   private Label starters;
 
   @FXML
@@ -114,15 +76,6 @@ public class FoodMenuView implements Subject, ViewInterface {
   private TextField tablenotxt;
 
   @FXML
-  private CheckBox ten;
-
-  @FXML
-  private CheckBox thirteen;
-
-  @FXML
-  private CheckBox three;
-
-  @FXML
   private Label titlelbl;
 
   @FXML
@@ -131,14 +84,6 @@ public class FoodMenuView implements Subject, ViewInterface {
   @FXML
   private TextField totaltxt;
 
-  @FXML
-  private CheckBox twelve;
-
-  @FXML
-  private CheckBox twenty;
-
-  @FXML
-  private CheckBox two;
 
   @FXML
   private TextField userselections;
@@ -150,34 +95,22 @@ public class FoodMenuView implements Subject, ViewInterface {
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
-
+  
   /**
    * Initialises item costs.
    */
-  public void initialize() {
+   public void initialize() {
+    Map<String, List<MenuItem>> itemsMap = queryItemsFromDb(RestModel.getConnection());
+    // populating the menu with item categories and items
+    for (String key : itemsMap.keySet()) {
+      vbox.getChildren().add(new Label(key));
+      for (MenuItem item : itemsMap.get(key)) {
+        vbox.getChildren().add(new CheckBox(item.toString()));
+      }
+    }
+
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
-    itemCosts.put(one, 8.00);
-    itemCosts.put(two, 8.00);
-    itemCosts.put(three, 8.00);
-    itemCosts.put(four, 8.00);
-    itemCosts.put(five, 8.00);
-    itemCosts.put(six, 8.00);
-    itemCosts.put(seven, 8.00);
-    itemCosts.put(eight, 8.00);
-    itemCosts.put(nine, 8.00);
-    itemCosts.put(ten, 8.00);
-    itemCosts.put(eleven, 8.00);
-    itemCosts.put(twelve, 8.00);
-    itemCosts.put(thirteen, 8.00);
-    itemCosts.put(fourteen, 8.00);
-    itemCosts.put(fifteen, 8.00);
-    itemCosts.put(sixteen, 8.00);
-    itemCosts.put(seventeen, 8.00);
-    itemCosts.put(eightteen, 8.00);
-    itemCosts.put(nineteen, 8.00);
-    itemCosts.put(twenty, 8.00);
-
     for (Node node : vbox.getChildren()) {
       if (node instanceof CheckBox) {
         CheckBox checkbox = (CheckBox) node;
@@ -187,13 +120,15 @@ public class FoodMenuView implements Subject, ViewInterface {
   }
 
   private void handleCheckboxClick(CheckBox checkbox) {
+    String item = checkbox.getText();
+    double price = Double.parseDouble(item.split(" ")[1]);
     if (checkbox.isSelected()) {
-      userselections.appendText(checkbox.getText() + ", ");
-      totalCost += itemCosts.get(checkbox);
+      userselections.appendText(item + ",");
+      totalCost += price;
       totaltxt.setText("£" + Double.toString(totalCost));
     } else {
-      userselections.setText(userselections.getText().replace(checkbox.getText() + ", ", ""));
-      totalCost -= itemCosts.get(checkbox);
+      userselections.setText(userselections.getText().replace(item + ",", ""));
+      totalCost -= price;
       totaltxt.setText("£" + Double.toString(totalCost));
     }
   }
@@ -233,6 +168,61 @@ public class FoodMenuView implements Subject, ViewInterface {
     userselections.setText(selectedCheckboxes.toString());
     totaltxt.setText("£" + String.valueOf(totalCost));
 
+  }
+  
+  /**
+   * An inner class representing a single item form the menu to be shown to the customer.
+   *
+   */
+  private class MenuItem {
+    private String itemName;
+    private String price;
+    private String category;
+    private String description;
+
+    public MenuItem(String name, String pr, String cat, String descr) {
+      this.itemName = name;
+      this.price = pr;
+      this.category = cat;
+      this.description = descr;
+    }
+
+    public String getCategory() {
+      return category;
+    }
+
+    @Override
+    public String toString() {
+      return itemName + " " + price;
+    }
+  }
+  
+  /**
+   * Queries the database for all available items on the menu, transforms the result into a list of
+   * MenuItem classes and returns it. !!!!!!!!!!!!!!!!!!!The transformation code in the try block is
+   * a placeholder and needs to be changed according to the database structure!!!!!!!!!!!!!!!!
+   *
+   * @param connection database conneciton
+   * @return a list of menu items represented by a MenuItem class
+   */
+  private Map<String, List<MenuItem>> queryItemsFromDb(Connection connection) {
+    Map<String, List<MenuItem>> map = new HashMap<String, List<MenuItem>>();
+    String query = "SELECT * FROM public.menu;";
+    try {
+      ResultSet rs = Operations.executeQuery(connection, query);
+      // ResultSetMetaData rsmd = rs.getMetaData();
+      // int columnsNumber = rsmd.getColumnCount();
+      while (rs.next()) {
+        String key = rs.getString("item_type").trim().toLowerCase();
+        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_num"),
+            rs.getString("item_type"), rs.getString("item_description"));
+        // adds a new value to the list of items. Handles keys that are not present
+        map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return map;
   }
 
   /**

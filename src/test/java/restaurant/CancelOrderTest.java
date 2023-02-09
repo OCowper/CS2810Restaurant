@@ -1,6 +1,7 @@
 package restaurant;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,8 +16,8 @@ class CancelOrderTest {
     CancelOrder.cancel(connection, orderId);
 
     // Check that the order was actually cancelled by querying the database for the order
-    ResultSet resultSet = Operations.executeQuery(
-        connection, "SELECT FROM orders WHERE id = " + orderId);
+    ResultSet resultSet =
+        Operations.executeQuery(connection, "SELECT FROM orders WHERE id = " + orderId);
     int rows = 0;
     try {
       while (resultSet.next()) {

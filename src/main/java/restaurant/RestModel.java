@@ -13,7 +13,12 @@ public class RestModel implements Subject {
 
   private Order curOrder;
   private Observer obs;
+<<<<<<< HEAD
   private Connection connection = EstablishConnection.establishConnection();
+=======
+
+  private static Connection connection = EstablishConnection.establishConnection();
+>>>>>>> origin/menuFromDbToGui
 
   /**
    * Constructs an empty instance of the model.
@@ -35,6 +40,7 @@ public class RestModel implements Subject {
   public void retrieveOrder(Order curOrder) {
     this.curOrder = curOrder;
     curOrder.setId(InsertOrder.insert(curOrder, connection, "Oscar", "Cowper"));
+<<<<<<< HEAD
   }
 
   /**
@@ -46,6 +52,8 @@ public class RestModel implements Subject {
   public void acceptLogin(String userId, String password) {
     obs.update(LoginSubmit.submitLogin(connection, userId, password));
 
+=======
+>>>>>>> origin/menuFromDbToGui
   }
 
   /**
@@ -68,6 +76,7 @@ public class RestModel implements Subject {
     obs.update(true);
 
   }
+<<<<<<< HEAD
 
   /**
    * Collects a subset of all orders from the database.
@@ -96,4 +105,10 @@ public class RestModel implements Subject {
 
 
 
+=======
+  
+  public static Connection getConnection() {
+    return connection;
+  }
+>>>>>>> origin/menuFromDbToGui
 }

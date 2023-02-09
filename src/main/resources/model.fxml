@@ -20,36 +20,6 @@
                <children>
                   <VBox fx:id="vbox" prefHeight="247.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Label fx:id="starters" alignment="TOP_LEFT" text="Starters">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Label>
-                        <CheckBox fx:id="one" mnemonicParsing="false" text="Fries" />
-                        <CheckBox fx:id="two" mnemonicParsing="false" text="Beans" />
-                        <CheckBox fx:id="three" mnemonicParsing="false" text="Wings" />
-                        <CheckBox fx:id="four" mnemonicParsing="false" text="Rice" />
-                        <CheckBox fx:id="five" mnemonicParsing="false" text="Salad" />
-                        <Label fx:id="mains" text="Mains">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Label>
-                        <CheckBox fx:id="six" mnemonicParsing="false" text="Burger" />
-                        <CheckBox fx:id="seven" mnemonicParsing="false" text="Wrap" />
-                        <CheckBox fx:id="eight" mnemonicParsing="false" text="Pizza" />
-                        <CheckBox fx:id="nine" mnemonicParsing="false" text="Burrito" />
-                        <CheckBox fx:id="ten" mnemonicParsing="false" text="HotDog" />
-                        <Label fx:id="drinks" text="Drinks" />
-                        <CheckBox fx:id="eleven" mnemonicParsing="false" text="Cola" />
-                        <CheckBox fx:id="twelve" mnemonicParsing="false" text="Fanta" />
-                        <CheckBox fx:id="thirteen" mnemonicParsing="false" text="Sprite" />
-                        <CheckBox fx:id="fourteen" mnemonicParsing="false" text="Pepsi" />
-                        <CheckBox fx:id="fifteen" mnemonicParsing="false" text="Oasis" />
-                        <CheckBox fx:id="sixteen" mnemonicParsing="false" text="Water" />
-                        <Label fx:id="desserts" text="Desserts" />
-                        <CheckBox fx:id="seventeen" mnemonicParsing="false" text="IceCream" />
-                        <CheckBox fx:id="eightteen" mnemonicParsing="false" text="Cake" />
-                        <CheckBox fx:id="nineteen" mnemonicParsing="false" text="Cookies" />
-                        <CheckBox fx:id="twenty" mnemonicParsing="false" text="Brownies" />
                      </children>
                   </VBox>
                </children>
