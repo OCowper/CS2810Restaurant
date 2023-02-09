@@ -75,7 +75,7 @@ public class RestModel implements Subject {
    * @return the result set of orders to be returned.
    */
   public ResultSet queryOrders() {
-    String query = "SELECT * FROM orders WHERE confirm = false;";
+    String query = "SELECT * FROM orders WHERE confirm = false order by order_num;";
     return Operations.executeQuery(connection, query);
   }
 
