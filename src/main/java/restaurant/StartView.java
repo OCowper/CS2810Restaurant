@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  *
  * @author Mathushan, Manpreet, Irina
  */
-public class StartView {
+public class StartView implements Subject, ViewInterface {
 
   @FXML
   private Button customerbtn;
@@ -36,12 +36,12 @@ public class StartView {
    */
   public void handleCustomerBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("model.fxml"));
-    
+
     Parent foodMenuparent = loader.load();
     Scene foodMenu = new Scene(foodMenuparent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    new RestController(loader.getController());
+    obs.setView(loader.getController());
     window.setScene(foodMenu);
     window.show();
 
@@ -54,12 +54,34 @@ public class StartView {
    * @throws IOException when there is a problem with loading the .fxml file
    */
   public void handleStaffLoginBtn(ActionEvent event) throws IOException {
-    Parent staffLodinParent = FXMLLoader.load(getClass().getClassLoader().getResource("staffLogin.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
+    Parent staffLodinParent = loader.load();
     Scene staffLogin = new Scene(staffLodinParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
 
     window.setScene(staffLogin);
     window.show();
+  }
+
+  public Observer obs;
+
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
+
+  }
+
+  @Override
+  public void notifyObservers(Observer obs) {}
+
+  @Override
+  public void acceptBoolean(Boolean bool) {}
+
+  @Override
+  public void startup() {
+    // TODO Auto-generated method stub
+    
   }
 }

@@ -1,5 +1,7 @@
 package restaurant;
 
+import java.sql.ResultSet;
+
 /**
  * Controller to facilitate communication between the view (gui) and the model (behaviour).
  *
@@ -12,10 +14,10 @@ public class RestController implements Observer {
   // holds the current order
   private Order curOrder;
   // holds the current view
-  private FoodMenuView view;
-
+  private ViewInterface view;
+  // holds the submitted userID
   private String userId;
-
+  // holds the submitted password
   private String password;
 
   /**
@@ -28,7 +30,16 @@ public class RestController implements Observer {
    *
    * @param view the current view representing the current screen.
    */
-  public RestController(FoodMenuView view) {
+  public RestController(ViewInterface view) {
+    this.view = view;
+    this.view.addObservers(this);
+  }
+
+  /**
+   * Changes the currently observed view.
+   */
+  @Override
+  public void setView(ViewInterface view) {
     this.view = view;
     this.view.addObservers(this);
   }
@@ -71,20 +82,28 @@ public class RestController implements Observer {
     if (view.getClass() == FoodMenuView.class) {
       curOrder.setConfirmed(confirmed);
     }
-    // else if (view.getClass() == LoginView.class) {
-    // TODO IMPLEMENT WHEN MERGED
-    // }
-
+    view.acceptBoolean(confirmed);
   }
 
 
 
   private void storeOrder() {
     model.retrieveOrder(curOrder);
-    view.confirmRecieved();
   }
 
   private void login() {
     model.acceptLogin(userId, password);
+  }
+
+  @Override
+  public ResultSet returnOrders() {
+    return model.queryOrders();
+    
+  }
+
+  @Override
+  public void orderStartup() {
+    view.startup();
+    
   }
 }

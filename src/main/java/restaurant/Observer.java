@@ -1,5 +1,7 @@
 package restaurant;
 
+import java.sql.ResultSet;
+
 /**
  * Interface defining Observers (objects that watch other classes).
  *
@@ -28,5 +30,24 @@ public interface Observer {
    * @param password the submitted password
    */
   public void update(String userId, String password);
+  
+  /**
+   * Changes the view being observed.
+   *
+   * @param view the new view.
+   */
+  public void setView(ViewInterface view);
+
+  /**.
+   * Returns a result set containing all current orders in the database
+   *
+   * @return the result set to be returned
+   */
+  public ResultSet returnOrders();
+
+  /**
+   * Collects orders so they can be displayed.
+   */
+  public void orderStartup();
 
 }

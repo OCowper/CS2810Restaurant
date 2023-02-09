@@ -6,15 +6,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
+ * Handles SQL statements cancelling orders.
+ *
  * @author zjac311
- * 
- *CancelOrder class provides the method to cancel an order.
  */
 public class CancelOrder {
 
   /**
    * cancel method deletes an order with the given order ID from the database.
-   * @param connection  database connection
+   *
+   * @param connection database connection
    * @param orderId order ID
    */
   public static void cancel(Connection connection, int orderId) {
