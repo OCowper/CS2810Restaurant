@@ -50,4 +50,11 @@ public interface Observer {
    */
   public void orderStartup();
 
+  /**
+   * Confirms an order.
+   *
+   * @param topId the ID of the earlier order.
+   */
+  public void confirmOrder(String topId);
+
 }

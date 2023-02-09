@@ -79,6 +79,16 @@ public class RestModel implements Subject {
     return Operations.executeQuery(connection, query);
   }
 
+  /**
+   * Edits the database to change an order id from unconfirmed to confirmed.
+   *
+   * @param orderId the ID of the order to be confirmed.
+   */
+  public void confirmOrder(String orderId) {
+    Confirmation.confirm(Integer.parseInt(orderId), connection);
+    
+  }
+
   
 
 }

@@ -106,4 +106,10 @@ public class RestController implements Observer {
     view.startup();
     
   }
+
+  @Override
+  public void confirmOrder(String orderId) {
+    model.confirmOrder(orderId);
+    
+  }
 }

@@ -148,14 +148,25 @@ public class NewOrdersView implements ViewInterface, Subject {
 
   @FXML
   void confirmTopOrder(ActionEvent event) {
+    String topId = orderNumberListView.getItems().get(0);
+    obs.confirmOrder(topId);
+    startup();
+  }
 
+  @FXML
+  private void listExit() {
+    orderNumberListView.getItems().clear();
+    itemsListView.getItems().clear();
+    tableNumberListView.getItems().clear();
+    totalPriceListView.getItems().clear();
   }
 
   @FXML
   @Override
   public void startup() {
+    listExit();
     ResultSet rs = obs.returnOrders();
-    
+
     try {
       while (rs.next()) {
         orderNumberListView.getItems().add(String.valueOf(rs.getInt(1)));
