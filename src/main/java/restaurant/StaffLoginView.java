@@ -51,10 +51,12 @@ public class StaffLoginView implements Subject, ViewInterface {
    */
   @FXML
   public void handleStaffRtnBtn(ActionEvent event) throws IOException {
-    Parent startViewParent =
-        FXMLLoader.load(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
     window.setScene(startView);
     window.show();
   }
@@ -126,6 +128,6 @@ public class StaffLoginView implements Subject, ViewInterface {
   @Override
   public void startup() {
     // TODO Auto-generated method stub
-    
+
   }
 }
