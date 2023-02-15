@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="bgPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.NewOrdersView">
+<Pane fx:id="bgPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.NewOrdersView">
    <children>
       <Line fx:id="horizontalSeparator2" endX="552.0000610351562" endY="22.0" layoutX="101.0" layoutY="429.0" startX="-101.0" startY="22.0" />
       <Button fx:id="activeOrdersButton" layoutX="11.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleActiveOrderBtn" prefHeight="32.0" prefWidth="109.0" text="Active orders" />
@@ -33,6 +33,7 @@
       <ListView fx:id="tableNumberListView" layoutX="340.0" layoutY="122.0" prefHeight="321.0" prefWidth="103.0" />
       <ListView fx:id="totalPriceListView" layoutX="454.0" layoutY="122.0" prefHeight="321.0" prefWidth="82.0" />
       <Button fx:id="menurtn" layoutX="545.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleReturnMenuBtn" prefHeight="25.0" prefWidth="95.0" text="menu" />
-      <Button fx:id="acceptButton" layoutX="545.0" layoutY="122.0" mnemonicParsing="false" onAction="#confirmTopOrder" prefHeight="25.0" prefWidth="103.0" text="confirm" />
+      <Button fx:id="acceptButton" layoutX="545.0" layoutY="122.0" mnemonicParsing="false" onAction="#confirmTopOrder" prefHeight="26.0" prefWidth="103.0" text="confirm" />
+      <Button fx:id="cancelOrderButton" layoutX="543.0" layoutY="155.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="cancel" />
    </children>
 </Pane>
