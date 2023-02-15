@@ -135,6 +135,11 @@ public class WaiterScreenView implements Subject, ViewInterface {
     window.setScene(startView);
     window.show();
   }
+  
+  @FXML
+  void handleOrderConfirm(ActionEvent event) {
+
+  }
 
   public Observer obs;
 
