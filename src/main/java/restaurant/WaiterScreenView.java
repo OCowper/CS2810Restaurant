@@ -1,5 +1,6 @@
 package restaurant;
 
+import java.awt.Label;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,6 +51,12 @@ public class WaiterScreenView implements Subject, ViewInterface {
 
   @FXML
   private Text orderNumberHeading;
+  
+  @FXML
+  private Button orderConfirmBtn;
+  
+  @FXML
+  private Label statuslbl;
 
   @FXML
   private ListView<String> orderNumberListView;
