@@ -21,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -47,6 +48,9 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   private Button rtnbtn;
+  
+  @FXML
+  private ImageView productImage;
 
   @FXML
   private ScrollPane scrollpane;
