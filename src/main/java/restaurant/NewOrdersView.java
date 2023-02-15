@@ -36,6 +36,9 @@ public class NewOrdersView implements ViewInterface, Subject {
 
   @FXML
   private Pane bgPane;
+  
+  @FXML
+  private Button cancelOrderButton;
 
   @FXML
   private Separator horizontalSeparator1;
