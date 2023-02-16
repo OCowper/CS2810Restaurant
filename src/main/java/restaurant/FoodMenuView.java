@@ -63,6 +63,9 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   private Label selectionlbl;
+  
+  @FXML
+  private Label orderStatusLabel;
 
   @FXML
   private Separator seperator;
@@ -251,6 +254,8 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   void isPressed(ActionEvent event) {
+    orderStatusLabel.setText("Order placed");
+    orderStatusLabel.setVisible(true);
     curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()),
         (float) totalCost);
     notifyObservers(obs);
