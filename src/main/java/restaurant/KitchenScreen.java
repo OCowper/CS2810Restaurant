@@ -1,11 +1,19 @@
 package restaurant;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * View representing the screen used by the kitchen for order purposes.
@@ -19,6 +27,9 @@ public class KitchenScreen implements Subject, ViewInterface {
 
   @FXML
   private Text inProgressOrders;
+  
+  @FXML
+  private Button menuRtn;
 
   @FXML
   private ListView<String> inProgressOrdersList;
@@ -60,6 +71,26 @@ public class KitchenScreen implements Subject, ViewInterface {
       orderHistoryList.getItems().add(inProgressOrdersList.getItems().get(j));
     }
     
+  }
+  
+  /**
+   * Handles a user pressing the return button.
+   *
+   * @param event the event representing button push
+   * @throws IOException if an IO error occurs.
+   */
+  @FXML
+  public void handleReturnMenuBtn(ActionEvent event) throws IOException {
+
+
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
+    Parent startViewParent = loader.load();
+    Scene startView = new Scene(startViewParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    window.setScene(startView);
+    window.show();
   }
   
   @FXML
