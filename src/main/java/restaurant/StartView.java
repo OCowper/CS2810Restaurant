@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -23,11 +25,17 @@ public class StartView implements Subject, ViewInterface {
 
   @FXML
   private Button staffbtn;
+  
+  @FXML
+  private ImageView imageBack;
 
   @FXML
   private Label titlelbl;
 
-
+  public void initialize(){
+    Image image = new Image ("/images/plata-o-plomo-1.jpeg");
+    imageBack.setImage(image);
+  }
   /**
    * Changes the scene from initial one to food menu view.
    *
