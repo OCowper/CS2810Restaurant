@@ -1,0 +1,9 @@
+INSERT INTO Menu VALUES ('30', 'Latte', 'Blahblahblah' ,'peanuts', '50', 'Drinks');
+INSERT INTO Menu VALUES ('31', 'Tea', 'Blahblahblah' ,'na', '50', 'Drinks');
+INSERT INTO Menu VALUES ('32', 'Fries', 'Blahblahblah' ,'peanuts', '50', 'Starters');
+INSERT INTO Menu VALUES ('33', 'Hallumi', 'Blahblahblah' ,'milk', '50', 'Starters');
+INSERT INTO Menu VALUES ('34', 'Mozarella', 'Blahblahblah' ,'milk', '50', 'Starters');
+INSERT INTO Menu VALUES ('35', 'Steak', 'Blahblahblah' ,'peanuts', '50', 'Mains');
+INSERT INTO Menu VALUES ('36', 'Pasta', 'Blahblahblah' ,'peanuts', '50', 'Mains');
+INSERT INTO Menu VALUES ('37', 'Risotto', 'Blahblahblah' ,'peanuts', '50', 'Mains');
+INSERT INTO Menu VALUES ('38', 'Paella', 'Blahblahblah' ,'peanuts', '50', 'Mains');

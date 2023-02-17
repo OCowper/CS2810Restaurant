@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="bgPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.NewOrdersView">
+   <children>
+      <Line fx:id="horizontalSeparator2" endX="552.0000610351562" endY="22.0" layoutX="101.0" layoutY="429.0" startX="-101.0" startY="22.0" />
+      <Button fx:id="activeOrdersButton" layoutX="11.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleActiveOrderBtn" prefHeight="32.0" prefWidth="109.0" text="Active orders" />
+      <Button fx:id="allOrdersButton" layoutX="129.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleAllOrderBtn" prefHeight="32.0" prefWidth="109.0" text="All orders" />
+      <Text fx:id="newOrdersHeading" layoutX="223.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Orders" wrappingWidth="152.8642578125">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <Separator fx:id="horizontalSeparator1" layoutX="-1.0" layoutY="81.0" prefHeight="1.0" prefWidth="654.0" />
+      <Separator fx:id="verticalSeparator1" layoutX="102.0" layoutY="82.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="2.0" />
+      <Separator fx:id="verticalSeparator2" layoutX="331.0" layoutY="83.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="6.0" />
+      <Separator fx:id="verticalSeparator3" layoutX="441.0" layoutY="81.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="16.0" />
+      <Separator fx:id="verticalSeparator4" layoutX="540.0" layoutY="84.0" orientation="VERTICAL" prefHeight="369.0" prefWidth="6.0" />
+      <Text fx:id="orderNumberHeading" layoutX="20.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O.Number" wrappingWidth="66.5869140625" />
+      <Text fx:id="itemsHeading" layoutX="183.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items" />
+      <Text fx:id="tableNumberHeading" layoutX="361.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T.Number" />
+      <Text fx:id="totalPriceHeading" layoutX="466.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total" />
+      <Text fx:id="orderStatusHeading" layoutX="572.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+      <ListView fx:id="orderNumberListView" layoutX="4.0" layoutY="120.0" prefHeight="327.0" prefWidth="95.0" />
+      <ListView fx:id="itemsListView" layoutX="110.0" layoutY="119.0" prefHeight="327.0" prefWidth="218.0" />
+      <ListView fx:id="tableNumberListView" layoutX="340.0" layoutY="122.0" prefHeight="321.0" prefWidth="103.0" />
+      <ListView fx:id="totalPriceListView" layoutX="454.0" layoutY="122.0" prefHeight="321.0" prefWidth="82.0" />
+      <Button fx:id="menurtn" layoutX="545.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleReturnMenuBtn" prefHeight="25.0" prefWidth="95.0" text="menu" />
+      <Button fx:id="acceptButton" layoutX="552.0" layoutY="130.0" mnemonicParsing="false" onAction="#confirmTopOrder" text="confirm" />
+   </children>
+</Pane>
