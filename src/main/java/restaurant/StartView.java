@@ -30,10 +30,12 @@ public class StartView implements Subject, ViewInterface {
   private ImageView imageBack;
 
   @FXML
-  private Label titlelbl;
+  private ImageView titleLbl;
 
   public void initialize(){
     Image image = new Image ("/images/plata-o-plomo-1.jpeg");
+    Image titleImage = new Image("/images/title.png");
+    titleLbl.setImage(titleImage);
     imageBack.setImage(image);
   }
   /**
