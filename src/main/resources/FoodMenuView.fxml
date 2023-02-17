@@ -13,7 +13,7 @@
             <Image url="@../java/images/plata-o-plomo-1.jpeg" />
          </image>
       </ImageView>
-      <Button fx:id="customerbtn" layoutX="161.0" layoutY="192.0" mnemonicParsing="false" onAction="#handleCustomerBtn" prefHeight="80.0" prefWidth="276.0" text="View Menu" textFill="WHITE" />
+      <Button fx:id="customerbtn" alignment="CENTER" layoutX="184.0" layoutY="225.0" mnemonicParsing="false" onAction="#handleCustomerBtn" prefHeight="56.0" prefWidth="223.0" style="-fx-background-color: #f7e3c6; -fx-border-color: #000000;" text="View Menu" />
       <Button fx:id="staffbtn" layoutX="478.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleStaffLoginBtn" prefHeight="14.0" prefWidth="113.0" text="Staff Login" textFill="WHITE" />
       <Separator layoutX="1.0" layoutY="64.0" prefHeight="3.0" prefWidth="600.0" style="-fx-background-color: #0a0600; -fx-background-size: 100;" />
       <ImageView fx:id="titleLbl" blendMode="SRC_ATOP" fitHeight="219.0" fitWidth="469.0" layoutX="-143.0" layoutY="-54.0" pickOnBounds="true" preserveRatio="true">

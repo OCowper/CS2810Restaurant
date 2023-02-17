@@ -21,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -83,7 +84,7 @@ public class FoodMenuView implements Subject, ViewInterface {
   private TextField tablenotxt;
 
   @FXML
-  private Label titlelbl;
+  private ImageView titlelbl;
 
   @FXML
   private Label totallbl;
@@ -124,6 +125,9 @@ public class FoodMenuView implements Subject, ViewInterface {
         checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
       }
     }
+    
+    Image titleImage = new Image("/images/title.png");
+    titlelbl.setImage(titleImage);
   }
 
   private void handleCheckboxClick(CheckBox checkbox) {

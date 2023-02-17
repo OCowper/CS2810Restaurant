@@ -6,19 +6,20 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="619.0" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.FoodMenuView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="619.0" style="-fx-background-color: #f7e3c6;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.FoodMenuView">
    <children>
       <ScrollPane fx:id="scrollpane" hbarPolicy="NEVER" layoutX="14.0" layoutY="173.0" maxHeight="1.7976931348623157E308" prefHeight="213.0" prefWidth="200.0" vbarPolicy="ALWAYS" vmax="2.0">
         <content>
           <AnchorPane fx:id="anchorpane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <VBox fx:id="vbox" prefHeight="247.0" prefWidth="200.0" spacing="10.0">
+                  <VBox fx:id="vbox" prefHeight="247.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ece1ce;">
                      <children>
                      </children>
                   </VBox>
@@ -31,34 +32,34 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </TextField>
-      <Separator fx:id="seperator" layoutX="394.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="10.0" />
+      <Separator fx:id="seperator" layoutX="404.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="10.0" />
       <Label layoutX="421.0" layoutY="18.0" text="YOUR SELECTION">
          <font>
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="userselections" disable="true" layoutX="424.0" layoutY="49.0" prefHeight="144.0" prefWidth="149.0" />
+      <TextField fx:id="userselections" disable="true" layoutX="424.0" layoutY="49.0" prefHeight="144.0" prefWidth="170.0" />
       <Label layoutX="452.0" layoutY="200.0" text="TABLE NUMBER:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="tablenotxt" layoutX="425.0" layoutY="217.0" />
-      <Button fx:id="submitbtn" layoutX="447.0" layoutY="309.0" mnemonicParsing="false" onAction="#isPressed" prefHeight="42.0" prefWidth="123.0" text="PLACE ORDER" />
+      <Button fx:id="submitbtn" layoutX="447.0" layoutY="309.0" mnemonicParsing="false" onAction="#isPressed" prefHeight="35.0" prefWidth="130.0" text="PLACE ORDER" />
       <Label layoutX="479.0" layoutY="250.0" text="TOTAL:">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="totaltxt" disable="true" editable="false" layoutX="425.0" layoutY="267.0" />
-      <Label fx:id="titlelbl" layoutX="249.0" layoutY="9.0" text="Oaxaca">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-      </Label>
       <ListView fx:id="searchlist" disable="true" layoutX="14.0" layoutY="54.0" prefHeight="100.0" prefWidth="200.0" />
-      <Button fx:id="rtnbtn" layoutX="223.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleCustomerRtnBtn" prefHeight="25.0" prefWidth="164.0" text="return to menu" />
+      <Button fx:id="rtnbtn" layoutX="230.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleCustomerRtnBtn" prefHeight="25.0" prefWidth="164.0" text="return" />
       <ImageView fx:id="productImage" disable="true" fitHeight="169.0" fitWidth="164.0" layoutX="223.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="orderStatusLabel" alignment="CENTER" layoutX="422.0" layoutY="363.0" prefHeight="16.0" prefWidth="155.0" />
+      <ImageView fx:id="titlelbl" fitHeight="213.0" fitWidth="505.0" layoutX="57.0" layoutY="-64.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../java/images/title.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
