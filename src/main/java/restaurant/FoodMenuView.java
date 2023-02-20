@@ -21,8 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -49,9 +47,6 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   private Button rtnbtn;
-  
-  @FXML
-  private ImageView productImage;
 
   @FXML
   private ScrollPane scrollpane;
@@ -64,9 +59,6 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   private Label selectionlbl;
-  
-  @FXML
-  private Label orderStatusLabel;
 
   @FXML
   private Separator seperator;
@@ -84,7 +76,7 @@ public class FoodMenuView implements Subject, ViewInterface {
   private TextField tablenotxt;
 
   @FXML
-  private ImageView titlelbl;
+  private Label titlelbl;
 
   @FXML
   private Label totallbl;
@@ -125,9 +117,6 @@ public class FoodMenuView implements Subject, ViewInterface {
         checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
       }
     }
-    
-    Image titleImage = new Image("/images/title.png");
-    titlelbl.setImage(titleImage);
   }
 
   private void handleCheckboxClick(CheckBox checkbox) {
@@ -258,8 +247,6 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   void isPressed(ActionEvent event) {
-    orderStatusLabel.setText("Order placed");
-    orderStatusLabel.setVisible(true);
     curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()),
         (float) totalCost);
     notifyObservers(obs);

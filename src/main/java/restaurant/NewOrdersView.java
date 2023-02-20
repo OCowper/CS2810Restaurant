@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -25,6 +26,10 @@ import javafx.stage.Stage;
 public class NewOrdersView implements ViewInterface, Subject {
 
 
+
+  @FXML
+  private TextField cancelOrderField;
+  
   @FXML
   private Button acceptButton;
 
@@ -159,15 +164,24 @@ public class NewOrdersView implements ViewInterface, Subject {
 
   @FXML
   private void listExit() {
+    System.out.println("listexist method");
     orderNumberListView.getItems().clear();
     itemsListView.getItems().clear();
     tableNumberListView.getItems().clear();
     totalPriceListView.getItems().clear();
   }
+  
+  @FXML
+  public void cancelButtonPressed(ActionEvent event) {
+    System.out.println("buttonpressmethod");
+    notifyObservers(obs);
+    startup();
+  }
 
   @FXML
   @Override
   public void startup() {
+    System.out.println("startup method");
     listExit();
     ResultSet rs = obs.returnOrders(false);
 
@@ -192,7 +206,10 @@ public class NewOrdersView implements ViewInterface, Subject {
   }
 
   @Override
-  public void notifyObservers(Observer obs) {}
+  public void notifyObservers(Observer obs) {
+    System.out.println("notifyobserver method");
+    obs.update(Integer.parseInt(cancelOrderField.getText()));
+  }
 
   @Override
   public void acceptBoolean(Boolean bool) {}

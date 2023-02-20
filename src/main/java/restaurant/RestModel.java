@@ -104,6 +104,11 @@ public class RestModel implements Subject {
     return Operations.executeQuery(connection, query);
   }
 
+  public void removeOrder(int orderID) {
+    System.out.println("modelremove metod");
+    CancelOrder.cancel(connection, orderID);
+  }
+
   
 
 }

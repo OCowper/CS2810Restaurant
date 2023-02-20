@@ -19,7 +19,8 @@ public class CancelOrder {
    * @param orderId order ID
    */
   public static void cancel(Connection connection, int orderId) {
-    String deleteStatement = "DELETE FROM Orders WHERE order_Num = ?";
+    System.out.println("cancel order method");
+    String deleteStatement = "DELETE FROM Orders WHERE order_Num = ? ;";
     try (PreparedStatement preparedStatement = connection.prepareStatement(deleteStatement)) {
       preparedStatement.setInt(1, orderId);
       preparedStatement.executeUpdate();

@@ -64,4 +64,11 @@ public interface Observer {
    */
   public ResultSet getMenuItems();
 
+  /**
+   * Cancels a specific order by ID.
+   *
+   * @param orderID the ID of the order to be cancelled
+   */
+  public void update(int orderID);
+
 }

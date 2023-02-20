@@ -84,6 +84,12 @@ public class RestController implements Observer {
     }
     view.acceptBoolean(confirmed);
   }
+  
+  @Override
+  public void update(int orderID) {
+    System.out.println("obs.update method");
+    model.removeOrder(orderID);
+  }
 
 
 

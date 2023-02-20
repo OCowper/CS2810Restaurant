@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -34,6 +35,11 @@
       <ListView fx:id="totalPriceListView" layoutX="454.0" layoutY="122.0" prefHeight="321.0" prefWidth="82.0" />
       <Button fx:id="menurtn" layoutX="545.0" layoutY="466.0" mnemonicParsing="false" onAction="#handleReturnMenuBtn" prefHeight="25.0" prefWidth="95.0" text="menu" />
       <Button fx:id="acceptButton" layoutX="545.0" layoutY="122.0" mnemonicParsing="false" onAction="#confirmTopOrder" prefHeight="26.0" prefWidth="103.0" text="confirm" />
-      <Button fx:id="cancelOrderButton" layoutX="543.0" layoutY="155.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="109.0" text="cancel" />
+      <Button fx:id="cancelOrderButton" layoutX="542.0" layoutY="221.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="26.0" prefWidth="109.0" text="cancel" />
+      <TextField fx:id="cancelOrderField" layoutX="548.0" layoutY="184.0" prefHeight="26.0" prefWidth="95.0" promptText="Order Num...">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </TextField>
    </children>
 </Pane>
