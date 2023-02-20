@@ -3,34 +3,51 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.StaffLoginView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: #CEB487;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.StaffLoginView">
    <children>
-      <Label fx:id="idLbl" layoutX="155.0" layoutY="130.0" text="ID:">
+      <VBox prefHeight="400.0" prefWidth="152.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;">
+         <children>
+            <ImageView fx:id="oaxacaImageView" blendMode="SRC_ATOP" fitHeight="100.0" fitWidth="167.0" pickOnBounds="true" smooth="false">
+               <image>
+                  <Image url="@../java/images/title.png" />
+               </image></ImageView>
+         </children>
+      </VBox>
+      <ImageView fx:id="landingPageImageView" blendMode="SRC_ATOP" fitHeight="410.0" fitWidth="624.0" layoutX="171.0" layoutY="-2.0" opacity="0.06" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../java/images/plata-o-plomo-1.jpeg" />
+         </image>
+      </ImageView>
+      <Button fx:id="returnButton" layoutX="559.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleStaffRtnBtn" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #BA8B39;" text="return" textFill="WHITE" />
+      <Label fx:id="titleLabel" layoutX="329.0" layoutY="14.0" text="STAFF LOGIN">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="passLbl" layoutX="87.0" layoutY="160.0" text="Password:">
+      <Label fx:id="idLabel" layoutX="297.0" layoutY="125.0" text="ID:">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <TextField fx:id="idTxt" layoutX="196.0" layoutY="132.0" prefHeight="25.0" prefWidth="246.0" />
-      <TextField fx:id="passwordTxt" layoutX="196.0" layoutY="162.0" prefHeight="25.0" prefWidth="246.0" />
-      <Label fx:id="titleLbl" layoutX="216.0" layoutY="14.0" text="STAFF LOGIN">
+      <Label fx:id="passwordLabel" layoutX="200.0" layoutY="157.0" text="Password:">
          <font>
-            <Font name="System Bold" size="27.0" />
+            <Font name="System Bold" size="23.0" />
          </font>
       </Label>
-      <Button fx:id="returnBtn" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleStaffRtnBtn" prefHeight="25.0" prefWidth="135.0" text="return to menu" />
-      <Button fx:id="loginBtn" layoutX="228.0" layoutY="235.0" mnemonicParsing="false" onAction="#handleLoginBtn" prefHeight="39.0" prefWidth="145.0" text="login" />
-      <Button fx:id="forgotBtn" layoutX="367.0" layoutY="191.0" mnemonicParsing="false" onAction="#handleforgotBtn" prefHeight="15.0" prefWidth="75.0" text="forgot password">
+      <TextField fx:id="idTxt" layoutX="339.0" layoutY="128.0" prefHeight="26.0" prefWidth="186.0" />
+      <TextField fx:id="passwordTxt" layoutX="339.0" layoutY="162.0" prefHeight="26.0" prefWidth="186.0" />
+      <Button fx:id="forgotBtn" layoutX="440.0" layoutY="191.0" mnemonicParsing="false" onAction="#handleforgotBtn" prefHeight="25.0" prefWidth="85.0" style="-fx-background-color: #BA8B39;" text="forgot password?" textFill="WHITE">
          <font>
-            <Font size="8.0" />
+            <Font size="9.0" />
          </font>
       </Button>
+      <Button fx:id="loginBtn" layoutX="356.0" layoutY="238.0" mnemonicParsing="false" onAction="#handleLoginBtn" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #BA8B39;" text="login" textFill="WHITE" />
+      <Label fx:id="titleLbl" layoutX="394.0" layoutY="69.0" text="Label" visible="false" />
    </children>
-</Pane>
+</AnchorPane>

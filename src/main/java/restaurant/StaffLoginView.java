@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -19,29 +21,46 @@ import javafx.stage.Stage;
  */
 public class StaffLoginView implements Subject, ViewInterface {
 
+
   @FXML
   private Button forgotBtn;
 
   @FXML
-  private Label idLbl;
+  private Label idLabel;
 
   @FXML
   private TextField idTxt;
 
   @FXML
+  private ImageView landingPageImageView;
+
+  @FXML
   private Button loginBtn;
 
   @FXML
-  private Label passLbl;
+  private ImageView oaxacaImageView;
+
+  @FXML
+  private Label passwordLabel;
 
   @FXML
   private TextField passwordTxt;
 
   @FXML
-  private Button returnBtn;
+  private Button returnButton;
+
+  @FXML
+  private Label titleLabel;
 
   @FXML
   private Label titleLbl;
+
+  public void initialize(){
+    Image background = new Image ("/images/plata-o-plomo-1.jpeg");
+    Image title = new Image("/images/title.png");
+    oaxacaImageView.setImage(title);
+    landingPageImageView.setImage(background);
+  }
 
   /**
    * Changes the scene from staff login to the initial.
@@ -54,7 +73,7 @@ public class StaffLoginView implements Subject, ViewInterface {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
     Parent startViewParent = loader.load();
-    Scene startView = new Scene(startViewParent);
+    Scene startView = new Scene(startViewParent, 658, 400); 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
     window.setScene(startView);
