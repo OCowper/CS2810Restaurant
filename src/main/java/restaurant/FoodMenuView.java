@@ -236,7 +236,7 @@ public class FoodMenuView implements Subject, ViewInterface {
    */
   public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
-        new FXMLLoader(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+        new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
