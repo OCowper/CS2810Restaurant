@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -23,16 +25,28 @@ import javafx.stage.Stage;
 public class KitchenScreen implements Subject, ViewInterface {
 
   @FXML
-  private Pane backgroundDisplay;
+  private Button activeOrdersButton;
+
+  @FXML
+  private Button allOrdersButton;
+
+  @FXML
+  private Text cancelHistoryLabel;
+
+  @FXML
+  private ListView<String> cancelHistoryList;
 
   @FXML
   private Text inProgressOrders;
-  
-  @FXML
-  private Button menuRtn;
 
   @FXML
   private ListView<String> inProgressOrdersList;
+
+  @FXML
+  private Button incomingOrders;
+
+  @FXML
+  private Button logoutButton;
 
   @FXML
   private Text newOrders;
@@ -41,11 +55,21 @@ public class KitchenScreen implements Subject, ViewInterface {
   private ListView<String> newOrdersList;
 
   @FXML
+  private ImageView oaxacaImageView;
+
+  @FXML
   private Text orderHistory;
-  
+
   @FXML
   private ListView<String> orderHistoryList;
 
+  @FXML
+  private Button stockButton;
+  
+  public void initialize(){
+    Image title = new Image("/images/title.png");
+    oaxacaImageView.setImage(title);
+  }
   /**
    * Sets the list of orders.
    */
@@ -73,20 +97,73 @@ public class KitchenScreen implements Subject, ViewInterface {
     
   }
   
-  /**
-   * Handles a user pressing the return button.
-   *
-   * @param event the event representing button push
-   * @throws IOException if an IO error occurs.
-   */
   @FXML
-  public void handleReturnMenuBtn(ActionEvent event) throws IOException {
-
-
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
+  public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("NewOrdersView.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    obs.orderStartup();
+    window.setScene(startView);
+    window.show();
+  }
 
+  /**
+   * 
+   * Handling for if a user presses the waiter view button.
+   *
+   * 
+   * 
+   * @param event representing the button push
+   * 
+   * @throws IOException if an IO error occurs
+   * 
+   */
+
+  @FXML
+  public void handleWaiterViewBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("WaiterScreenView.fxml"));
+    Parent startViewParent = loader.load();
+    Scene startView = new Scene(startViewParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    obs.orderStartup();
+    window.setScene(startView);
+    window.show();
+  }
+
+  /**
+   * 
+   * Handling for if the user presses Log Out.
+   *
+   * 
+   * 
+   * @param event representing the button press.
+   * 
+   * @throws IOException if an IO error occurs.
+   * 
+   */
+
+  @FXML
+  public void handleLogOutBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
+    Parent startViewParent = loader.load();
+    Scene startView = new Scene(startViewParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    window.setScene(startView);
+    window.show();
+  }
+
+  @FXML
+  public void handleAllOrderBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
+    Parent startViewParent = loader.load();
+    Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
     window.setScene(startView);
