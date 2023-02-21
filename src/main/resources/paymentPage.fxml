@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="bgAnchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: #CEB487;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="paymentPage">
+   <children>
+      <VBox fx:id="bgVbox" layoutX="-3.0" layoutY="-3.0" prefHeight="400.0" prefWidth="202.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;">
+         <children>
+            <ImageView fx:id="logo" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../java/images/title.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+      <Text fx:id="paymentHeading" layoutX="350.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+      <Text fx:id="nameOnCard" layoutX="251.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on Card">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nameOnCardField" layoutX="251.0" layoutY="104.0" prefHeight="26.0" prefWidth="382.0" />
+      <Text fx:id="cardNumber" layoutX="251.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="cardNumberField" layoutX="252.0" layoutY="164.0" prefHeight="26.0" prefWidth="382.0" />
+      <Text fx:id="expiryDate" layoutX="251.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expiry Date">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="expiryDateField" layoutX="250.0" layoutY="228.0" prefHeight="37.0" prefWidth="126.0" />
+      <Text fx:id="CVV" layoutX="500.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVV">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="cvvField" layoutX="501.0" layoutY="228.0" prefHeight="26.0" prefWidth="126.0" />
+      <Button fx:id="payNowButton" layoutX="355.0" layoutY="305.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #BA8B39;" text="PAY NOW">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
