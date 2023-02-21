@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane fx:id="bgAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="checkoutPage">
+<AnchorPane fx:id="bgAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: #CEB487;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="checkoutPage">
    <children>
       <VBox fx:id="virtualBox" layoutX="-2.0" layoutY="-1.0" prefHeight="400.0" prefWidth="152.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;">
          <children>
