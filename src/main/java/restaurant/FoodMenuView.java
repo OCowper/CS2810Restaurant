@@ -28,22 +28,13 @@ import javafx.stage.Stage;
 /**
  * Defines the main view of the program.
  *
- * @author Irina Gubaciova, Mathushan Santhan, Manpreet Kaur
+ * @author ZLAC183, Mathushan Santhan, Manpreet Kaur
  */
 public class FoodMenuView implements Subject, ViewInterface {
 
 
   @FXML
   private AnchorPane anchorpane;
-
-  @FXML
-  private Label desserts;
-
-  @FXML
-  private Label drinks;
-
-  @FXML
-  private Label mains;
 
   @FXML
   private Button rtnbtn;
@@ -97,7 +88,7 @@ public class FoodMenuView implements Subject, ViewInterface {
   private double totalCost = 0;
 
   /**
-   * Initialises item costs.
+   * Puts the item from database on to the menu view.
    */
   public void initializeAfter() {
     Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
@@ -108,7 +99,7 @@ public class FoodMenuView implements Subject, ViewInterface {
         vbox.getChildren().add(new CheckBox(item.toString()));
       }
     }
-
+    
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
     for (Node node : vbox.getChildren()) {
@@ -190,6 +181,10 @@ public class FoodMenuView implements Subject, ViewInterface {
     public String getCategory() {
       return category;
     }
+    
+    public String getDescription() {
+      return description;
+    }
 
     @Override
     public String toString() {
@@ -202,7 +197,6 @@ public class FoodMenuView implements Subject, ViewInterface {
    * MenuItem classes and returns it. !!!!!!!!!!!!!!!!!!!The transformation code in the try block is
    * a placeholder and needs to be changed according to the database structure!!!!!!!!!!!!!!!!
    *
-   * @param connection database conneciton
    * @return a list of menu items represented by a MenuItem class
    */
   private Map<String, List<MenuItem>> queryItemsFromDb() {
