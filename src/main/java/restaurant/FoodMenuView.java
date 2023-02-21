@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -81,6 +82,15 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   private VBox vbox;
+  
+  @FXML
+  private VBox descriptionBox;
+
+  @FXML
+  private TextArea itemDescription;
+
+  @FXML
+  private TextField itemName;
 
 
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
@@ -99,8 +109,9 @@ public class FoodMenuView implements Subject, ViewInterface {
         vbox.getChildren().add(new CheckBox(item.toString()));
       }
     }
-    
     scrollpane.setContent(vbox);
+    //making the description box invisible on start
+    descriptionBox.setVisible(false);
     searchbar.setOnAction(e -> handleSearchbarAction());
     for (Node node : vbox.getChildren()) {
       if (node instanceof CheckBox) {
@@ -253,6 +264,17 @@ public class FoodMenuView implements Subject, ViewInterface {
   public void addObservers(Observer obs) {
     this.obs = obs;
 
+  }
+  
+  
+  /**
+   * Closes(hides) the item description box when the user presses close button.
+   *
+   * @param event button click
+   */
+  @FXML
+  void closeDescription(ActionEvent event) {
+    descriptionBox.setVisible(false);
   }
 
   @Override
