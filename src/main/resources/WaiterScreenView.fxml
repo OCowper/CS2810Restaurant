@@ -114,7 +114,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Text>
-            <Button fx:id="orderConfirmBtn" layoutX="711.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleOrderConfirm" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #BA8B39;" text="order delivered" />
+            <Button fx:id="orderConfirmBtn" layoutX="711.0" layoutY="55.0" mnemonicParsing="false" onAction="#handleOrderConfirm" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: #BA8B39;" text="order delivered" textFill="WHITE" />
       
          </children>
       
