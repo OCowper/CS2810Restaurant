@@ -80,8 +80,21 @@ public class paymentPage implements Subject, ViewInterface {
 
     window.setScene(checkout);
     window.show();
+    
+  }
+  public void handlepayNowBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
+    Parent paymentConfirmationParent = loader.load();
+    Scene paymentConfirmation = new Scene(paymentConfirmationParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(paymentConfirmation);
+    window.show();
   }
     
+  
     public Observer obs;
 
     @Override
