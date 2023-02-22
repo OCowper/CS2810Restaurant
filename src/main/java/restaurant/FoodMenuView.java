@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -110,21 +111,17 @@ public class FoodMenuView implements Subject, ViewInterface {
       for (MenuItem item : itemsMap.get(key)) {
         CheckBox cb = new CheckBox(item.getPrice());
         Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
-        hl.setOnAction(e -> showDescription(item)); //sets behaviour on click
-        
-        cb.setGraphic(hl); 
+        hl.setOnAction(e -> showDescription(item)); // sets behaviour on click
+
+        cb.setGraphic(hl);
         cb.setContentDisplay(ContentDisplay.LEFT); // name set to be left of everything else
+        cb.selectedProperty().addListener(
+            (observable, oldValue, newValue) -> handleCheckboxClick(cb, oldValue, newValue));
         vbox.getChildren().add((cb));
       }
     }
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
-    for (Node node : vbox.getChildren()) {
-      if (node instanceof CheckBox) {
-        CheckBox checkbox = (CheckBox) node;
-        checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
-      }
-    }
   }
 
   private void showDescription(MenuItem item) {
@@ -133,10 +130,10 @@ public class FoodMenuView implements Subject, ViewInterface {
     descriptionBox.setVisible(true);
   }
 
-  private void handleCheckboxClick(CheckBox checkbox) {
-    String item = checkbox.getText();
-    double price = Double.parseDouble(item.split(" ")[1]);
-    if (checkbox.isSelected()) {
+  private void handleCheckboxClick(CheckBox checkbox, Boolean o, Boolean n) {
+    String item = ((Hyperlink) checkbox.getGraphic()).getText();
+    double price = Double.parseDouble(checkbox.getText());
+    if (n) {
       userselections.appendText(item + ",");
       totalCost += price;
       totaltxt.setText("£" + Double.toString(totalCost));

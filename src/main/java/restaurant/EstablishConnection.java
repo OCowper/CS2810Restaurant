@@ -47,7 +47,31 @@ public class EstablishConnection {
       System.out.println("connection failed");
       System.exit(1);
     }
+    //temp(connection);
     return connection;
   }
+
+//  private static void temp(Connection conn) {
+//    String[] inserts = {
+//        "INSERT INTO Menu VALUES ('30', 'Latte', 'Blahblahblah' ,'peanuts', '50', 'Drinks');",
+//        "INSERT INTO Menu VALUES ('31', 'Tea', 'Blahblahblah' ,'na', '50', 'Drinks');",
+//        "INSERT INTO Menu VALUES ('32', 'Fries', 'Blahblahblah' ,'peanuts', '50', 'Starters');",
+//        "INSERT INTO Menu VALUES ('33', 'Hallumi', 'Blahblahblah' ,'milk', '50', 'Starters');",
+//        "INSERT INTO Menu VALUES ('34', 'Mozarella', 'Blahblahblah' ,'milk', '50', 'Starters');",
+//        "INSERT INTO Menu VALUES ('35', 'Steak', 'Blahblahblah' ,'peanuts', '50', 'Mains');",
+//        "INSERT INTO Menu VALUES ('36', 'Pasta', 'Blahblahblah' ,'peanuts', '50', 'Mains');",
+//        "INSERT INTO Menu VALUES ('37', 'Risotto', 'Blahblahblah' ,'peanuts', '50', 'Mains');",
+//        "INSERT INTO Menu VALUES ('38', 'Paella', 'Blahblahblah' ,'peanuts', '50', 'Mains');"};
+//
+//    String menuTable = "CREATE TABLE IF NOT EXISTS Menu(" + "    item_Num varchar(15),"
+//        + "    item_Name varchar(30)," + "    item_Description varchar(1000),"
+//        + "    alligens varchar(1000)," + "    preparation_Time varchar(100),"
+//        + "    item_Type varchar(100), /* drink / starters / mains ect */"
+//        + "    primary key (item_Num)" + ");";
+//    Operations.executeProcedure(conn, menuTable);
+//    for (String str : inserts) {
+//      Operations.executeProcedure(conn, str);
+//    }
+//  }
 }
 
