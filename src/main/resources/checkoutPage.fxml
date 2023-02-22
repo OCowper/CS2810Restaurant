@@ -14,7 +14,7 @@
    <children>
       <VBox fx:id="virtualBox" layoutX="-2.0" layoutY="-1.0" prefHeight="400.0" prefWidth="152.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;">
          <children>
-            <ImageView fx:id="oaxacaImageView" fitHeight="182.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+            <ImageView fx:id="oaxacaImageView" fitHeight="182.0" fitWidth="200.0" onMouseClicked="#handleMenuReturn" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                <image>
                   <Image url="@../java/images/title.png" />
                </image>

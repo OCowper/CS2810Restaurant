@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -111,6 +112,18 @@ public class checkoutPage implements Subject, ViewInterface {
   
   public void handleCheckoutButton(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("paymentPage.fxml"));
+    Parent paymentParent = loader.load();
+    Scene payment = new Scene(paymentParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(payment);
+    window.show();
+  }
+  
+  public void handleMenuReturn(MouseEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
     Parent paymentParent = loader.load();
     Scene payment = new Scene(paymentParent);
 
