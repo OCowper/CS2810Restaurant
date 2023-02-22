@@ -37,10 +37,34 @@ public class MenuQueries
     
     }
     
-    public static ArrayList<String> filterMenu(Connection connection, int priceCap)
+    /**
+   * Returns items that are less then a certain price
+   *
+   * @param connection current database connection
+   * @param priceCap value of the users input
+   * @return all dishes which are priced under the priceCap
+   *
+   */
+  public static ArrayList<String> filterMenu(Connection connection, int priceCap)
+  {
+    ArrayList<String> items = new ArrayList<String>();
+    
+    String statement = "SELECT menu_items.dish FROM menu_items WHERE menu_items.price < " + Integer.toString(priceCap);
+    
+    try
     {
-      // find serial number of all items in menu_items with a lower or even price to price cap
-      // from the serial number find the name of the item from the menu table
-      // return all the names in an arrayList.
+      ResultSet rs = Operations.executeQuery(connection, statement);
+      
+      while(rs.next())
+      {
+        items.add(rs.getString("dish"));
+      }
     }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    
+    return items;
+  }
 }
