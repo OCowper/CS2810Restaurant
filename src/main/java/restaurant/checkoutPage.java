@@ -108,6 +108,18 @@ public class checkoutPage implements Subject, ViewInterface {
     window.setScene(checkout);
     window.show();
   }
+  
+  public void handleCheckoutButton(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("paymentPage.fxml"));
+    Parent paymentParent = loader.load();
+    Scene payment = new Scene(paymentParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(payment);
+    window.show();
+  }
     
     public Observer obs;
 
