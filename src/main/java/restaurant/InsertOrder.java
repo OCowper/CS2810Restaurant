@@ -116,4 +116,25 @@ public class InsertOrder {
 
 
   }
+
+   /**
+   * Cancels an order.
+   * 
+   * @param connection current database connection.
+   * @param orderID current orderID.
+   *
+   */
+  public static void cancelOrder(Connection connection, int orderID)
+  {
+    String updateStatement = "DELETE FROM Orders WHERE order_Num = " + orderID + ";";
+    
+    try {
+      ResultSet rs = Operations.executeQuery(connection, updateStatement);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    } 
+  }
+  
 }
