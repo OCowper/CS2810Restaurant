@@ -19,7 +19,7 @@
                </image>
             </ImageView>
             <Button fx:id="emptyButton" mnemonicParsing="false" prefHeight="288.0" prefWidth="200.0" style="-fx-background-color: #BA8B39;" />
-            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#handleReturnBtn" prefHeight="33.0" prefWidth="205.0" style="-fx-background-color: #BA8B39;" text="return" />
+            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#handleReturnBtn" prefHeight="33.0" prefWidth="205.0" style="-fx-background-color: #BA8B39;" text="return" textFill="WHITE" />
          </children>
       </VBox>
       <Text fx:id="paymentHeading" layoutX="343.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PAYMENT">

@@ -67,7 +67,7 @@ public class KitchenScreen implements Subject, ViewInterface {
   private Button stockButton;
   
   public void initialize(){
-    Image title = new Image("/images/title.png");
+    Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
   }
   /**

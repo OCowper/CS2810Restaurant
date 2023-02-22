@@ -111,7 +111,7 @@ public class NewOrdersView implements ViewInterface, Subject {
   private Separator verticalSeparator4;
 
   public void initialize(){
-    Image title = new Image("/images/title.png");
+    Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
   }
   

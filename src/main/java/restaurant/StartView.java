@@ -34,7 +34,7 @@ public class StartView implements Subject, ViewInterface {
 
   public void initialize(){
     Image image = new Image ("/images/plata-o-plomo-1.jpeg");
-    Image titleImage = new Image("/images/title.png");
+    Image titleImage = new Image("/images/newoaxacaLogo.png");
     titleLbl.setImage(titleImage);
     imageBack.setImage(image);
   }

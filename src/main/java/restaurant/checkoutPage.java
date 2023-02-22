@@ -75,7 +75,7 @@ public class checkoutPage implements Subject, ViewInterface {
 
   public void initialize(){
     Image background = new Image ("/images/plata-o-plomo-1.jpeg");
-    Image title = new Image("/images/title.png");
+    Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
     bgImage.setImage(background);
   }
