@@ -75,6 +75,18 @@ public class newLandingPage implements Subject, ViewInterface {
       window.setScene(staffLogin);
       window.show();
     }
+    
+    public void handleCartBtn(ActionEvent event) throws IOException {
+      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
+      Parent cartParent = loader.load();
+      Scene checkout = new Scene(cartParent);
+
+      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      obs.setView(loader.getController());
+
+      window.setScene(checkout);
+      window.show();
+    }
 
     public Observer obs;
 

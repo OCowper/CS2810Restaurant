@@ -20,7 +20,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="cartButton" mnemonicParsing="false" prefHeight="74.0" prefWidth="167.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Cart" textFill="WHITE">
+            <Button fx:id="cartButton" mnemonicParsing="false" onAction="#handleCartBtn" prefHeight="74.0" prefWidth="167.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Cart" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
