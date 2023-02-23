@@ -1,12 +1,19 @@
 package restaurant;
 
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * Class representing the payment confirmation page.
@@ -61,27 +68,31 @@ public class PaymentConfirmation implements Subject, ViewInterface {
     // TODO Auto-generated method stub
 
   }
-  
-  
-  public void hndleReturnBtn(ActionEvent event) throws IOException{
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
-    
+
+
+  /**
+   * Handling for if the return button is pushed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs.
+   */
+  public void hndleReturnBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
+
     Parent cartParent = loader.load();
-    Scene chreckout = new Scene(cartpanel);
-    
-    Stage window = (Stage)((Node) event.getSource()).getScene().getWindows();
-    obs.setView(loader.getontroller());
-    
+    Scene checkout = new Scene(cartParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
     window.setScene(checkout);
     window.show();
-    
-    
-    
-    
-    
-    
+
+
+
   }
-  
-  
+
+
 
 }
