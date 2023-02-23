@@ -42,8 +42,10 @@ public interface Observer {
    * Returns a result set containing all current orders in the database
    *
    * @return the result set to be returned
+   * @param confirm whether or not the orders to be returned are listed as confirmed
+   * @param finished whether or not the orders should be from the done tables
    */
-  public ResultSet returnOrders(Boolean confirm);
+  public ResultSet returnOrders(Boolean confirm, Boolean finished);
 
   /**
    * Collects orders so they can be displayed.

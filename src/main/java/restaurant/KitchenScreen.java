@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -76,8 +75,10 @@ public class KitchenScreen implements Subject, ViewInterface {
   @Override
   public void startup() {
     listExit();
-    ResultSet newOrders = obs.returnOrders(false);
-    ResultSet progressOrders = obs.returnOrders(true);
+    ResultSet newOrders = obs.returnOrders(false, false);
+    ResultSet progressOrders = obs.returnOrders(true, false);
+    ResultSet completedOrders = obs.returnOrders(true, true);
+    ResultSet cancelledOrders = obs.returnOrders(false, true);
     try {
       while (newOrders.next()) {
         newOrdersList.getItems().add(String.valueOf(newOrders.getInt(1)));
@@ -85,16 +86,15 @@ public class KitchenScreen implements Subject, ViewInterface {
       while (progressOrders.next()) {
         inProgressOrdersList.getItems().add(String.valueOf(progressOrders.getInt(1)));
       }
+      while (completedOrders.next()) {
+        orderHistoryList.getItems().add(String.valueOf(completedOrders.getInt(1)));
+      }
+      while (cancelledOrders.next()) {
+        cancelHistoryList.getItems().add(String.valueOf(cancelledOrders.getInt(1)));
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    for (int i = 0; i < newOrdersList.getItems().size(); i++) {
-      orderHistoryList.getItems().add(newOrdersList.getItems().get(i));
-    }
-    for (int j = 0; j < inProgressOrdersList.getItems().size(); j++) {
-      orderHistoryList.getItems().add(inProgressOrdersList.getItems().get(j));
-    }
-    
   }
   
   @FXML
@@ -111,17 +111,11 @@ public class KitchenScreen implements Subject, ViewInterface {
   }
 
   /**
-   * 
    * Handling for if a user presses the waiter view button.
-   *
-   * 
    * 
    * @param event representing the button push
-   * 
    * @throws IOException if an IO error occurs
-   * 
    */
-
   @FXML
   public void handleWaiterViewBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -136,17 +130,11 @@ public class KitchenScreen implements Subject, ViewInterface {
   }
 
   /**
-   * 
    * Handling for if the user presses Log Out.
-   *
-   * 
    * 
    * @param event representing the button press.
-   * 
    * @throws IOException if an IO error occurs.
-   * 
    */
-
   @FXML
   public void handleLogOutBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));

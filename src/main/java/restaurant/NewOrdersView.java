@@ -215,7 +215,7 @@ public class NewOrdersView implements ViewInterface, Subject {
   @Override
   public void startup() {
     listExit();
-    ResultSet rs = obs.returnOrders(false);
+    ResultSet rs = obs.returnOrders(false, false);
 
     try {
       while (rs.next()) {

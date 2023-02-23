@@ -71,14 +71,22 @@ public class RestModel implements Subject {
 
   /**
    * Collects a subset of all orders from the database.
+   * 
+   * @param finished
    *
    * @return the result set of orders to be returned.
    */
-  public ResultSet queryOrders(Boolean confirm) {
+  public ResultSet queryOrders(Boolean confirm, Boolean finished) {
     String query = "";
-    if (confirm) {
+
+    if (confirm && finished) {
+      query = "SELECT * FROM doneOrders WHERE cancelled = false AND order_num > 0 order by order_num;";
+    } else if (!confirm && finished) {
+      query =
+          "SELECT * FROM doneOrders WHERE cancelled = true and order_num > 0 order by order_num;";
+    } else if (confirm && !finished) {
       query = "SELECT * FROM orders WHERE confirm = true AND order_num > 0 order by order_num;";
-    } else if (!confirm) {
+    } else {
       query = "SELECT * FROM orders WHERE confirm = false order by order_num;";
     }
     return Operations.executeQuery(connection, query);

@@ -215,7 +215,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
   @Override
   public void startup() {
     listExit();
-    ResultSet rs = obs.returnOrders(true);
+    ResultSet rs = obs.returnOrders(true, false);
 
     try {
       while (rs.next()) {
