@@ -48,7 +48,7 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <Button fx:id="payNowButton" layoutX="355.0" layoutY="305.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #BA8B39;" text="PAY NOW">
+      <Button fx:id="payNowButton" layoutX="355.0" layoutY="305.0" mnemonicParsing="false" onAction="#handlepayNowBtn" prefHeight="33.0" prefWidth="133.0" style="-fx-background-color: #BA8B39;" text="PAY NOW">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
