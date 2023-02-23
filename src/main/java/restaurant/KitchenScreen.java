@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 /**
  * View representing the screen used by the kitchen for order purposes.
  *
- * @author Mathushan, Manpreet
+ * @author Mathushan, Manpreet, zkac355
  */
 public class KitchenScreen implements Subject, ViewInterface {
 
@@ -166,6 +166,7 @@ public class KitchenScreen implements Subject, ViewInterface {
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
+    obs.orderStartup();
     window.setScene(startView);
     window.show();
   }
