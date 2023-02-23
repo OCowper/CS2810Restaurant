@@ -61,6 +61,27 @@ public class PaymentConfirmation implements Subject, ViewInterface {
     // TODO Auto-generated method stub
 
   }
-
+  
+  
+  public void hndleReturnBtn(ActionEvent event) throws IOException{
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
+    
+    Parent cartParent = loader.load();
+    Scene chreckout = new Scene(cartpanel);
+    
+    Stage window = (Stage)((Node) event.getSource()).getScene().getWindows();
+    obs.setView(loader.getontroller());
+    
+    window.setScene(checkout);
+    window.show();
+    
+    
+    
+    
+    
+    
+  }
+  
+  
 
 }
