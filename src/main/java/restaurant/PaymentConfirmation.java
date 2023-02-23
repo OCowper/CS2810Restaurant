@@ -76,7 +76,7 @@ public class PaymentConfirmation implements Subject, ViewInterface {
    * @param event representing the button push
    * @throws IOException if an IO error occurs.
    */
-  public void hndleReturnBtn(ActionEvent event) throws IOException {
+  public void handleReturnBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
 

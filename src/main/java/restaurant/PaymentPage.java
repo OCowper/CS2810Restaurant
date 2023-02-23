@@ -84,6 +84,7 @@ public class PaymentPage implements Subject, ViewInterface {
    * @param event representing the button push
    * @throws IOException if an IO error occurs
    */
+  @FXML
   public void handleReturnBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
