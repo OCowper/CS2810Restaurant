@@ -37,7 +37,9 @@ import javafx.stage.Stage;
  */
 public class FoodMenuView implements Subject, ViewInterface {
 
-
+  @FXML
+  private Label confirmLabel;
+  
   @FXML
   private AnchorPane anchorpane;
 
@@ -270,6 +272,7 @@ public class FoodMenuView implements Subject, ViewInterface {
     curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()),
         (float) totalCost);
     notifyObservers(obs);
+    confirmLabel.setText("confirmed!");
   }
 
   public Observer obs;
