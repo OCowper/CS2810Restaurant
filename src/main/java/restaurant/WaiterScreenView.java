@@ -96,11 +96,11 @@ public class WaiterScreenView implements Subject, ViewInterface {
   @FXML
   private Separator verticalSeparator4;
 
-  public void initialize(){
+  public void initialize() {
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
   }
-  
+
   @FXML
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -173,10 +173,11 @@ public class WaiterScreenView implements Subject, ViewInterface {
     window.setScene(startView);
     window.show();
   }
-  
+
   @FXML
   void handleOrderConfirm(ActionEvent event) {
-
+    obs.update(Integer.parseInt(orderNumberListView.getItems().get(0)));
+    startup();
   }
 
   public Observer obs;
@@ -206,7 +207,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
     tableNumberListView.getItems().clear();
     totalPriceListView.getItems().clear();
   }
-  
+
   @FXML
   @Override
   public void startup() {

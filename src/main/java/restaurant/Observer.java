@@ -65,10 +65,11 @@ public interface Observer {
   public ResultSet getMenuItems();
 
   /**
-   * Cancels a specific order by ID.
+   * Cancels or completes a specific order by ID.
    *
-   * @param orderID the ID of the order to be cancelled
+   * @param orderID the ID of the order to be cancelled or completed
    */
   public void update(int orderID);
+
 
 }

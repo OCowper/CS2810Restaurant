@@ -7,3 +7,8 @@ CREATE TABLE IF NOT EXISTS Orders(
     waiter_id varchar(15),	 
     foreign key (waiter_id) references Staff(staff_id),
     primary key (order_Num));
+    
+CREATE TABLE IF NOT EXISTS DoneOrders(
+    order_Num numeric(5, 0),
+    cancelled boolean,
+    primary key (order_Num));

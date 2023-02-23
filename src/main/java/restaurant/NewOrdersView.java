@@ -198,7 +198,6 @@ public class NewOrdersView implements ViewInterface, Subject {
 
   @FXML
   private void listExit() {
-    System.out.println("listexist method");
     orderNumberListView.getItems().clear();
     itemsListView.getItems().clear();
     tableNumberListView.getItems().clear();
@@ -207,7 +206,6 @@ public class NewOrdersView implements ViewInterface, Subject {
   
   @FXML
   public void cancelButtonPressed(ActionEvent event) {
-    System.out.println("buttonpressmethod");
     notifyObservers(obs);
     startup();
   }
@@ -215,7 +213,6 @@ public class NewOrdersView implements ViewInterface, Subject {
   @FXML
   @Override
   public void startup() {
-    System.out.println("startup method");
     listExit();
     ResultSet rs = obs.returnOrders(false);
 
@@ -241,7 +238,6 @@ public class NewOrdersView implements ViewInterface, Subject {
 
   @Override
   public void notifyObservers(Observer obs) {
-    System.out.println("notifyobserver method");
     obs.update(Integer.parseInt(cancelOrderField.getText()));
   }
 
