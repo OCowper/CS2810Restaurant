@@ -51,22 +51,39 @@ public class InsertOrder {
       e.printStackTrace();
     }
 
-    String findNewId = "SELECT MAX(order_Num) from Orders"; // creates new orderID
     int newId = 0;
+    String findNewId = "SELECT MAX(order_Num) from Orders;"; // creates new orderID
+    int topCurId = 0;
 
     try {
       ResultSet rs = Operations.executeQuery(connection, findNewId);
       while (rs.next()) {
-        newId = rs.getInt(1) + 1;
+        topCurId = rs.getInt(1);
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
 
+    findNewId = "SELECT MAX(order_Num) from DoneOrders;";
+    int topDoneId = 0;
+    try {
+      ResultSet rs = Operations.executeQuery(connection, findNewId);
+      while (rs.next()) {
+        topDoneId = rs.getInt(1);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    if (topCurId > topDoneId) {
+      newId = topCurId + 1;
+    } else {
+      newId = topDoneId + 1;
+    }
+
 
     PreparedStatement stmt = null;
     String insertStatement = "INSERT INTO Orders(order_Num, order_Description, "
-        + "table_Num, price, confirm, waiter_id) VALUES (?,?,?,?, False, ?)";
+        + "table_Num, price, confirm, waiter_id) VALUES (?,?,?,?, False, ?);";
     try {
       // INSERTS new order with the new order number and the waitersID as primary key and foreign
       // key.
@@ -81,7 +98,7 @@ public class InsertOrder {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return newId; // returns the orderID
+    return topCurId; // returns the orderID
 
   }
 
