@@ -10,12 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -95,6 +94,9 @@ public class WaiterScreenView implements Subject, ViewInterface {
 
   @FXML
   private Separator verticalSeparator4;
+  
+  @FXML
+  private TextField completeTextField;
 
   public void initialize() {
     Image title = new Image("/images/newoaxacaLogo.png");
@@ -177,7 +179,7 @@ public class WaiterScreenView implements Subject, ViewInterface {
 
   @FXML
   void handleOrderConfirm(ActionEvent event) {
-    obs.update(Integer.parseInt(orderNumberListView.getItems().get(0)));
+    obs.update(Integer.parseInt(completeTextField.getText()));
     startup();
   }
 
