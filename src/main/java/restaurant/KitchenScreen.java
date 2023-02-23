@@ -64,11 +64,15 @@ public class KitchenScreen implements Subject, ViewInterface {
 
   @FXML
   private Button stockButton;
-  
-  public void initialize(){
+
+  /**
+   * Initialization method.
+   */
+  public void initialize() {
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
   }
+
   /**
    * Sets the list of orders.
    */
@@ -96,7 +100,13 @@ public class KitchenScreen implements Subject, ViewInterface {
       e.printStackTrace();
     }
   }
-  
+
+  /**
+   * Handler for if the switch to new orders button is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs
+   */
   @FXML
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -112,7 +122,7 @@ public class KitchenScreen implements Subject, ViewInterface {
 
   /**
    * Handling for if a user presses the waiter view button.
-   * 
+   *
    * @param event representing the button push
    * @throws IOException if an IO error occurs
    */
@@ -131,7 +141,7 @@ public class KitchenScreen implements Subject, ViewInterface {
 
   /**
    * Handling for if the user presses Log Out.
-   * 
+   *
    * @param event representing the button press.
    * @throws IOException if an IO error occurs.
    */
@@ -146,6 +156,12 @@ public class KitchenScreen implements Subject, ViewInterface {
     window.show();
   }
 
+  /**
+   * Handling for if the switcher to the all orders screen is pressed.
+   *
+   * @param event representing the button push.
+   * @throws IOException if an IO error occurs
+   */
   @FXML
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -158,31 +174,31 @@ public class KitchenScreen implements Subject, ViewInterface {
     window.setScene(startView);
     window.show();
   }
-  
+
   @FXML
   private void listExit() {
     newOrdersList.getItems().clear();
     inProgressOrdersList.getItems().clear();
     orderHistoryList.getItems().clear();
   }
-  
+
   public Observer obs;
 
   @Override
   public void addObservers(Observer obs) {
     this.obs = obs;
-    
+
   }
 
   @Override
   public void notifyObservers(Observer obs) {
-    //TODO
-    
+    // TODO
+
   }
 
   @Override
   public void acceptBoolean(Boolean bool) {
     // TODO Auto-generated method stub
-    
+
   }
 }

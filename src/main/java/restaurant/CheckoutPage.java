@@ -18,7 +18,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class checkoutPage implements Subject, ViewInterface {
+/**
+ * Class representing the checkout page.
+ *
+ * @author Manpreet, Mathushan
+ */
+public class CheckoutPage implements Subject, ViewInterface {
 
   @FXML
   private Button aboutUsButton;
@@ -74,32 +79,44 @@ public class checkoutPage implements Subject, ViewInterface {
   @FXML
   private VBox virtualBox;
 
-  public void initialize(){
-    Image background = new Image ("/images/plata-o-plomo-1.jpeg");
+  /**
+   * Initialization method.
+   */
+  public void initialize() {
+    Image background = new Image("/images/plata-o-plomo-1.jpeg");
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
     bgImage.setImage(background);
   }
-  
+
   /**
-   * @param event
-   * @throws IOException
+   * Handler for if the customer button is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs
    */
   public void handleCustomerBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("model.fxml"));
     Parent foodMenuparent = loader.load();
-    
+
     Scene foodMenu = new Scene(foodMenuparent);
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();  
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
     obs.orderStartup();
     window.setScene(foodMenu);
     window.show();
 
   }
-  
+
+  /**
+   * Handler for if the cart button is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs
+   */
   public void handleCartBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
     Parent cartParent = loader.load();
     Scene checkout = new Scene(cartParent);
 
@@ -109,7 +126,13 @@ public class checkoutPage implements Subject, ViewInterface {
     window.setScene(checkout);
     window.show();
   }
-  
+
+  /**
+   * Handler for if the checkout button is pressed.
+   *
+   * @param event representing the button press.
+   * @throws IOException if an IO error occurs.
+   */
   public void handleCheckoutButton(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("paymentPage.fxml"));
     Parent paymentParent = loader.load();
@@ -121,9 +144,16 @@ public class checkoutPage implements Subject, ViewInterface {
     window.setScene(payment);
     window.show();
   }
-  
+
+  /**
+   * Handler for when the return button is pressed.
+   *
+   * @param event represents the button press
+   * @throws IOException if an IO error occurs
+   */
   public void handleMenuReturn(MouseEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
     Parent paymentParent = loader.load();
     Scene payment = new Scene(paymentParent);
 
@@ -133,25 +163,25 @@ public class checkoutPage implements Subject, ViewInterface {
     window.setScene(payment);
     window.show();
   }
-    
-    public Observer obs;
 
-    @Override
-    public void addObservers(Observer obs) {
-      this.obs = obs;
+  public Observer obs;
 
-    }
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
 
-    @Override
-    public void notifyObservers(Observer obs) {}
+  }
 
-    @Override
-    public void acceptBoolean(Boolean bool) {}
+  @Override
+  public void notifyObservers(Observer obs) {}
 
-    @Override
-    public void startup() {
-      // TODO Auto-generated method stub
-      
-    }
+  @Override
+  public void acceptBoolean(Boolean bool) {}
+
+  @Override
+  public void startup() {
+    // TODO Auto-generated method stub
+
+  }
 
 }

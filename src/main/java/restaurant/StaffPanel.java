@@ -3,35 +3,22 @@ package restaurant;
 
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
-
 import javafx.scene.Node;
-
 import javafx.scene.Parent;
-
 import javafx.scene.Scene;
-
 import javafx.scene.control.Button;
-
 import javafx.scene.control.Label;
-
 import javafx.stage.Stage;
 
 
 
 /**
- * 
  * View representing the Staff Panel.
  *
- * 
- * 
  * @author Mathushan, Manpreet
- * 
  */
 
 public class StaffPanel implements ViewInterface, Subject {
@@ -63,15 +50,10 @@ public class StaffPanel implements ViewInterface, Subject {
 
 
   /**
-   * 
    * Handling for if the user presses the View New Order button.
    *
-   * 
-   * 
-   * @param event representing the button press
-   * 
+   * @param event representing the button press 
    * @throws IOException If an IO error occurs
-   * 
    */
 
   @FXML
@@ -101,15 +83,10 @@ public class StaffPanel implements ViewInterface, Subject {
 
 
   /**
-   * 
    * Handling for if a user presses the waiter view button.
    *
-   * 
-   * 
    * @param event representing the button push
-   * 
    * @throws IOException if an IO error occurs
-   * 
    */
 
   @FXML
@@ -139,19 +116,12 @@ public class StaffPanel implements ViewInterface, Subject {
 
 
   /**
-   * 
    * Handling for if the user presses Log Out.
    *
-   * 
-   * 
    * @param event representing the button press.
-   * 
-   * @throws IOException if an IO error occurs.
-   * 
+   * @throws IOException if an IO error occurs
    */
-
   @FXML
-
   public void handleLogOutBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
@@ -172,8 +142,13 @@ public class StaffPanel implements ViewInterface, Subject {
 
 
 
+  /**
+   * Handling for if the all order switcher is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs
+   */
   @FXML
-
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =

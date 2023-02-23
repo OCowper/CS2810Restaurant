@@ -13,32 +13,38 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
- * View representing the startup screen.
+ * Class representing the landing page.
  *
- * @author Mathushan, Manpreet, Irina
+ * @author Manpreet, Mathushan
  */
-public class StartView implements Subject, ViewInterface {
+public class NewLandingPage implements Subject, ViewInterface {
 
   @FXML
-  private Button customerbtn;
+  private Button aboutUsButton;
 
   @FXML
-  private Button staffbtn;
+  private Button cartButton;
 
   @FXML
-  private ImageView imageBack;
+  private ImageView landingPageImageView;
 
   @FXML
-  private ImageView titleLbl;
+  private Button menuButton;
+
+  @FXML
+  private ImageView oaxacaImageView;
+
+  @FXML
+  private Button staffLoginButton;
 
   /**
-   * Initialzation method.
+   * Initialization method.
    */
   public void initialize() {
-    Image image = new Image("/images/plata-o-plomo-1.jpeg");
-    Image titleImage = new Image("/images/newoaxacaLogo.png");
-    titleLbl.setImage(titleImage);
-    imageBack.setImage(image);
+    Image background = new Image("/images/plata-o-plomo-1.jpeg");
+    Image title = new Image("/images/newoaxacaLogo.png");
+    oaxacaImageView.setImage(title);
+    landingPageImageView.setImage(background);
   }
 
   /**
@@ -78,6 +84,25 @@ public class StartView implements Subject, ViewInterface {
     window.show();
   }
 
+  /**
+   * Handling for if the cart screen switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
+  public void handleCartBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
+    Parent cartParent = loader.load();
+    Scene checkout = new Scene(cartParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(checkout);
+    window.show();
+  }
+
   public Observer obs;
 
   @Override
@@ -97,4 +122,5 @@ public class StartView implements Subject, ViewInterface {
     // TODO Auto-generated method stub
 
   }
+
 }

@@ -94,15 +94,24 @@ public class WaiterScreenView implements Subject, ViewInterface {
 
   @FXML
   private Separator verticalSeparator4;
-  
+
   @FXML
   private TextField completeTextField;
 
+  /**
+   * Initalization method.
+   */
   public void initialize() {
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
   }
 
+  /**
+   * Handling if the view all orders switcher is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs
+   */
   @FXML
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -117,17 +126,11 @@ public class WaiterScreenView implements Subject, ViewInterface {
   }
 
   /**
-   * 
    * Handling for if a user presses the waiter view button.
    *
-   * 
-   * 
    * @param event representing the button push
-   * 
    * @throws IOException if an IO error occurs
-   * 
    */
-
   @FXML
   public void handleWaiterViewBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -142,17 +145,11 @@ public class WaiterScreenView implements Subject, ViewInterface {
   }
 
   /**
-   * 
    * Handling for if the user presses Log Out.
    *
-   * 
-   * 
    * @param event representing the button press.
-   * 
    * @throws IOException if an IO error occurs.
-   * 
    */
-
   @FXML
   public void handleLogOutBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
@@ -164,6 +161,12 @@ public class WaiterScreenView implements Subject, ViewInterface {
     window.show();
   }
 
+  /**
+   * Handling for if the all order switcher is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs.
+   */
   @FXML
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =

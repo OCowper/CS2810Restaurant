@@ -44,11 +44,14 @@ public class StaffPasswordReset implements Subject, ViewInterface {
   private Button returnbtn;
 
 
-  public void initialize(){
+  /**
+   * Initalization method.
+   */
+  public void initialize() {
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
   }
-  
+
   /**
    * Handles the go back button.
    *
@@ -57,8 +60,7 @@ public class StaffPasswordReset implements Subject, ViewInterface {
    */
   @FXML
   public void handleForgotPassReturn(ActionEvent event) throws IOException {
-    FXMLLoader loader =
-        new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -93,7 +95,7 @@ public class StaffPasswordReset implements Subject, ViewInterface {
   @Override
   public void startup() {
     // TODO Auto-generated method stub
-    
+
   }
 
 }

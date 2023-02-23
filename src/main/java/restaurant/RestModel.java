@@ -71,16 +71,16 @@ public class RestModel implements Subject {
 
   /**
    * Collects a subset of all orders from the database.
-   * 
-   * @param finished
    *
+   * @param finished whether or not finished orders should be collected
    * @return the result set of orders to be returned.
    */
   public ResultSet queryOrders(Boolean confirm, Boolean finished) {
     String query = "";
 
     if (confirm && finished) {
-      query = "SELECT * FROM doneOrders WHERE cancelled = false AND order_num > 0 order by order_num;";
+      query =
+          "SELECT * FROM doneOrders WHERE cancelled = false AND order_num > 0 order by order_num;";
     } else if (!confirm && finished) {
       query =
           "SELECT * FROM doneOrders WHERE cancelled = true and order_num > 0 order by order_num;";
@@ -112,7 +112,13 @@ public class RestModel implements Subject {
     return Operations.executeQuery(connection, query);
   }
 
-  public void removeOrder(int orderID, boolean confirmed) {
-    CancelOrder.finish(connection, orderID, confirmed);
+  /**
+   * Removes an order from the database and moves it to the done orders database.
+   *
+   * @param orderId the ID of the order
+   * @param confirmed whether the order was completed or cancelled.
+   */
+  public void removeOrder(int orderId, boolean confirmed) {
+    CancelOrder.finish(connection, orderId, confirmed);
   }
 }

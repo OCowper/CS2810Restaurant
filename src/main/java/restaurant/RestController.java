@@ -86,11 +86,11 @@ public class RestController implements Observer {
   }
 
   @Override
-  public void update(int orderID) {
+  public void update(int orderId) {
     if (view.getClass() == NewOrdersView.class) {
-      model.removeOrder(orderID, true);
+      model.removeOrder(orderId, true);
     } else {
-      model.removeOrder(orderID, false);
+      model.removeOrder(orderId, false);
     }
   }
 

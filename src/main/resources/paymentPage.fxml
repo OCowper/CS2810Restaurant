@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="bgAnchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: #CEB487;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.paymentPage">
+<AnchorPane fx:id="bgAnchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: #CEB487;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.PaymentPage">
    <children>
       <VBox fx:id="bgVbox" layoutX="-3.0" layoutY="-3.0" prefHeight="400.0" prefWidth="202.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;">
          <children>
@@ -43,7 +43,7 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <Text fx:id="CVV" layoutX="500.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVV">
+      <Text fx:id="cvv" layoutX="500.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVV">
          <font>
             <Font size="15.0" />
          </font>

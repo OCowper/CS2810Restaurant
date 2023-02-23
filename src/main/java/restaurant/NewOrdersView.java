@@ -15,7 +15,6 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -46,7 +45,7 @@ public class NewOrdersView implements ViewInterface, Subject {
 
   @FXML
   private TextField cancelOrderField;
-  
+
   @FXML
   private Text cancelOrderLbl;
 
@@ -58,7 +57,7 @@ public class NewOrdersView implements ViewInterface, Subject {
 
   @FXML
   private Button incomingOrders;
-  
+
   @FXML
   private Text incomingOrdersLabel;
 
@@ -110,11 +109,20 @@ public class NewOrdersView implements ViewInterface, Subject {
   @FXML
   private Separator verticalSeparator4;
 
-  public void initialize(){
+  /**
+   * Initalization method.
+   */
+  public void initialize() {
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
   }
-  
+
+  /**
+   * Handling for if the new order view switcher is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs
+   */
   @FXML
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -129,17 +137,11 @@ public class NewOrdersView implements ViewInterface, Subject {
   }
 
   /**
-   * 
    * Handling for if a user presses the waiter view button.
    *
-   * 
-   * 
    * @param event representing the button push
-   * 
    * @throws IOException if an IO error occurs
-   * 
    */
-
   @FXML
   public void handleWaiterViewBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -154,17 +156,11 @@ public class NewOrdersView implements ViewInterface, Subject {
   }
 
   /**
-   * 
    * Handling for if the user presses Log Out.
    *
-   * 
-   * 
    * @param event representing the button press.
-   * 
    * @throws IOException if an IO error occurs.
-   * 
    */
-
   @FXML
   public void handleLogOutBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
@@ -176,6 +172,12 @@ public class NewOrdersView implements ViewInterface, Subject {
     window.show();
   }
 
+  /**
+   * Handling for if the all order button view switcher is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs
+   */
   @FXML
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -204,7 +206,12 @@ public class NewOrdersView implements ViewInterface, Subject {
     tableNumberListView.getItems().clear();
     totalPriceListView.getItems().clear();
   }
-  
+
+  /**
+   * Handles the order cancellation button.
+   *
+   * @param event representing when the button is pushed.
+   */
   @FXML
   public void cancelButtonPressed(ActionEvent event) {
     notifyObservers(obs);

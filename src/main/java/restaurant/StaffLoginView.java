@@ -55,8 +55,11 @@ public class StaffLoginView implements Subject, ViewInterface {
   @FXML
   private Label titleLbl;
 
-  public void initialize(){
-    Image background = new Image ("/images/plata-o-plomo-1.jpeg");
+  /**
+   * Initalization method.
+   */
+  public void initialize() {
+    Image background = new Image("/images/plata-o-plomo-1.jpeg");
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
     landingPageImageView.setImage(background);
@@ -73,7 +76,7 @@ public class StaffLoginView implements Subject, ViewInterface {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
     Parent startViewParent = loader.load();
-    Scene startView = new Scene(startViewParent, 658, 400); 
+    Scene startView = new Scene(startViewParent, 658, 400);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
     window.setScene(startView);
