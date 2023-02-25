@@ -85,6 +85,15 @@ public class RestController implements Observer {
     view.acceptBoolean(confirmed);
   }
 
+  @Override
+  public void update(int orderId) {
+    if (view.getClass() == NewOrdersView.class) {
+      model.removeOrder(orderId, true);
+    } else {
+      model.removeOrder(orderId, false);
+    }
+  }
+
 
 
   private void storeOrder() {
@@ -96,24 +105,24 @@ public class RestController implements Observer {
   }
 
   @Override
-  public ResultSet returnOrders(Boolean confirm) {
-    return model.queryOrders(confirm);
+  public ResultSet returnOrders(Boolean confirm, Boolean finished) {
+    return model.queryOrders(confirm, finished);
   }
 
   @Override
   public void orderStartup() {
-    view.startup(); 
+    view.startup();
   }
 
   @Override
   public void confirmOrder(String orderId) {
     model.confirmOrder(orderId);
-    
+
   }
 
   @Override
   public ResultSet getMenuItems() {
     return model.getMenu();
-    
+
   }
 }

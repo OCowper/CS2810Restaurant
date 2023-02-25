@@ -32,6 +32,13 @@ public interface Observer {
   public void update(String userId, String password);
   
   /**
+   * Cancels or completes a specific order by ID.
+   *
+   * @param orderId the ID of the order to be cancelled or completed
+   */
+  public void update(int orderId);
+  
+  /**
    * Changes the view being observed.
    *
    * @param view the new view.
@@ -41,9 +48,11 @@ public interface Observer {
   /**.
    * Returns a result set containing all current orders in the database
    *
+   * @param confirm whether or not the orders to be returned are listed as confirmed
+   * @param finished whether or not the orders should be from the done tables
    * @return the result set to be returned
    */
-  public ResultSet returnOrders(Boolean confirm);
+  public ResultSet returnOrders(Boolean confirm, Boolean finished);
 
   /**
    * Collects orders so they can be displayed.
@@ -63,5 +72,6 @@ public interface Observer {
    * @return result set containing menu items.
    */
   public ResultSet getMenuItems();
+
 
 }

@@ -12,7 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -25,13 +27,13 @@ import javafx.stage.Stage;
 public class WaiterScreenView implements Subject, ViewInterface {
 
   @FXML
-  private Text activeOrdersHeading;
+  private Button activeOrdersButton;
+
+  @FXML
+  private Text activeOrdersLabel;
 
   @FXML
   private Button allOrdersButton;
-
-  @FXML
-  private Pane backgroundPane;
 
   @FXML
   private Separator horizontalSeparator1;
@@ -40,13 +42,22 @@ public class WaiterScreenView implements Subject, ViewInterface {
   private Line horizontalSeparator2;
 
   @FXML
+  private Button incomingOrders;
+
+  @FXML
   private Text itemsHeading;
 
   @FXML
   private ListView<String> itemsListView;
 
   @FXML
-  private Button newOrdersButton;
+  private Button logoutButton;
+
+  @FXML
+  private ImageView oaxacaImageView;
+
+  @FXML
+  private Button orderConfirmBtn;
 
   @FXML
   private Text orderNumberHeading;
@@ -55,7 +66,10 @@ public class WaiterScreenView implements Subject, ViewInterface {
   private ListView<String> orderNumberListView;
 
   @FXML
-  private Button returnbtn;
+  private Text orderStatusHeading;
+
+  @FXML
+  private Button stockButton;
 
   @FXML
   private Text tableNumberHeading;
@@ -78,37 +92,32 @@ public class WaiterScreenView implements Subject, ViewInterface {
   @FXML
   private Separator verticalSeparator3;
 
-  /**
-   * Handling for if the user presses the return button.
-   *
-   * @param event representing the button push
-   * @throws IOException if an IO error occurs
-   */
   @FXML
-  public void handleReturnMenuBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
-    Parent startViewParent = loader.load();
-    Scene startView = new Scene(startViewParent);
+  private Separator verticalSeparator4;
 
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    obs.setView(loader.getController());
-    window.setScene(startView);
-    window.show();
+  @FXML
+  private TextField completeTextField;
+
+  /**
+   * Initalization method.
+   */
+  public void initialize() {
+    Image title = new Image("/images/newoaxacaLogo.png");
+    oaxacaImageView.setImage(title);
   }
 
   /**
-   * Handling if a user presses the New Orders button.
+   * Handling if the view all orders switcher is pressed.
    *
    * @param event representing the button push
    * @throws IOException if an IO error occurs
    */
   @FXML
-  public void handleNewOrdersBtn(ActionEvent event) throws IOException {
+  public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("NewOrdersView.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
     obs.orderStartup();
@@ -117,10 +126,46 @@ public class WaiterScreenView implements Subject, ViewInterface {
   }
 
   /**
-   * Handling for if a user presses the All order button.
+   * Handling for if a user presses the waiter view button.
    *
    * @param event representing the button push
    * @throws IOException if an IO error occurs
+   */
+  @FXML
+  public void handleWaiterViewBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("WaiterScreenView.fxml"));
+    Parent startViewParent = loader.load();
+    Scene startView = new Scene(startViewParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    obs.orderStartup();
+    window.setScene(startView);
+    window.show();
+  }
+
+  /**
+   * Handling for if the user presses Log Out.
+   *
+   * @param event representing the button press.
+   * @throws IOException if an IO error occurs.
+   */
+  @FXML
+  public void handleLogOutBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
+    Parent startViewParent = loader.load();
+    Scene startView = new Scene(startViewParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    window.setScene(startView);
+    window.show();
+  }
+
+  /**
+   * Handling for if the all order switcher is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs.
    */
   @FXML
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
@@ -128,12 +173,17 @@ public class WaiterScreenView implements Subject, ViewInterface {
         new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
     obs.orderStartup();
     window.setScene(startView);
     window.show();
+  }
+
+  @FXML
+  void handleOrderConfirm(ActionEvent event) {
+    obs.update(Integer.parseInt(completeTextField.getText()));
+    startup();
   }
 
   public Observer obs;
@@ -163,12 +213,12 @@ public class WaiterScreenView implements Subject, ViewInterface {
     tableNumberListView.getItems().clear();
     totalPriceListView.getItems().clear();
   }
-  
+
   @FXML
   @Override
   public void startup() {
     listExit();
-    ResultSet rs = obs.returnOrders(true);
+    ResultSet rs = obs.returnOrders(true, false);
 
     try {
       while (rs.next()) {

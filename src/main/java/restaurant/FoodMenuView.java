@@ -16,11 +16,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -28,22 +32,15 @@ import javafx.stage.Stage;
 /**
  * Defines the main view of the program.
  *
- * @author Irina Gubaciova, Mathushan Santhan, Manpreet Kaur
+ * @author ZLAC183, Mathushan Santhan, Manpreet Kaur
  */
 public class FoodMenuView implements Subject, ViewInterface {
 
-
+  @FXML
+  private Label confirmLabel;
+  
   @FXML
   private AnchorPane anchorpane;
-
-  @FXML
-  private Label desserts;
-
-  @FXML
-  private Label drinks;
-
-  @FXML
-  private Label mains;
 
   @FXML
   private Button rtnbtn;
@@ -76,7 +73,7 @@ public class FoodMenuView implements Subject, ViewInterface {
   private TextField tablenotxt;
 
   @FXML
-  private Label titlelbl;
+  private ImageView titlelbl;
 
   @FXML
   private Label totallbl;
@@ -91,13 +88,22 @@ public class FoodMenuView implements Subject, ViewInterface {
   @FXML
   private VBox vbox;
 
+  @FXML
+  private VBox descriptionBox;
+
+  @FXML
+  private TextArea itemDescription;
+
+  @FXML
+  private TextField itemName;
+
 
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
 
   /**
-   * Initialises item costs.
+   * Puts the item from database on to the menu view.
    */
   public void initializeAfter() {
     Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
@@ -105,24 +111,31 @@ public class FoodMenuView implements Subject, ViewInterface {
     for (String key : itemsMap.keySet()) {
       vbox.getChildren().add(new Label(key));
       for (MenuItem item : itemsMap.get(key)) {
-        vbox.getChildren().add(new CheckBox(item.toString()));
+        CheckBox cb = new CheckBox(item.getPrice());
+        Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
+        hl.setOnAction(e -> showDescription(item)); // sets behaviour on click
+
+        cb.setGraphic(hl);
+        cb.setContentDisplay(ContentDisplay.LEFT); // name set to be left of everything else
+        cb.selectedProperty().addListener(
+            (observable, oldValue, newValue) -> handleCheckboxClick(cb, oldValue, newValue));
+        vbox.getChildren().add((cb));
       }
     }
-
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
-    for (Node node : vbox.getChildren()) {
-      if (node instanceof CheckBox) {
-        CheckBox checkbox = (CheckBox) node;
-        checkbox.setOnAction(e -> handleCheckboxClick(checkbox));
-      }
-    }
   }
 
-  private void handleCheckboxClick(CheckBox checkbox) {
-    String item = checkbox.getText();
-    double price = Double.parseDouble(item.split(" ")[1]);
-    if (checkbox.isSelected()) {
+  private void showDescription(MenuItem item) {
+    itemName.setText(item.getName());
+    itemDescription.setText(item.getDescription());
+    descriptionBox.setVisible(true);
+  }
+
+  private void handleCheckboxClick(CheckBox checkbox, Boolean o, Boolean n) {
+    String item = ((Hyperlink) checkbox.getGraphic()).getText();
+    double price = Double.parseDouble(checkbox.getText());
+    if (n) {
       userselections.appendText(item + ",");
       totalCost += price;
       totaltxt.setText("£" + Double.toString(totalCost));
@@ -191,6 +204,18 @@ public class FoodMenuView implements Subject, ViewInterface {
       return category;
     }
 
+    public String getDescription() {
+      return description;
+    }
+
+    public String getName() {
+      return itemName;
+    }
+
+    public String getPrice() {
+      return price;
+    }
+
     @Override
     public String toString() {
       return itemName + " " + price;
@@ -202,13 +227,9 @@ public class FoodMenuView implements Subject, ViewInterface {
    * MenuItem classes and returns it. !!!!!!!!!!!!!!!!!!!The transformation code in the try block is
    * a placeholder and needs to be changed according to the database structure!!!!!!!!!!!!!!!!
    *
-   * @param connection database conneciton
    * @return a list of menu items represented by a MenuItem class
    */
   private Map<String, List<MenuItem>> queryItemsFromDb() {
-
-
-
     Map<String, List<MenuItem>> map = new HashMap<String, List<MenuItem>>();
     ResultSet rs = obs.getMenuItems();
     // ResultSetMetaData rsmd = rs.getMetaData();
@@ -235,7 +256,7 @@ public class FoodMenuView implements Subject, ViewInterface {
    */
   public void handleCustomerRtnBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
-        new FXMLLoader(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+        new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -250,6 +271,7 @@ public class FoodMenuView implements Subject, ViewInterface {
     curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()),
         (float) totalCost);
     notifyObservers(obs);
+    confirmLabel.setText("confirmed!");
   }
 
   public Observer obs;
@@ -259,6 +281,17 @@ public class FoodMenuView implements Subject, ViewInterface {
   public void addObservers(Observer obs) {
     this.obs = obs;
 
+  }
+
+
+  /**
+   * Closes(hides) the item description box when the user presses close button.
+   *
+   * @param event button click
+   */
+  @FXML
+  void closeDescription(ActionEvent event) {
+    descriptionBox.setVisible(false);
   }
 
   @Override
@@ -271,7 +304,7 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @Override
   public void startup() {
-    
+
     initializeAfter();
   }
 }

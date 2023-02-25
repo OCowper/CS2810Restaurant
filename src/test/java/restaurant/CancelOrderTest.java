@@ -1,6 +1,7 @@
 package restaurant;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ class CancelOrderTest {
   void testCancelOrder() {
     Connection connection = EstablishConnection.establishConnection();
     int orderId = 1; // replace with an actual order id from the database
-    CancelOrder.cancel(connection, orderId);
+    CancelOrder.finish(connection, orderId, false);
 
     // Check that the order was actually cancelled by querying the database for the order
     ResultSet resultSet =

@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -30,6 +32,9 @@ public class StaffPasswordReset implements Subject, ViewInterface {
   private TextField email;
 
   @FXML
+  private ImageView oaxacaImageView;
+
+  @FXML
   private Text promptText;
 
   @FXML
@@ -40,6 +45,14 @@ public class StaffPasswordReset implements Subject, ViewInterface {
 
 
   /**
+   * Initalization method.
+   */
+  public void initialize() {
+    Image title = new Image("/images/newoaxacaLogo.png");
+    oaxacaImageView.setImage(title);
+  }
+
+  /**
    * Handles the go back button.
    *
    * @param event the event of the button press
@@ -47,8 +60,7 @@ public class StaffPasswordReset implements Subject, ViewInterface {
    */
   @FXML
   public void handleForgotPassReturn(ActionEvent event) throws IOException {
-    FXMLLoader loader =
-        new FXMLLoader(getClass().getClassLoader().getResource("FoodMenuView.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -83,7 +95,7 @@ public class StaffPasswordReset implements Subject, ViewInterface {
   @Override
   public void startup() {
     // TODO Auto-generated method stub
-    
+
   }
 
 }
