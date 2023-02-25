@@ -1,0 +1,10 @@
+Release: Sprint 1
+
+customers can choose items to add to an order based on a menu found in the DB. Items are categorized by type.
+this order is submitted along with their table number into the database.
+
+on the staff side, a staff member can log in via their username and password (stored in the DB)
+they can view a list of all the incoming orders and details and confirm the most recent one.
+they can view a list of the confirmed orders and details
+they can also view a list of all order numbers in history and whether they are incoming, in progress, or historic.
+
