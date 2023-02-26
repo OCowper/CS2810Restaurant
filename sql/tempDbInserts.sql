@@ -7,3 +7,5 @@ INSERT INTO Menu VALUES ('35', 'Steak', 'Blahblahblah' ,'peanuts', '50', 'Mains'
 INSERT INTO Menu VALUES ('36', 'Pasta', 'Blahblahblah' ,'peanuts', '50', 'Mains');
 INSERT INTO Menu VALUES ('37', 'Risotto', 'Blahblahblah' ,'peanuts', '50', 'Mains');
 INSERT INTO Menu VALUES ('38', 'Paella', 'Blahblahblah' ,'peanuts', '50', 'Mains');
+insert into staff values('100575405', 'pass1', 'Oscar', 'Cowper', 'Waiter', 'oscar.cowper', '977856', 'new road');
+insert into orders values('0', 'voidorder', '0', '0.0', 't', '100575405');
