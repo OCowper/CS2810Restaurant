@@ -24,6 +24,9 @@ public class NewLandingPage implements Subject, ViewInterface {
 
   @FXML
   private Button cartButton;
+  
+  @FXML
+  private Button helpBtn;
 
   @FXML
   private ImageView landingPageImageView;
@@ -74,6 +77,18 @@ public class NewLandingPage implements Subject, ViewInterface {
    */
   public void handleStaffLoginBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
+    Parent staffLodinParent = loader.load();
+    Scene staffLogin = new Scene(staffLodinParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(staffLogin);
+    window.show();
+  }
+  
+  public void handleHelpBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerHelp.fxml"));
     Parent staffLodinParent = loader.load();
     Scene staffLogin = new Scene(staffLodinParent);
 
