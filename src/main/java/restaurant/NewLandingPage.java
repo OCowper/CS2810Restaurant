@@ -88,7 +88,7 @@ public class NewLandingPage implements Subject, ViewInterface {
   }
   
   public void handleHelpBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerHelp.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
     Parent staffLodinParent = loader.load();
     Scene staffLogin = new Scene(staffLodinParent);
 
