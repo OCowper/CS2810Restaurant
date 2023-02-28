@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -49,5 +52,37 @@
             <Image url="@../java/images/plata-o-plomo-1.jpeg" />
          </image>
       </ImageView>
+      <Label fx:id="TableNumberLbl" layoutX="233.0" layoutY="105.0" text="Table Number:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="TableNumberTxt" alignment="CENTER" layoutX="351.0" layoutY="100.0" prefHeight="26.0" prefWidth="260.0" />
+      <Label fx:id="IssuesLbl" layoutX="233.0" layoutY="149.0" text="Issues:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="tabelIssueBox" layoutX="233.0" layoutY="180.0" mnemonicParsing="false" text="Table Issue">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="MenuIssueBox" layoutX="233.0" layoutY="208.0" mnemonicParsing="false" text="Menu Issue">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="PaymentIssueBox" layoutX="233.0" layoutY="236.0" mnemonicParsing="false" text="Payment Issue">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="EmergencyIssueBox" layoutX="233.0" layoutY="264.0" mnemonicParsing="false" text="Emergency Issue">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </CheckBox>
+      <Button fx:id="HelpBtn" layoutX="323.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleCallHelp" prefHeight="26.0" prefWidth="245.0" text="Call Help" />
    </children>
 </AnchorPane>
