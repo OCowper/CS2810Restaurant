@@ -190,6 +190,19 @@ public class NewOrdersView implements ViewInterface, Subject {
     window.setScene(startView);
     window.show();
   }
+  
+  @FXML
+  public void handleNotificationsBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("NotificationScreen.fxml"));
+    Parent startViewParent = loader.load();
+    Scene startView = new Scene(startViewParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    obs.orderStartup();
+    window.setScene(startView);
+    window.show();
+  }
 
 
   @FXML
