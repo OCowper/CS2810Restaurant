@@ -38,3 +38,10 @@ CREATE TABLE IF NOT EXISTS Menu(
     primary key (item_Num)
 );
 
+
+CREATE TABLE IF NOT EXISTS Notifications (
+    table_Num numeric(5,0),
+    request_Type varchar(30),
+    dealt_with bit
+);
+
