@@ -125,4 +125,9 @@ public class RestController implements Observer {
     return model.getMenu();
 
   }
+
+  @Override
+  public ResultSet returnNotifs() {
+    return model.getNotifs();
+  }
 }

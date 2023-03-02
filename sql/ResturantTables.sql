@@ -42,6 +42,6 @@ CREATE TABLE IF NOT EXISTS Menu(
 CREATE TABLE IF NOT EXISTS Notifications (
     table_Num numeric(5,0),
     request_Type varchar(30),
-    dealt_with bit
+    dealt_with boolean
 );
 

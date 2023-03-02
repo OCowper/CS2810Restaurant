@@ -104,7 +104,7 @@
             <Separator fx:id="verticalSeparator1" layoutX="267.0" layoutY="35.0" orientation="VERTICAL" prefHeight="355.0" prefWidth="6.0" />
             <Separator fx:id="verticalSeparator4" layoutX="704.0" layoutY="37.0" orientation="VERTICAL" prefHeight="355.0" prefWidth="6.0" />
             <Line fx:id="horizontalSeparator2" endX="569.0" endY="22.0" layoutX="265.0" layoutY="368.0" startX="-96.0" startY="22.0" />
-            <Text fx:id="orderNumberHeading" layoutX="184.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="O.Number" wrappingWidth="66.5869140625" />
+            <Text fx:id="tableNumberHeading" layoutX="184.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="T.Number" wrappingWidth="66.5869140625" />
             <Text fx:id="issueHeading" layoutX="461.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Issue" />
             <Text fx:id="orderStatusHeading" layoutX="749.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
             <ListView fx:id="orderNumberListView" layoutX="174.0" layoutY="59.0" prefHeight="327.0" prefWidth="89.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />

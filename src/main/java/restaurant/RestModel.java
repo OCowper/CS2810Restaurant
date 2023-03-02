@@ -121,4 +121,9 @@ public class RestModel implements Subject {
   public void removeOrder(int orderId, boolean confirmed) {
     CancelOrder.finish(connection, orderId, confirmed);
   }
+
+  public ResultSet getNotifs() {
+    String query = "SELECT table_num, request_type FROM notifications WHERE dealt_with = False;";
+    return Operations.executeQuery(connection, query);
+  }
 }
