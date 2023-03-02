@@ -73,5 +73,12 @@ public interface Observer {
    */
   public ResultSet getMenuItems();
 
+  /**
+   * Retrieves notifications from the database.
+   *
+   * @return result set containing notifications
+   */
+  public ResultSet returnNotifs();
+
 
 }
