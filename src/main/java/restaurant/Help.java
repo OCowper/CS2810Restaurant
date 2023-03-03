@@ -71,6 +71,9 @@ public class Help implements Subject, ViewInterface {
 
   @FXML
   private VBox virtualBox;
+  
+  @FXML
+  private Label confirmLabel;
 
   @Override
   public void startup() {
@@ -165,11 +168,9 @@ public class Help implements Subject, ViewInterface {
   
   @FXML
   void handleCallHelp(ActionEvent event) {
-    System.out.println("pres");
     if (tabelIssueBox.isSelected()) {
       curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.TABLE);
       notifyObservers(obs);
-      System.out.println("table");
     }
     if (MenuIssueBox.isSelected()) {
       curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.MENU);
@@ -183,6 +184,7 @@ public class Help implements Subject, ViewInterface {
       curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.EMERGENCY);
       notifyObservers(obs);
     }
+    confirmLabel.setText("recieved!");
   }
 
   public Observer obs;

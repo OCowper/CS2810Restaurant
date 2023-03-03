@@ -84,5 +84,6 @@
          </font>
       </CheckBox>
       <Button fx:id="HelpBtn" layoutX="323.0" layoutY="316.0" mnemonicParsing="false" onAction="#handleCallHelp" prefHeight="26.0" prefWidth="245.0" text="Call Help" />
+      <Label fx:id="confirmLabel" layoutX="428.0" layoutY="359.0" />
    </children>
 </AnchorPane>
