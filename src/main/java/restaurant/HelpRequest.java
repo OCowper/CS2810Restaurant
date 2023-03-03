@@ -36,7 +36,7 @@ public class HelpRequest {
    *
    * @return the current request type
    */
-  public Request requestType() {
+  public Request getRequestType() {
     return requestType;
   }
 }

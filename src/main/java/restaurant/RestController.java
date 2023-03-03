@@ -94,6 +94,11 @@ public class RestController implements Observer {
     }
   }
 
+  @Override
+  public void update(HelpRequest request) {
+    model.submitRequest(request);
+    
+  }
 
 
   private void storeOrder() {
@@ -130,4 +135,6 @@ public class RestController implements Observer {
   public ResultSet returnNotifs() {
     return model.getNotifs();
   }
+
+ 
 }

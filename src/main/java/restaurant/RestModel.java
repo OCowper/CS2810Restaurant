@@ -131,4 +131,13 @@ public class RestModel implements Subject {
     String query = "SELECT table_num, request_type FROM notifications WHERE dealt_with = False;";
     return Operations.executeQuery(connection, query);
   }
+
+  /**
+   * Submits a help request to the database.
+   *
+   * @param request the request to be submitted
+   */
+  public void submitRequest(HelpRequest request) {
+    InsertRequest.insert(request, connection);
+  }
 }

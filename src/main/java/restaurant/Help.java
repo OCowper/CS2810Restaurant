@@ -72,7 +72,8 @@ public class Help implements Subject, ViewInterface {
   @FXML
   private VBox virtualBox;
 
-  public void initialize() {
+  @Override
+  public void startup() {
     Image background = new Image("/images/plata-o-plomo-1.jpeg");
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
@@ -160,9 +161,28 @@ public class Help implements Subject, ViewInterface {
     window.show();
   }
 
+  private HelpRequest curRequest;
+  
   @FXML
   void handleCallHelp(ActionEvent event) {
-
+    System.out.println("pres");
+    if (tabelIssueBox.isSelected()) {
+      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.TABLE);
+      notifyObservers(obs);
+      System.out.println("table");
+    }
+    if (MenuIssueBox.isSelected()) {
+      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.MENU);
+      notifyObservers(obs);
+    }
+    if (PaymentIssueBox.isSelected()) {
+      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.PAYMENT);
+      notifyObservers(obs);
+    }
+    if (EmergencyIssueBox.isSelected()) {
+      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.EMERGENCY);
+      notifyObservers(obs);
+    }
   }
 
   public Observer obs;
@@ -174,16 +194,12 @@ public class Help implements Subject, ViewInterface {
   }
 
   @Override
-  public void notifyObservers(Observer obs) {}
+  public void notifyObservers(Observer obs) {
+    obs.update(curRequest);
+  }
 
   @Override
   public void acceptBoolean(Boolean bool) {}
-
-  @Override
-  public void startup() {
-    // TODO Auto-generated method stub
-
-  }
 
 
 }

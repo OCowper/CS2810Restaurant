@@ -39,6 +39,13 @@ public interface Observer {
   public void update(int orderId);
   
   /**
+   * Updates the observer with a help request.
+   *
+   * @param curRequest current request for help.
+   */
+  public void update(HelpRequest request);
+  
+  /**
    * Changes the view being observed.
    *
    * @param view the new view.
@@ -79,6 +86,8 @@ public interface Observer {
    * @return result set containing notifications
    */
   public ResultSet returnNotifs();
+
+
 
 
 }
