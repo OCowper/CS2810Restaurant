@@ -61,7 +61,7 @@
                </font>
             </Button>
 
-            <Button fx:id="stockButton" mnemonicParsing="false" prefHeight="38.0" prefWidth="167.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Stock" textFill="WHITE">
+            <Button fx:id="stockButton" mnemonicParsing="false" onAction="#handleStockBtn" prefHeight="38.0" prefWidth="167.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Stock" textFill="WHITE">
 
                <font>
 

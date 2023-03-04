@@ -187,6 +187,27 @@ public class KitchenScreen implements Subject, ViewInterface {
     window.setScene(startView);
     window.show();
   }
+  
+  public void handleStockBtn(ActionEvent event) throws IOException {
+
+    FXMLLoader loader =
+
+        new FXMLLoader(getClass().getClassLoader().getResource("stockPage.fxml"));
+
+    Parent startViewParent = loader.load();
+
+    Scene startView = new Scene(startViewParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    obs.setView(loader.getController());
+    obs.orderStartup();
+
+    window.setScene(startView);
+
+    window.show();
+
+  }
 
   @FXML
   private void listExit() {
