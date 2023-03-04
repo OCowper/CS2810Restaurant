@@ -26,7 +26,7 @@ public class StaffPanel implements ViewInterface, Subject {
 
   @FXML
   private Button NotifictionsButton;
-  
+
   @FXML
 
   private Button logoutBtn;
@@ -54,7 +54,7 @@ public class StaffPanel implements ViewInterface, Subject {
   /**
    * Handling for if the user presses the View New Order button.
    *
-   * @param event representing the button press 
+   * @param event representing the button press
    * @throws IOException If an IO error occurs
    */
 
@@ -171,12 +171,33 @@ public class StaffPanel implements ViewInterface, Subject {
     window.show();
 
   }
-  
+
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =
 
         new FXMLLoader(getClass().getClassLoader().getResource("NotificationScreen.fxml"));
+
+    Parent startViewParent = loader.load();
+
+    Scene startView = new Scene(startViewParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+    obs.setView(loader.getController());
+    obs.orderStartup();
+
+    window.setScene(startView);
+
+    window.show();
+
+  }
+  
+  public void handleStockBtn(ActionEvent event) throws IOException {
+
+    FXMLLoader loader =
+
+        new FXMLLoader(getClass().getClassLoader().getResource("stockPage.fxml"));
 
     Parent startViewParent = loader.load();
 

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="bgPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="834.0" style="-fx-background-color: #CEB487;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stockPage">
+<AnchorPane fx:id="bgPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="834.0" style="-fx-background-color: #CEB487;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.stockPage">
    <children>
       <VBox fx:id="sidebarVbox" layoutX="-1.0" prefHeight="400.0" prefWidth="151.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;">
          <children>
@@ -20,13 +20,13 @@
                   <Image url="@../java/images/title.png" />
                </image>
             </ImageView>
-            <Button fx:id="incomingOrderButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 2px 0px 2px 0px;" text="Incoming Orders" textFill="#f2eded" />
-            <Button fx:id="activeOrderButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Active Orders" textFill="WHITE" />
-            <Button fx:id="allOrdersButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="All Orders" textFill="WHITE" />
-            <Button fx:id="notificationsButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="155.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Notifications" textFill="WHITE" />
-            <Button fx:id="stockButton" mnemonicParsing="false" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Stock" textFill="WHITE" />
+            <Button fx:id="incomingOrderButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNewOrderViewBtn" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 2px 0px 2px 0px;" text="Incoming Orders" textFill="#f2eded" />
+            <Button fx:id="activeOrderButton" mnemonicParsing="false" onAction="#handleWaiterViewBtn" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Active Orders" textFill="WHITE" />
+            <Button fx:id="allOrdersButton" mnemonicParsing="false" onAction="#handleAllOrderBtn" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="All Orders" textFill="WHITE" />
+            <Button fx:id="notificationsButton" mnemonicParsing="false" onAction="#handleNotificationsBtn" prefHeight="44.0" prefWidth="155.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Notifications" textFill="WHITE" />
+            <Button fx:id="stockButton" mnemonicParsing="false" onAction="#handleStockBtn" prefHeight="44.0" prefWidth="156.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Stock" textFill="WHITE" />
             <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="156.0" style="-fx-background-color: #BA8B39;" />
-            <Button fx:id="logoutButton" mnemonicParsing="false" prefHeight="41.0" prefWidth="155.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 2px 0px 2px 0px;" text="Log Out" textFill="WHITE" />
+            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#handleStockBtn" prefHeight="41.0" prefWidth="155.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 2px 0px 2px 0px;" text="Log Out" textFill="WHITE" />
          </children>
       </VBox>
       <Text fx:id="stockHeading" layoutX="440.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STOCK" textAlignment="CENTER">
