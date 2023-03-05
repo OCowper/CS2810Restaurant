@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -255,7 +256,7 @@ public class CustomerMenu implements Subject, ViewInterface {
      * @throws IOException when there is a problem with loading the fxml file
      */
     public void handleCustomerBtn(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("model.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
       Parent foodMenuparent = loader.load();
 
       Scene foodMenu = new Scene(foodMenuparent);
@@ -280,23 +281,6 @@ public class CustomerMenu implements Subject, ViewInterface {
       window.show();
     }
 
-    /**
-     * Changes the scene from initial one to food menu view.
-     *
-     * @param event "staffbtn" button pressed
-     * @throws IOException when there is a problem with loading the .fxml file
-     */
-    public void handleStaffLoginBtn(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
-      Parent staffLodinParent = loader.load();
-      Scene staffLogin = new Scene(staffLodinParent);
-
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      obs.setView(loader.getController());
-
-      window.setScene(staffLogin);
-      window.show();
-    }
 
     public void handleHelpBtn(ActionEvent event) throws IOException {
       FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
@@ -367,7 +351,10 @@ public class CustomerMenu implements Subject, ViewInterface {
 
     @Override
     public void startup() {
-
+      Image background = new Image("/images/plata-o-plomo-1.jpeg");
+      Image title = new Image("/images/newoaxacaLogo.png");
+      oaxacaImageView.setImage(title);
+      bgImage.setImage(background);
       initializeAfter();
     }
     
