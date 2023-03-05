@@ -62,6 +62,9 @@ public class CustomerMenu implements Subject, ViewInterface {
 
     @FXML
     private ImageView oaxacaImageView;
+    
+    @FXML
+    private ImageView productimages;
 
     @FXML
     private ScrollPane scrollpane;
