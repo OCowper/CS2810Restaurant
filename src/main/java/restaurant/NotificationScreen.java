@@ -68,8 +68,7 @@ public class NotificationScreen implements ViewInterface, Subject {
   @FXML
   private Button resolvedBtn;
 
-  @FXML
-  private TextField resolvedTextField;
+ 
 
   @FXML
   private Button stockButton;
@@ -113,7 +112,10 @@ public class NotificationScreen implements ViewInterface, Subject {
 
   @FXML
   void handleIssueResolved(ActionEvent event) {
-
+    int selectedTable = Integer.parseInt(orderNumberListView.getSelectionModel().getSelectedItem());
+    String selectedRequest = issueListView.getSelectionModel().getSelectedItem();
+    obs.resolveNotif(selectedTable, selectedRequest);
+    startup();
   }
 
   /**

@@ -140,4 +140,8 @@ public class RestModel implements Subject {
   public void submitRequest(HelpRequest request) {
     InsertRequest.insert(request, connection);
   }
+
+  public void removeNotification(int notifNum, String requestType) {
+    CancelRequest.delete(notifNum, requestType, connection);
+  }
 }

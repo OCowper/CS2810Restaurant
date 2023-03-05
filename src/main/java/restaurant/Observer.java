@@ -87,6 +87,14 @@ public interface Observer {
    */
   public ResultSet returnNotifs();
 
+  /**
+   * Removes a notification from the database.
+   *
+   * @param notifNum the number of the notification to remove.
+   * @param selectedRequest the type of request to remove.
+   */
+  public void resolveNotif(int notifNum, String selectedRequest);
+
 
 
 

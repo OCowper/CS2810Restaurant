@@ -99,6 +99,11 @@ public class RestController implements Observer {
     model.submitRequest(request);
     
   }
+  
+  @Override 
+  public void resolveNotif(int notifNum, String requestType) {
+    model.removeNotification(notifNum, requestType);
+  }
 
 
   private void storeOrder() {
