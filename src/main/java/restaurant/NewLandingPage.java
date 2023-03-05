@@ -57,7 +57,7 @@ public class NewLandingPage implements Subject, ViewInterface {
    * @throws IOException when there is a problem with loading the fxml file
    */
   public void handleCustomerBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("model.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
     Parent foodMenuparent = loader.load();
 
     Scene foodMenu = new Scene(foodMenuparent);
