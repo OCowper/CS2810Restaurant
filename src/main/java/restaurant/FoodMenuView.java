@@ -38,7 +38,7 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   private Label confirmLabel;
-  
+
   @FXML
   private AnchorPane anchorpane;
 
@@ -192,12 +192,19 @@ public class FoodMenuView implements Subject, ViewInterface {
     private String price;
     private String category;
     private String description;
+    private String ingredients;
+    private int prepTime;
+    private int calories;
 
-    public MenuItem(String name, String pr, String cat, String descr) {
+    public MenuItem(String name, String pr, String cat, String descr, String ingr, int time,
+        int c) {
       this.itemName = name;
       this.price = pr;
       this.category = cat;
       this.description = descr;
+      this.ingredients = ingr;
+      this.prepTime = time;
+      this.calories = c;
     }
 
     public String getCategory() {
@@ -214,6 +221,18 @@ public class FoodMenuView implements Subject, ViewInterface {
 
     public String getPrice() {
       return price;
+    }
+
+    public String getIngredients() {
+      return ingredients;
+    }
+
+    public int getPrepTime() {
+      return prepTime;
+    }
+
+    public int getCalories() {
+      return calories;
     }
 
     @Override
@@ -236,9 +255,10 @@ public class FoodMenuView implements Subject, ViewInterface {
     // int columnsNumber = rsmd.getColumnCount();
     try {
       while (rs.next()) {
-        String key = rs.getString("item_type").trim().toLowerCase();
-        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_num"),
-            rs.getString("item_type"), rs.getString("item_description"));
+        String key = rs.getString("item_category").trim().toLowerCase();
+        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("price"),
+            rs.getString("item_category"), rs.getString("item_description"),
+            rs.getString("ingredients"), rs.getInt("preparation_time"), rs.getInt("calories"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }
