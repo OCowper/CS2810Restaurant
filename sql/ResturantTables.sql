@@ -29,12 +29,14 @@ CREATE TABLE IF NOT EXISTS Covers(
 );
 
 CREATE TABLE IF NOT EXISTS Menu(
-    item_Num varchar(15),
-    item_Name varchar(30),
-    item_Description varchar(1000),
-    alligens varchar(1000), 
-    preparation_Time varchar(100), 
-    item_Type varchar(100), /* drink / starters / mains ect */
-    primary key (item_Num)
+    item_num varchar(15),
+    item_name varchar(30),
+    price numeric(5, 2), 
+    item_description varchar(1000),
+    ingredients varchar(1000),
+    calories smallint,
+    preparation_time smallint,
+    item_category varchar(100), 
+    primary key (item_num)
 );
 
