@@ -118,6 +118,17 @@ public class NewLandingPage implements Subject, ViewInterface {
     window.show();
   }
 
+  @FXML
+  void handleAboutBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("AboutPage.fxml"));
+    Parent staffLodinParent = loader.load();
+    Scene staffLogin = new Scene(staffLodinParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    window.setScene(staffLogin);
+    window.show();
+  }
+  
   public Observer obs;
 
   @Override

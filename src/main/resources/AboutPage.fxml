@@ -38,11 +38,6 @@
                </font>
             </Button>
             <Button mnemonicParsing="false" prefHeight="91.0" prefWidth="174.0" style="-fx-background-color: #BA8B39;" />
-            <Button fx:id="returnButton" mnemonicParsing="false" onAction="#handleReturnBtn" prefHeight="50.0" prefWidth="174.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 2px 0px 2px 0px;" text="Return" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
       <Text fx:id="aboutUsHeading" layoutX="335.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ABOUT US">

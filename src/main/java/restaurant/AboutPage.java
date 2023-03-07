@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -40,16 +41,22 @@ public class AboutPage implements Subject, ViewInterface {
 
     @FXML
     private VBox sidebarVBox;
+    
+    /**
+     * Initialization method.
+     */
+    public void initialize() {
+      Image title = new Image("/images/newoaxacaLogo.png");
+      logoImage.setImage(title);
+    }
 
     @FXML
     void handleAboutBtn(ActionEvent event) throws IOException {
       FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("AboutPage.fxml"));
       Parent staffLodinParent = loader.load();
       Scene staffLogin = new Scene(staffLodinParent);
-
       Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
       obs.setView(loader.getController());
-
       window.setScene(staffLogin);
       window.show();
     }
