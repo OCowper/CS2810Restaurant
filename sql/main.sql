@@ -2,7 +2,8 @@ CREATE TABLE IF NOT EXISTS menu_items (
     id SERIAL PRIMARY KEY,
     dish text NOT NULL,
     description text,
-    price money NOT NULL
+    price money NOT NULL,
+    type text NOT NULL  -- starters mains dessert drinks. MUST BE ALL LOWER CASE!!!!!!
 );
 
 CREATE TABLE IF NOT EXISTS menu (

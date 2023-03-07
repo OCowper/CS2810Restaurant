@@ -68,3 +68,28 @@ public class MenuQueries
     return items;
   }
 }
+
+public static ArrayList<String> filterMenuType(Connection connection, String menuType)
+{
+  ArrayList<String> items = new ArrayList<String>();
+  menuType = menuType.toLowerCase();
+
+  String Statement = "Select menu_items.dish FROM menu_items WHERE menu_items.type = " + menuType;
+  
+   try
+    {
+      ResultSet rs = Operations.executeQuery(connection, statement);
+      
+      while(rs.next())
+      {
+        items.add(rs.getString("dish"));
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    
+    return items;
+  }
+}
