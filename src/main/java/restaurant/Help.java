@@ -139,7 +139,7 @@ public class Help implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
-
+    obs.orderStartup();
     window.setScene(staffLogin);
     window.show();
   }
