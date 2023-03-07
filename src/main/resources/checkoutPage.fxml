@@ -34,6 +34,11 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
+            <Button fx:id="helpButton" mnemonicParsing="false" onAction="#handleHelpBtn" prefHeight="66.0" prefWidth="200.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Help" textFill="#f2ecec">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </VBox>
       <Text fx:id="heading" blendMode="SRC_ATOP" layoutX="350.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CHECKOUT" textAlignment="JUSTIFY" underline="true" wrappingWidth="199.99999999999994">

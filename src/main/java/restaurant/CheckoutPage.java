@@ -39,6 +39,9 @@ public class CheckoutPage implements Subject, ViewInterface {
 
   @FXML
   private Text heading;
+  
+  @FXML
+  private Button helpButton;
 
   @FXML
   private Text itemsHeading;
@@ -171,6 +174,18 @@ public class CheckoutPage implements Subject, ViewInterface {
     Scene staffLogin = new Scene(staffLodinParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
+    window.setScene(staffLogin);
+    window.show();
+  }
+  
+  public void handleHelpBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
+    Parent staffLodinParent = loader.load();
+    Scene staffLogin = new Scene(staffLodinParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
     window.setScene(staffLogin);
     window.show();
   }
