@@ -183,7 +183,7 @@ public class Help implements Subject, ViewInterface {
       curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.EMERGENCY);
       notifyObservers(obs);
     }
-    confirmLabel.setText("recieved!");
+    confirmLabel.setText("Help Request Sent");
   }
 
   public Observer obs;
