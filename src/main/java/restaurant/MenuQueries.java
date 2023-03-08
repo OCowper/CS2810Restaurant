@@ -69,6 +69,14 @@ public class MenuQueries
   }
 }
 
+/**
+* Returns an array list of the items given the chosen type.
+* 
+* @param connection current database connection
+* @param menuType the type of item the customer wants to filter through.
+* @return all items of the chosen type.
+*
+*/ 
 public static ArrayList<String> filterMenuType(Connection connection, String menuType)
 {
   ArrayList<String> items = new ArrayList<String>();
@@ -93,3 +101,5 @@ public static ArrayList<String> filterMenuType(Connection connection, String men
     return items;
   }
 }
+
+
