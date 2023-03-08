@@ -80,7 +80,7 @@ public class CheckoutPage implements Subject, ViewInterface {
   private Text totalField;
   
   @FXML
-  private Button TrackOrderButton;
+  private Button trackOrderButton;
 
   @FXML
   private VBox virtualBox;

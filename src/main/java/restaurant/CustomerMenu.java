@@ -36,7 +36,7 @@ import javafx.stage.Stage;
 public class CustomerMenu implements Subject, ViewInterface {
 
     @FXML
-    private Text MenuTitle;
+    private Text menuTitle;
 
     @FXML
     private Button aboutUsButton;
@@ -90,7 +90,7 @@ public class CustomerMenu implements Subject, ViewInterface {
     private TextField totaltxt;
     
     @FXML
-    private Button TrackOrderButton;
+    private Button trackOrderButton;
 
     @FXML
     private TextField userselections;

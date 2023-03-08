@@ -22,25 +22,25 @@ import javafx.stage.Stage;
 public class Help implements Subject, ViewInterface {
 
   @FXML
-  private CheckBox EmergencyIssueBox;
+  private CheckBox emergencyIssueBox;
 
   @FXML
-  private Button HelpBtn;
+  private Button helpBtn;
 
   @FXML
-  private Label IssuesLbl;
+  private Label issuesLbl;
 
   @FXML
-  private CheckBox MenuIssueBox;
+  private CheckBox menuIssueBox;
 
   @FXML
-  private CheckBox PaymentIssueBox;
+  private CheckBox paymentIssueBox;
 
   @FXML
-  private Label TableNumberLbl;
+  private Label tableNumberLbl;
 
   @FXML
-  private TextField TableNumberTxt;
+  private TextField tableNumberTxt;
 
   @FXML
   private Button aboutUsButton;
@@ -55,9 +55,6 @@ public class Help implements Subject, ViewInterface {
   private Button cartButton;
 
   @FXML
-  private Button helpBtn;
-
-  @FXML
   private Text helpTitle;
 
   @FXML
@@ -70,7 +67,7 @@ public class Help implements Subject, ViewInterface {
   private CheckBox tabelIssueBox;
   
   @FXML
-  private Button TrackOrderButton;
+  private Button trackOrderButton;
 
   @FXML
   private VBox virtualBox;
@@ -217,19 +214,19 @@ public class Help implements Subject, ViewInterface {
   @FXML
   void handleCallHelp(ActionEvent event) {
     if (tabelIssueBox.isSelected()) {
-      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.TABLE);
+      curRequest = new HelpRequest(Integer.parseInt(tableNumberTxt.getText()), Request.TABLE);
       notifyObservers(obs);
     }
-    if (MenuIssueBox.isSelected()) {
-      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.MENU);
+    if (menuIssueBox.isSelected()) {
+      curRequest = new HelpRequest(Integer.parseInt(tableNumberTxt.getText()), Request.MENU);
       notifyObservers(obs);
     }
-    if (PaymentIssueBox.isSelected()) {
-      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.PAYMENT);
+    if (paymentIssueBox.isSelected()) {
+      curRequest = new HelpRequest(Integer.parseInt(tableNumberTxt.getText()), Request.PAYMENT);
       notifyObservers(obs);
     }
-    if (EmergencyIssueBox.isSelected()) {
-      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.EMERGENCY);
+    if (emergencyIssueBox.isSelected()) {
+      curRequest = new HelpRequest(Integer.parseInt(tableNumberTxt.getText()), Request.EMERGENCY);
       notifyObservers(obs);
     }
     confirmLabel.setText("Help Request Sent");

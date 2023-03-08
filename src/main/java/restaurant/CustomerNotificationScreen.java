@@ -22,28 +22,28 @@ import javafx.stage.Stage;
 public class CustomerNotificationScreen  implements Subject, ViewInterface {
 
     @FXML
-    private Label OrderIDLabel;
+    private Label orderIDLabel;
 
     @FXML
-    private ListView<?> OrderIDListView;
+    private ListView<?> orderIDListView;
 
     @FXML
-    private TextField OrderIDTextField;
+    private TextField orderIDTextField;
 
     @FXML
-    private Label OrderIdLabel;
+    private Label orderIdLabel;
 
     @FXML
-    private Label StatusLabel;
+    private Label statusLabel;
 
     @FXML
-    private ListView<?> StatusListView;
+    private ListView<?> statusListView;
 
     @FXML
-    private Button TrackBtn;
+    private Button trackBtn;
 
     @FXML
-    private Button TrackOrderButton;
+    private Button trackOrderButton;
 
     @FXML
     private Button aboutUsButton;

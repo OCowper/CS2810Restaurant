@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class stockPage implements ViewInterface, Subject{
+public class StockPage implements ViewInterface, Subject{
 
   @FXML
   private Button activeOrderButton;
@@ -26,7 +26,7 @@ public class stockPage implements ViewInterface, Subject{
   private Text addProduct;
   
   @FXML
-  private Button AddItemBtn;
+  private Button addItemBtn;
 
   @FXML
   private Button allOrdersButton;
@@ -107,7 +107,7 @@ public class stockPage implements ViewInterface, Subject{
   private Text stockHeading;
   
   @FXML
-  private Button ToggleButton;
+  private Button toggleButton;
 
   @FXML
   private Separator verSeparator;
