@@ -41,7 +41,7 @@ public interface Observer {
   /**
    * Updates the observer with a help request.
    *
-   * @param curRequest current request for help.
+   * @param request current request for help.
    */
   public void update(HelpRequest request);
   

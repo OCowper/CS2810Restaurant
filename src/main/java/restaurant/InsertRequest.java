@@ -10,10 +10,11 @@ import java.sql.SQLException;
  * @author zkac355
  */
 public class InsertRequest {
-  
+
   public static void insert(HelpRequest request, Connection connection) {
     PreparedStatement stmt = null;
-    String insertStmt = "INSERT INTO notifications(table_num, request_type, dealt_with) VALUES(?, ?, False);";
+    String insertStmt =
+        "INSERT INTO notifications(table_num, request_type, dealt_with) VALUES(?, ?, False);";
     try {
       stmt = connection.prepareStatement(insertStmt);
       stmt.setInt(1, request.getTableNum());
