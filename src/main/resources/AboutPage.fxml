@@ -12,7 +12,7 @@
    <children>
       <VBox fx:id="sidebarVBox" layoutX="-1.0" layoutY="-4.0" prefHeight="406.0" prefWidth="157.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;">
          <children>
-            <ImageView fx:id="logoImage" fitHeight="182.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logoImage" fitHeight="182.0" fitWidth="200.0" onMouseClicked="#handleMenuReturn" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../java/images/title.png" />
                </image>
