@@ -141,6 +141,12 @@ public class RestModel implements Subject {
     InsertRequest.insert(request, connection);
   }
 
+  /**
+   * Removes a request from the notification db.
+   *
+   * @param notifNum the notification number.
+   * @param requestType the type of request
+   */
   public void removeNotification(int notifNum, String requestType) {
     CancelRequest.delete(notifNum, requestType, connection);
   }

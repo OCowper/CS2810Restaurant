@@ -24,7 +24,7 @@ public class NewLandingPage implements Subject, ViewInterface {
 
   @FXML
   private Button cartButton;
-  
+
   @FXML
   private Button helpBtn;
 
@@ -36,7 +36,7 @@ public class NewLandingPage implements Subject, ViewInterface {
 
   @FXML
   private ImageView oaxacaImageView;
-  
+
   @FXML
   private Button trackOrderButton;
 
@@ -60,7 +60,8 @@ public class NewLandingPage implements Subject, ViewInterface {
    * @throws IOException when there is a problem with loading the fxml file
    */
   public void handleCustomerBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
     Parent foodMenuparent = loader.load();
 
     Scene foodMenu = new Scene(foodMenuparent);
@@ -89,7 +90,7 @@ public class NewLandingPage implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-  
+
   public void handleHelpBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
     Parent staffLodinParent = loader.load();
@@ -131,10 +132,11 @@ public class NewLandingPage implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-  
+
   @FXML
   void handleTrackBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
     Parent staffLodinParent = loader.load();
     Scene staffLogin = new Scene(staffLodinParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -142,7 +144,7 @@ public class NewLandingPage implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-  
+
   public Observer obs;
 
   @Override

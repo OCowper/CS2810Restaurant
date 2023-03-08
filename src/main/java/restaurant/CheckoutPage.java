@@ -39,7 +39,7 @@ public class CheckoutPage implements Subject, ViewInterface {
 
   @FXML
   private Text heading;
-  
+
   @FXML
   private Button helpButton;
 
@@ -78,7 +78,7 @@ public class CheckoutPage implements Subject, ViewInterface {
 
   @FXML
   private Text totalField;
-  
+
   @FXML
   private Button trackOrderButton;
 
@@ -102,7 +102,8 @@ public class CheckoutPage implements Subject, ViewInterface {
    * @throws IOException if an IO error occurs
    */
   public void handleCustomerBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
     Parent foodMenuparent = loader.load();
 
     Scene foodMenu = new Scene(foodMenuparent);
@@ -186,7 +187,7 @@ public class CheckoutPage implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-  
+
   /**
    * Handling for if Help switcher is pressed.
    *
@@ -213,7 +214,8 @@ public class CheckoutPage implements Subject, ViewInterface {
    */
   @FXML
   void handleTrackBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
     Parent staffLodinParent = loader.load();
     Scene staffLogin = new Scene(staffLodinParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -221,7 +223,7 @@ public class CheckoutPage implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-  
+
   public Observer obs;
 
   @Override

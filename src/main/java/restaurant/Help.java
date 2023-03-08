@@ -65,13 +65,13 @@ public class Help implements Subject, ViewInterface {
 
   @FXML
   private CheckBox tabelIssueBox;
-  
+
   @FXML
   private Button trackOrderButton;
 
   @FXML
   private VBox virtualBox;
-  
+
   @FXML
   private Label confirmLabel;
 
@@ -89,7 +89,8 @@ public class Help implements Subject, ViewInterface {
    * @throws IOException when there is a problem with loading the fxml file
    */
   public void handleCustomerBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
     Parent foodMenuparent = loader.load();
 
     Scene foodMenu = new Scene(foodMenuparent);
@@ -174,7 +175,7 @@ public class Help implements Subject, ViewInterface {
     window.setScene(checkout);
     window.show();
   }
-  
+
   /**
    * Handling for if About Us switcher is pressed.
    *
@@ -191,7 +192,7 @@ public class Help implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-  
+
   /**
    * Handling for if Track Order switcher is pressed.
    *
@@ -200,7 +201,8 @@ public class Help implements Subject, ViewInterface {
    */
   @FXML
   void handleTrackBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
     Parent staffLodinParent = loader.load();
     Scene staffLogin = new Scene(staffLodinParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -210,7 +212,7 @@ public class Help implements Subject, ViewInterface {
   }
 
   private HelpRequest curRequest;
-  
+
   @FXML
   void handleCallHelp(ActionEvent event) {
     if (tabelIssueBox.isSelected()) {

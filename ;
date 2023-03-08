@@ -1,0 +1,11 @@
+ staff_id  | password | first_name | last_name | job_title |    email     | phone  | home_address 
+-----------+----------+------------+-----------+-----------+--------------+--------+--------------
+ 100575405 | pass1    | Oscar      | Cowper    | Waiter    | oscar.cowper | 977856 | new road
+(1 row)
+
+ staff_id  | password | first_name | last_name | job_title |    email     | phone  | home_address 
+-----------+----------+------------+-----------+-----------+--------------+--------+--------------
+ 100575405 | pass1    | Oscar      | Cowper    | Waiter    | oscar.cowper | 977856 | new road
+ 12345     | pass1    | Steve      | Jobs      | Manager   | steve.jobs   | 837922 | 
+(2 rows)
+
