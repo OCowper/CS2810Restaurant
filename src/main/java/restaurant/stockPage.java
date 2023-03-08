@@ -24,6 +24,9 @@ public class stockPage implements ViewInterface, Subject{
 
   @FXML
   private Text addProduct;
+  
+  @FXML
+  private Button AddItemBtn;
 
   @FXML
   private Button allOrdersButton;
@@ -102,6 +105,9 @@ public class stockPage implements ViewInterface, Subject{
 
   @FXML
   private Text stockHeading;
+  
+  @FXML
+  private Button ToggleButton;
 
   @FXML
   private Separator verSeparator;
