@@ -217,7 +217,9 @@ public class WaiterScreenView implements Subject, ViewInterface {
 
   @FXML
   void handleOrderConfirm(ActionEvent event) {
-    obs.update(Integer.parseInt(completeTextField.getText()));
+    int curOrder = Integer.parseInt(completeTextField.getText());
+    obs.orderCompleteNotify(curOrder);
+    obs.update(curOrder);
     startup();
   }
 

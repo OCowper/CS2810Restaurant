@@ -77,7 +77,6 @@ public class RestModel implements Subject {
    */
   public ResultSet queryOrders(Boolean confirm, Boolean finished) {
     String query = "";
-
     if (confirm && finished) {
       query =
           "SELECT * FROM doneOrders WHERE cancelled = false AND order_num > 0 order by order_num;";
@@ -85,9 +84,13 @@ public class RestModel implements Subject {
       query =
           "SELECT * FROM doneOrders WHERE cancelled = true and order_num > 0 order by order_num;";
     } else if (confirm && !finished) {
-      query = "SELECT * FROM orders WHERE order_status = 'confirmed' AND order_num > 0 order by order_num;";
+      query =
+          "SELECT * FROM orders WHERE order_status = "
+          + "'confirmed' AND order_num > 0 order by order_num;";
     } else {
-      query = "SELECT * FROM orders WHERE order_status = 'recieved' and order_num > 0 order by order_num;";
+      query =
+          "SELECT * FROM orders WHERE "
+          + "order_status = 'recieved' and order_num > 0 order by order_num;";
     }
     return Operations.executeQuery(connection, query);
   }
@@ -149,5 +152,15 @@ public class RestModel implements Subject {
    */
   public void removeNotification(int notifNum, String requestType) {
     CancelRequest.delete(notifNum, requestType, connection);
+  }
+
+  /**
+   * Adds a notification that an order is ready to be delivered.
+   *
+   * @param orderNum the number of the order.
+   */
+  public void orderCompleteNotify(int orderNum) {
+    InsertOrderNotif.insert(orderNum, connection);
+
   }
 }

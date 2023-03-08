@@ -95,6 +95,13 @@ public interface Observer {
    */
   public void resolveNotif(int notifNum, String selectedRequest);
 
+  /**
+   * Places a notification that an order is complete.
+   *
+   * @param orderNum the number of the order that was completed.
+   */
+  public void orderCompleteNotify(int orderNum);
+
 
 
 
