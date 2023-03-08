@@ -30,7 +30,7 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Button>
-            <Button fx:id="TrackOrderButton" mnemonicParsing="false" onAction="#handleTrackBtn" prefHeight="74.0" prefWidth="171.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Track Order" textFill="WHITE">
+            <Button fx:id="trackOrderButton" mnemonicParsing="false" onAction="#handleTrackBtn" prefHeight="74.0" prefWidth="171.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Track Order" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>

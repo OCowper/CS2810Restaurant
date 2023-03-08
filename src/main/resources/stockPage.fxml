@@ -76,6 +76,6 @@
          </children>
       </VBox>
       <Button fx:id="AddItemBtn" layoutX="717.0" layoutY="369.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #BA8B39;" text="Add Item" textFill="WHITE" />
-      <Button fx:id="ToggleButton" layoutX="574.0" layoutY="102.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #BA8B39;" text="Toggle" textFill="WHITE" />
+      <Button fx:id="toggleButton" layoutX="574.0" layoutY="102.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #BA8B39;" text="Toggle" textFill="WHITE" />
    </children>
 </AnchorPane>
