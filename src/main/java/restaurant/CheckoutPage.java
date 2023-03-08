@@ -171,6 +171,12 @@ public class CheckoutPage implements Subject, ViewInterface {
     window.show();
   }
 
+  /**
+   * Handling for if About Us switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
   @FXML
   void handleAboutBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("AboutPage.fxml"));
@@ -182,6 +188,12 @@ public class CheckoutPage implements Subject, ViewInterface {
     window.show();
   }
 
+  /**
+   * Handling for if Help switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
   public void handleHelpBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
     Parent staffLodinParent = loader.load();
@@ -193,7 +205,13 @@ public class CheckoutPage implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-
+  
+  /**
+   * Handling for if Track Order switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
   @FXML
   void handleTrackBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
