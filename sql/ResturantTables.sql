@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS Staff(
 
 CREATE TABLE IF NOT EXISTS Items(
     item_id varchar(10) NOT NULL,
-    iten_name varchar(30) NOT NULL,
+    item_name varchar(30) NOT NULL,
     price numeric(5, 2) NOT NULL, 
     item_description varchar(1000),
     ingredients varchar(1000) NOT NULL,
