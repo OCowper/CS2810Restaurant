@@ -78,6 +78,9 @@ public class CheckoutPage implements Subject, ViewInterface {
 
   @FXML
   private Text totalField;
+  
+  @FXML
+  private Button TrackOrderButton;
 
   @FXML
   private VBox virtualBox;
@@ -186,6 +189,17 @@ public class CheckoutPage implements Subject, ViewInterface {
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
     obs.orderStartup();
+    window.setScene(staffLogin);
+    window.show();
+  }
+  
+  @FXML
+  void handleTrackBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
+    Parent staffLodinParent = loader.load();
+    Scene staffLogin = new Scene(staffLodinParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
     window.setScene(staffLogin);
     window.show();
   }

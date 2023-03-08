@@ -88,6 +88,9 @@ public class CustomerMenu implements Subject, ViewInterface {
 
     @FXML
     private TextField totaltxt;
+    
+    @FXML
+    private Button TrackOrderButton;
 
     @FXML
     private TextField userselections;
@@ -329,6 +332,17 @@ public class CustomerMenu implements Subject, ViewInterface {
     @FXML
     void handleAboutBtn(ActionEvent event) throws IOException {
       FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("AboutPage.fxml"));
+      Parent staffLodinParent = loader.load();
+      Scene staffLogin = new Scene(staffLodinParent);
+      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      obs.setView(loader.getController());
+      window.setScene(staffLogin);
+      window.show();
+    }
+    
+    @FXML
+    void handleTrackBtn(ActionEvent event) throws IOException {
+      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
       Parent staffLodinParent = loader.load();
       Scene staffLogin = new Scene(staffLodinParent);
       Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

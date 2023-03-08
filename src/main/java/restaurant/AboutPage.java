@@ -20,6 +20,9 @@ public class AboutPage implements Subject, ViewInterface {
 
     @FXML
     private Text aboutUsHeading;
+    
+    @FXML
+    private Button aboutUsButton;
 
     @FXML
     private AnchorPane bgPane;
@@ -38,6 +41,9 @@ public class AboutPage implements Subject, ViewInterface {
 
     @FXML
     private Button returnButton;
+    
+    @FXML
+    private Button TrackOrderButton;
 
     @FXML
     private VBox sidebarVBox;
@@ -122,6 +128,17 @@ public class AboutPage implements Subject, ViewInterface {
       obs.setView(loader.getController());
 
       window.setScene(checkout);
+      window.show();
+    }
+    
+    @FXML
+    void handleTrackBtn(ActionEvent event) throws IOException {
+      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
+      Parent staffLodinParent = loader.load();
+      Scene staffLogin = new Scene(staffLodinParent);
+      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      obs.setView(loader.getController());
+      window.setScene(staffLogin);
       window.show();
     }
     

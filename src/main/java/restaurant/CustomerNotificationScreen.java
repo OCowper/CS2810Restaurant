@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -71,6 +72,13 @@ public class CustomerNotificationScreen  implements Subject, ViewInterface {
     @FXML
     private VBox virtualBox;
 
+    public void initialize() {
+      Image background = new Image("/images/plata-o-plomo-1.jpeg");
+      Image title = new Image("/images/newoaxacaLogo.png");
+      oaxacaImageView.setImage(title);
+      bgImage.setImage(background);
+    }
+    
     /**
      * Changes the scene from initial one to food menu view.
      *
@@ -146,6 +154,7 @@ public class CustomerNotificationScreen  implements Subject, ViewInterface {
       window.show();
     }
     
+    @FXML
     void handleTrackBtn(ActionEvent event) throws IOException {
       FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
       Parent staffLodinParent = loader.load();
