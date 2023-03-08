@@ -252,9 +252,9 @@ public class CustomerMenu implements Subject, ViewInterface {
     // int columnsNumber = rsmd.getColumnCount();
     try {
       while (rs.next()) {
-        String key = rs.getString("item_type").trim().toLowerCase();
-        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_num"),
-            rs.getString("item_type"), rs.getString("item_description"));
+        String key = rs.getString("item_category").trim().toLowerCase();
+        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_id"),
+            rs.getString("item_category"), rs.getString("item_description"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }

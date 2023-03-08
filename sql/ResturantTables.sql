@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS Orders(
 CREATE TABLE IF NOT EXISTS DoneOrders(
     order_num numeric(6, 0),
     cancelled boolean,
-    foreign key (order_num) references Orders(order_num),
     primary key (order_num)
 );
 
