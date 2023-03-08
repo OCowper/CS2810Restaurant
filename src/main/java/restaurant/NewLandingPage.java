@@ -38,7 +38,7 @@ public class NewLandingPage implements Subject, ViewInterface {
   private ImageView oaxacaImageView;
 
   @FXML
-  private Button TrackOrderButton;
+  private Button trackOrderButton;
 
   @FXML
   private Button staffLoginButton;

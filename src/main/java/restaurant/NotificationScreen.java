@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 public class NotificationScreen implements ViewInterface, Subject {
 
   @FXML
-  private Button NotificationsButton;
+  private Button notificationsButton;
 
   @FXML
   private Button aboutUsButton111;

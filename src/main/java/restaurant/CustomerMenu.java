@@ -36,9 +36,6 @@ import javafx.stage.Stage;
 public class CustomerMenu implements Subject, ViewInterface {
 
   @FXML
-  private Text MenuTitle;
-
-  @FXML
   private Button aboutUsButton;
 
   @FXML
