@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="bgAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="658.0" style="-fx-background-color: #CEB487;" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.CustomerNotificationScreen">
+   <children>
+      <VBox fx:id="virtualBox" layoutX="-2.0" layoutY="-1.0" prefHeight="400.0" prefWidth="152.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 2px 0px 0px;">
+         <children>
+            <ImageView fx:id="oaxacaImageView" fitHeight="182.0" fitWidth="200.0" onMouseClicked="#handleMenuReturn" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+               <image>
+                  <Image url="@../java/images/title.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="menuButton" mnemonicParsing="false" onAction="#handleCustomerBtn" prefHeight="68.0" prefWidth="200.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 2px 0px 0px 0px;" text="Menu" textFill="#fcf9f9">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="cartButton" mnemonicParsing="false" onAction="#handleCartBtn" prefHeight="68.0" prefWidth="200.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 2px 0px 0px 0px;" text="Cart" textFill="#f2ecec">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="aboutUsButton" mnemonicParsing="false" onAction="#handleAboutBtn" prefHeight="69.0" prefWidth="200.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 2px 0px 2px 0px;" text="About Us" textFill="#fffefe">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+            <Button fx:id="helpBtn" mnemonicParsing="false" onAction="#handleHelpBtn" prefHeight="69.0" prefWidth="200.0" style="-fx-background-color: #BA8B39; -fx-border-color: white; -fx-border-width: 0px 0px 2px 0px;" text="Help" textFill="#fffefe">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Text fx:id="helpTitle" blendMode="SRC_ATOP" layoutX="332.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Track Order" textAlignment="JUSTIFY" underline="true" wrappingWidth="249.99999999999994">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="bgImage" blendMode="SRC_ATOP" fitHeight="449.0" fitWidth="600.0" layoutX="200.0" layoutY="-2.0" nodeOrientation="INHERIT" opacity="0.38" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="-142.0">
+         <image>
+            <Image url="@../java/images/plata-o-plomo-1.jpeg" />
+         </image>
+      </ImageView>
+      <Label fx:id="OrderIDLabel" layoutX="220.0" layoutY="77.0" text="Please enter your Order ID:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="OrderIDTextField" alignment="CENTER" layoutX="460.0" layoutY="74.0" prefHeight="26.0" prefWidth="165.0" promptText="ORDER ID" />
+      <Button fx:id="TrackOrderButton" layoutX="374.0" layoutY="112.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="113.0" style="-fx-background-color: #BA8B39;" text="Track Order" textFill="WHITE" />
+      <Separator layoutX="193.0" layoutY="148.0" prefHeight="4.0" prefWidth="464.0" />
+      <ListView fx:id="OrderIDListView" layoutX="220.0" layoutY="182.0" prefHeight="35.0" prefWidth="208.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
+      <ListView fx:id="StatusListView" layoutX="431.0" layoutY="181.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
+      <Label fx:id="OrderIdLabel" layoutX="294.0" layoutY="160.0" text="Order ID">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="StatusLabel" layoutX="501.0" layoutY="159.0" text="Status">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
