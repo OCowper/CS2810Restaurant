@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS Items(
     primary key (item_id)
 );
 
+CREATE TYPE status AS ENUM ('recieved', 'confirmed', 'being prepared', 'ready', 'received', 'settled'); --combine ready and received?
 CREATE TABLE IF NOT EXISTS Orders(
     order_num numeric(6, 0) NOT NULL,
     order_description varchar(100),
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS Orders(
     foreign key (waiter_id) references Staff(staff_id),
     primary key (order_num)
 );
-CREATE TYPE status AS ENUM ('recieved', 'confirmed', 'being prepared', 'ready', 'received', 'settled'); --combine ready and received?
+
 
 -- do we need to keep done orders separately?
 CREATE TABLE IF NOT EXISTS DoneOrders(
