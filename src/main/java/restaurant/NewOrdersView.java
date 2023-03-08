@@ -190,7 +190,7 @@ public class NewOrdersView implements ViewInterface, Subject {
     window.setScene(startView);
     window.show();
   }
-  
+
   @FXML
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -203,7 +203,7 @@ public class NewOrdersView implements ViewInterface, Subject {
     window.setScene(startView);
     window.show();
   }
-  
+
   public void handleStockBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =

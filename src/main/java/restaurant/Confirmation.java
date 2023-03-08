@@ -22,7 +22,7 @@ public class Confirmation {
    */
   public static void confirm(int id, Connection connection) {
     PreparedStatement stmt = null;
-    String tempStmt = "UPDATE Orders SET status = 'confirmed' WHERE order_num = ?;";
+    String tempStmt = "UPDATE Orders SET order_status = 'confirmed' WHERE order_num = ?;";
     try {
       stmt = connection.prepareStatement(tempStmt);
       stmt.setInt(1, id);

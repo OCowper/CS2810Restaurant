@@ -85,9 +85,9 @@ public class RestModel implements Subject {
       query =
           "SELECT * FROM doneOrders WHERE cancelled = true and order_num > 0 order by order_num;";
     } else if (confirm && !finished) {
-      query = "SELECT * FROM orders WHERE confirm = true AND order_num > 0 order by order_num;";
+      query = "SELECT * FROM orders WHERE order_status = 'confirmed' AND order_num > 0 order by order_num;";
     } else {
-      query = "SELECT * FROM orders WHERE confirm = false order by order_num;";
+      query = "SELECT * FROM orders WHERE order_status = 'recieved' and order_num > 0 order by order_num;";
     }
     return Operations.executeQuery(connection, query);
   }
@@ -108,7 +108,7 @@ public class RestModel implements Subject {
    * @return result set containing all menu items.
    */
   public ResultSet getMenu() {
-    String query = "SELECT * FROM public.menu;";
+    String query = "SELECT * FROM items;";
     return Operations.executeQuery(connection, query);
   }
 
