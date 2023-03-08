@@ -18,147 +18,149 @@ import javafx.stage.Stage;
 
 public class AboutPage implements Subject, ViewInterface {
 
-    @FXML
-    private Text aboutUsHeading;
-    
-    @FXML
-    private Button aboutUsButton;
+  @FXML
+  private Text aboutUsHeading;
 
-    @FXML
-    private AnchorPane bgPane;
+  @FXML
+  private Button aboutUsButton;
 
-    @FXML
-    private Button cartButton;
+  @FXML
+  private AnchorPane bgPane;
 
-    @FXML
-    private Button helpButton;
+  @FXML
+  private Button cartButton;
 
-    @FXML
-    private ImageView logoImage;
+  @FXML
+  private Button helpButton;
 
-    @FXML
-    private Button menuButton;
+  @FXML
+  private ImageView logoImage;
 
-    @FXML
-    private Button returnButton;
-    
-    @FXML
-    private Button TrackOrderButton;
+  @FXML
+  private Button menuButton;
 
-    @FXML
-    private VBox sidebarVBox;
-    
-    /**
-     * Initialization method.
-     */
-    public void initialize() {
-      Image title = new Image("/images/newoaxacaLogo.png");
-      logoImage.setImage(title);
-    }
+  @FXML
+  private Button returnButton;
 
-    @FXML
-    void handleAboutBtn(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("AboutPage.fxml"));
-      Parent staffLodinParent = loader.load();
-      Scene staffLogin = new Scene(staffLodinParent);
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      obs.setView(loader.getController());
-      window.setScene(staffLogin);
-      window.show();
-    }
+  @FXML
+  private Button trackOrderButton;
 
-    /**
-     * Changes the scene from initial one to food menu view.
-     *
-     * @param event "customerbtn" button pressed
-     * @throws IOException when there is a problem with loading the fxml file
-     */
-    public void handleCustomerBtn(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
-      Parent foodMenuparent = loader.load();
+  @FXML
+  private VBox sidebarVbox;
 
-      Scene foodMenu = new Scene(foodMenuparent);
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      obs.setView(loader.getController());
-      obs.orderStartup();
-      window.setScene(foodMenu);
-      window.show();
+  /**
+   * Initialization method.
+   */
+  public void initialize() {
+    Image title = new Image("/images/newoaxacaLogo.png");
+    logoImage.setImage(title);
+  }
 
-    }
+  @FXML
+  void handleAboutBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("AboutPage.fxml"));
+    Parent staffLodinParent = loader.load();
+    Scene staffLogin = new Scene(staffLodinParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    window.setScene(staffLogin);
+    window.show();
+  }
 
-    public void handleMenuReturn(MouseEvent event) throws IOException {
-      FXMLLoader loader =
-          new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
-      Parent paymentParent = loader.load();
-      Scene payment = new Scene(paymentParent);
+  /**
+   * Changes the scene from initial one to food menu view.
+   *
+   * @param event "customerbtn" button pressed
+   * @throws IOException when there is a problem with loading the fxml file
+   */
+  public void handleCustomerBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("CustomerMenu.fxml"));
+    Parent foodMenuparent = loader.load();
 
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      obs.setView(loader.getController());
+    Scene foodMenu = new Scene(foodMenuparent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    obs.orderStartup();
+    window.setScene(foodMenu);
+    window.show();
 
-      window.setScene(payment);
-      window.show();
-    }
+  }
+
+  public void handleMenuReturn(MouseEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
+    Parent paymentParent = loader.load();
+    Scene payment = new Scene(paymentParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(payment);
+    window.show();
+  }
 
 
-    public void handleHelpBtn(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
-      Parent staffLodinParent = loader.load();
-      Scene staffLogin = new Scene(staffLodinParent);
+  public void handleHelpBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
+    Parent staffLodinParent = loader.load();
+    Scene staffLogin = new Scene(staffLodinParent);
 
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      obs.setView(loader.getController());
-      obs.orderStartup();
-      window.setScene(staffLogin);
-      window.show();
-    }
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    obs.orderStartup();
+    window.setScene(staffLogin);
+    window.show();
+  }
 
-    /**
-     * Handling for if the cart screen switcher is pressed.
-     *
-     * @param event representing the button press
-     * @throws IOException if an IO error occurs.
-     */
-    public void handleCartBtn(ActionEvent event) throws IOException {
-      FXMLLoader loader =
-          new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
-      Parent cartParent = loader.load();
-      Scene checkout = new Scene(cartParent);
+  /**
+   * Handling for if the cart screen switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
+  public void handleCartBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
+    Parent cartParent = loader.load();
+    Scene checkout = new Scene(cartParent);
 
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      obs.setView(loader.getController());
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
 
-      window.setScene(checkout);
-      window.show();
-    }
-    
-    @FXML
-    void handleTrackBtn(ActionEvent event) throws IOException {
-      FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
-      Parent staffLodinParent = loader.load();
-      Scene staffLogin = new Scene(staffLodinParent);
-      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-      obs.setView(loader.getController());
-      window.setScene(staffLogin);
-      window.show();
-    }
-    
-    public Observer obs;
+    window.setScene(checkout);
+    window.show();
+  }
 
-    @Override
-    public void addObservers(Observer obs) {
-      this.obs = obs;
+  @FXML
+  void handleTrackBtn(ActionEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));
+    Parent staffLodinParent = loader.load();
+    Scene staffLogin = new Scene(staffLodinParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    window.setScene(staffLogin);
+    window.show();
+  }
 
-    }
+  public Observer obs;
 
-    @Override
-    public void notifyObservers(Observer obs) {}
+  @Override
+  public void addObservers(Observer obs) {
+    this.obs = obs;
 
-    @Override
-    public void acceptBoolean(Boolean bool) {}
+  }
 
-    @Override
-    public void startup() {
-      // TODO Auto-generated method stub
+  @Override
+  public void notifyObservers(Observer obs) {}
 
-    }
+  @Override
+  public void acceptBoolean(Boolean bool) {}
+
+  @Override
+  public void startup() {
+    // TODO Auto-generated method stub
+
+  }
 }
