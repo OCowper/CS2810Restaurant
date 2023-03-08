@@ -86,6 +86,12 @@ public class AboutPage implements Subject, ViewInterface {
 
     }
 
+    /**
+     * Changes the scene from initial one to newLandingPage
+     *
+     * @param event "Logo" button pressed
+     * @throws IOException when there is a problem with loading the fxml file
+     */
     public void handleMenuReturn(MouseEvent event) throws IOException {
       FXMLLoader loader =
           new FXMLLoader(getClass().getClassLoader().getResource("newLandingPage.fxml"));
@@ -99,7 +105,12 @@ public class AboutPage implements Subject, ViewInterface {
       window.show();
     }
 
-
+    /**
+     * Changes the scene from initial one to Help page
+     *
+     * @param event "Help" button pressed
+     * @throws IOException when there is a problem with loading the fxml file
+     */
     public void handleHelpBtn(ActionEvent event) throws IOException {
       FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
       Parent staffLodinParent = loader.load();
@@ -131,6 +142,13 @@ public class AboutPage implements Subject, ViewInterface {
       window.show();
     }
     
+    
+    /**
+     * Handling for if Track Order switcher is pressed.
+     *
+     * @param event representing the button press
+     * @throws IOException if an IO error occurs.
+     */
     @FXML
     void handleTrackBtn(ActionEvent event) throws IOException {
       FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CustomerNotificationScreen.fxml"));

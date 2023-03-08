@@ -89,26 +89,18 @@ public class NotificationScreen implements ViewInterface, Subject {
   @FXML
 
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
-
     FXMLLoader loader =
-
         new FXMLLoader(getClass().getClassLoader().getResource("NewOrdersView.fxml"));
-
     Parent startViewParent = loader.load();
-
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
     obs.setView(loader.getController());
-
     obs.orderStartup();
-
     window.setScene(startView);
-
     window.show();
 
   }
+
 
   @FXML
   void handleIssueResolved(ActionEvent event) {
@@ -128,23 +120,14 @@ public class NotificationScreen implements ViewInterface, Subject {
   @FXML
 
   public void handleWaiterViewBtn(ActionEvent event) throws IOException {
-
     FXMLLoader loader =
-
         new FXMLLoader(getClass().getClassLoader().getResource("WaiterScreenView.fxml"));
-
     Parent startViewParent = loader.load();
-
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
     obs.setView(loader.getController());
-
     obs.orderStartup();
-
     window.setScene(startView);
-
     window.show();
 
   }
@@ -159,24 +142,15 @@ public class NotificationScreen implements ViewInterface, Subject {
    */
   @FXML
   public void handleLogOutBtn(ActionEvent event) throws IOException {
-
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("staffLogin.fxml"));
-
     Parent startViewParent = loader.load();
-
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
     obs.setView(loader.getController());
-
     window.setScene(startView);
-
     window.show();
 
   }
-
-
 
   /**
    * Handling for if the all order switcher is pressed.
@@ -186,64 +160,53 @@ public class NotificationScreen implements ViewInterface, Subject {
    */
   @FXML
   public void handleAllOrderBtn(ActionEvent event) throws IOException {
-
     FXMLLoader loader =
-
         new FXMLLoader(getClass().getClassLoader().getResource("KitchenScreen.fxml"));
-
     Parent startViewParent = loader.load();
-
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
     obs.setView(loader.getController());
     obs.orderStartup();
-
     window.setScene(startView);
-
     window.show();
 
   }
 
+  /**
+   * Handling for if the user presses the Notifications.
+   *
+   * @param event representing the button press
+   * @throws IOException If an IO error occurs
+   */
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("NotificationScreen.fxml"));
-
     Parent startViewParent = loader.load();
-
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
     obs.setView(loader.getController());
     obs.orderStartup();
-
     window.setScene(startView);
-
     window.show();
 
   }
   
+  /**
+   * Handling for if the user presses the Stock Button.
+   *
+   * @param event representing the button press
+   * @throws IOException If an IO error occurs
+   */
   public void handleStockBtn(ActionEvent event) throws IOException {
-
     FXMLLoader loader =
-
         new FXMLLoader(getClass().getClassLoader().getResource("stockPage.fxml"));
-
     Parent startViewParent = loader.load();
-
     Scene startView = new Scene(startViewParent);
-
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
     obs.setView(loader.getController());
     obs.orderStartup();
-
     window.setScene(startView);
-
     window.show();
-
   }
 
 
