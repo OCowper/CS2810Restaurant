@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS menu_items (
     dish text NOT NULL,
     description text,
     price money NOT NULL,
-    type text NOT NULL  -- starters mains dessert drinks. MUST BE ALL LOWER CASE!!!!!!
+    type text NOT NULL,  -- starters mains dessert drinks. MUST BE ALL LOWER CASE!!!!!!
+    inStock boolean DEFAULT false NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS menu (
