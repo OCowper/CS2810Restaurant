@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -56,6 +58,12 @@ public class CustomerMenu implements Subject, ViewInterface {
 
     @FXML
     private Button helpBtn;
+    
+    @FXML
+    private ChoiceBox<String> filterBox;
+    
+    @FXML
+    private Label filterLbl;
 
     @FXML
     private Button menuButton;
@@ -100,6 +108,7 @@ public class CustomerMenu implements Subject, ViewInterface {
     private TextField itemName;
 
 
+    private String[] Type = {"Show All","Starters","Mains","Desserts","Drinks"};
     private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
     private Map<CheckBox, Double> itemCosts = new HashMap<>();
     private double totalCost = 0;
@@ -108,6 +117,7 @@ public class CustomerMenu implements Subject, ViewInterface {
      * Puts the item from database on to the menu view.
      */
     public void initializeAfter() {
+      
       Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
       // populating the menu with item categories and items
       for (String key : itemsMap.keySet()) {
@@ -369,6 +379,8 @@ public class CustomerMenu implements Subject, ViewInterface {
       Image title = new Image("/images/newoaxacaLogo.png");
       oaxacaImageView.setImage(title);
       bgImage.setImage(background);
+      filterBox.setItems(FXCollections.observableArrayList(Type));
+      filterBox.setValue("Show All");
       initializeAfter();
     }
     
