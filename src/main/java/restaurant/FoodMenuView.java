@@ -111,7 +111,7 @@ public class FoodMenuView implements Subject, ViewInterface {
     for (String key : itemsMap.keySet()) {
       vbox.getChildren().add(new Label(key));
       for (MenuItem item : itemsMap.get(key)) {
-        CheckBox cb = new CheckBox(item.getPrice());
+        CheckBox cb = new CheckBox(item.getPrice() + "");
         Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
         hl.setOnAction(e -> showDescription(item)); // sets behaviour on click
 
@@ -188,23 +188,29 @@ public class FoodMenuView implements Subject, ViewInterface {
    *
    */
   private class MenuItem {
+    private String id;
     private String itemName;
-    private String price;
-    private String category;
+    private Double price;
     private String description;
     private String ingredients;
-    private int prepTime;
     private int calories;
+    private String category;
+    private boolean inStock;
 
-    public MenuItem(String name, String pr, String cat, String descr, String ingr, int time,
-        int c) {
+    public MenuItem(String nameId, String name, Double pr, String descr, String ingr, int c,
+        String cat, boolean t) {
+      this.id = nameId;
       this.itemName = name;
       this.price = pr;
       this.category = cat;
       this.description = descr;
       this.ingredients = ingr;
-      this.prepTime = time;
       this.calories = c;
+      this.inStock = t;
+    }
+
+    public String getId() {
+      return id;
     }
 
     public String getCategory() {
@@ -219,7 +225,7 @@ public class FoodMenuView implements Subject, ViewInterface {
       return itemName;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
       return price;
     }
 
@@ -227,12 +233,12 @@ public class FoodMenuView implements Subject, ViewInterface {
       return ingredients;
     }
 
-    public int getPrepTime() {
-      return prepTime;
-    }
-
     public int getCalories() {
       return calories;
+    }
+
+    public boolean getAvailability() {
+      return inStock;
     }
 
     @Override
@@ -256,9 +262,9 @@ public class FoodMenuView implements Subject, ViewInterface {
     try {
       while (rs.next()) {
         String key = rs.getString("item_category").trim().toLowerCase();
-        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("price"),
-            rs.getString("item_category"), rs.getString("item_description"),
-            rs.getString("ingredients"), rs.getInt("preparation_time"), rs.getInt("calories"));
+        MenuItem toAdd = new MenuItem(rs.getString("item_id"), rs.getString("iten_name"),
+            rs.getDouble("price"), rs.getString("item_description"), rs.getString("ingredients"),
+            rs.getInt("calories"), rs.getString("item_category"), rs.getBoolean("available"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }

@@ -47,20 +47,6 @@ public class EstablishConnection {
       System.out.println("connection failed");
       System.exit(1);
     }
-    String staff = "CREATE TABLE IF NOT EXISTS Staff(\r\n"
-        + "    staff_ID varchar(15) NOT NULL,\r\n"
-        + "    password varchar(15) NOT NULL,\r\n"
-        + "    first_Name varchar(15) NOT NULL,\r\n"
-        + "    last_Name varchar(15) NOT NULL, \r\n"
-        + "    job_Title varchar(15) NOT NULL,\r\n"
-        + "    email varchar(15) NOT NULL,\r\n"
-        + "    phone_Number varchar(15),\r\n"
-        + "    address varchar(15),\r\n"
-        + "    primary key (staff_ID)\r\n"
-        + ");";
-    Operations.executeProcedure(connection, staff);
-    String insert1 = "insert into staff values('100575405', 'pass1', 'Oscar', 'Cowper', 'Waiter', 'oscar.cowper', '977856', 'new road');";
-    Operations.executeProcedure(connection, insert1);
     return connection;
   }
 }
