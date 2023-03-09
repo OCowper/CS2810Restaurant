@@ -131,7 +131,42 @@ public class MenuQueries
       return items;
   }
 
+   /**
+   * Sets inStock to true for an item of choice.
+   * 
+   * @param connection current database connection
+   * @param item that is in stock
+   * @throws SQLException if connection failed
+   * 
+   */
+  public static void setInStock(Connection connection, String item) throws SQLException
+  {
+    String statement = "UPDATE menu_items SET inStock = true WHERE dish = ?";
+    PreparedStatement pStatement = connection.prepareStatement(statement); 
+    pStatement.setString(1, item);
+    pStatement.executeUpdate();
+  }
+  
+  /**
+   * Sets inStock to false for an item of choice.
+   * 
+   * @param connection current database connection
+   * @param item that is out of stock
+   * @throws SQLException if connection failed
+   * 
+   */
+  public static void setOutStock(Connection connection, String item) throws SQLException
+  {
+    String statement = "UPDATE menu_items SET inStock = false WHERE dish = ?";
+    PreparedStatement pStatement = connection.prepareStatement(statement); 
+    pStatement.setString(1, item);
+    pStatement.executeUpdate();
+  }
+
+
 }
+
+
 
 
 
