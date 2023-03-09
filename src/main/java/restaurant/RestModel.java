@@ -109,11 +109,7 @@ public class RestModel implements Subject {
    * @return result set containing all menu items.
    */
   public ResultSet getMenu() {
-<<<<<<< HEAD
     String query = "SELECT * FROM items;";
-=======
-    String query = "SELECT * FROM public.items;";
->>>>>>> origin/menuDescrUpdate
     return Operations.executeQuery(connection, query);
   }
 
