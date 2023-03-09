@@ -1,6 +1,8 @@
 package restaurant;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -17,14 +20,26 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class StockPage implements ViewInterface, Subject{
+public class StockPage implements ViewInterface, Subject {
+
+  @FXML
+  private ListView<String> mainListView;
+
+  @FXML
+  private ListView<String> drinksListView;
+
+  @FXML
+  private ListView<String> starterListView;
+
+  @FXML
+  private ListView<String> dessertsListView;
 
   @FXML
   private Button activeOrderButton;
 
   @FXML
   private Text addProduct;
-  
+
   @FXML
   private Button addItemBtn;
 
@@ -44,13 +59,8 @@ public class StockPage implements ViewInterface, Subject{
   private Text dessertsHeading;
 
   @FXML
-  private VBox dessertsVbox;
-
-  @FXML
   private Text drinksHeading;
 
-  @FXML
-  private VBox drinksVbox;
 
   @FXML
   private Separator horSeparator;
@@ -67,8 +77,6 @@ public class StockPage implements ViewInterface, Subject{
   @FXML
   private Text mainsHeading;
 
-  @FXML
-  private VBox mainsVbox;
 
   @FXML
   private TextField nameField;
@@ -98,34 +106,51 @@ public class StockPage implements ViewInterface, Subject{
   private Text starterHeading;
 
   @FXML
-  private VBox starterVbox;
-
-  @FXML
   private Button stockButton;
 
   @FXML
   private Text stockHeading;
-  
+
   @FXML
   private Button toggleButton;
 
   @FXML
   private Separator verSeparator;
 
-  
-  public void initialize() {
+
+  public void initializeAfter() {
 
     Image title = new Image("/images/newoaxacaLogo.png");
     logoImage.setImage(title);
   }
   
   /**
+   * Handling for when the toggle order button is pressed.
+   *
+   * @param event representing the button push
+   */
+  @FXML
+  public void handleToggleButton(ActionEvent event) {
+    String selectedItem = starterListView.getSelectionModel().getSelectedItem();
+    if (selectedItem == null) {
+      selectedItem = mainListView.getSelectionModel().getSelectedItem();
+    }
+    if (selectedItem == null) {
+      selectedItem = drinksListView.getSelectionModel().getSelectedItem();
+    }
+    if (selectedItem == null) {
+      selectedItem = dessertsListView.getSelectionModel().getSelectedItem();
+    }
+    obs.toggleItemStock(selectedItem);
+    startup();
+  }
+
+  /**
    * Handling for if the user presses the View New Order button.
    *
    * @param event representing the button press
    * @throws IOException If an IO error occurs
    */
-
   @FXML
 
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
@@ -226,7 +251,7 @@ public class StockPage implements ViewInterface, Subject{
     window.show();
 
   }
-  
+
   /**
    * Handling for if the user presses stockPage button.
    *
@@ -234,8 +259,7 @@ public class StockPage implements ViewInterface, Subject{
    * @throws IOException if an IO error occurs
    */
   public void handleStockBtn(ActionEvent event) throws IOException {
-    FXMLLoader loader =
-        new FXMLLoader(getClass().getClassLoader().getResource("stockPage.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("stockPage.fxml"));
     Parent startViewParent = loader.load();
     Scene startView = new Scene(startViewParent);
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -245,7 +269,7 @@ public class StockPage implements ViewInterface, Subject{
     window.show();
 
   }
-  
+
   public Observer obs;
 
 
@@ -285,11 +309,36 @@ public class StockPage implements ViewInterface, Subject{
   @Override
 
   public void startup() {
-
-    // TODO Auto-generated method stub
-
-
+    listExit();
+    ResultSet starters = obs.getMenuType(ItemType.STARTER);
+    ResultSet mains = obs.getMenuType(ItemType.MAIN);
+    ResultSet drinks = obs.getMenuType(ItemType.DRINK);
+    ResultSet desserts = obs.getMenuType(ItemType.DESSERT);
+    try {
+      while (starters.next()) {
+        starterListView.getItems().add(starters.getString(1));
+      }
+      while (mains.next()) {
+        mainListView.getItems().add(mains.getString(1));
+      }
+      while (drinks.next()) {
+        drinksListView.getItems().add(drinks.getString(1));
+      }
+      while (desserts.next()) {
+        dessertsListView.getItems().add(desserts.getString(1));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    initializeAfter();
 
   }
-  
+
+  private void listExit() {
+    starterListView.getItems().clear();
+    mainListView.getItems().clear();
+    drinksListView.getItems().clear();
+    dessertsListView.getItems().clear();
+  }
+
 }

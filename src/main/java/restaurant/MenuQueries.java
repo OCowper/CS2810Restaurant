@@ -95,21 +95,10 @@ public class MenuQueries {
    * @return all items in stock.
    *
    */
-  public static ArrayList<String> inStockItems(Connection connection) {
-    String statement = "Select menu_items.dish FROM menu_items WHERE menu_items.inStock = TRUE;";
-    ArrayList<String> items = new ArrayList<String>();
-
-    try {
-      ResultSet rs = Operations.executeQuery(connection, statement);
-
-      while (rs.next()) {
-        items.add(rs.getString("dish"));
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    return items;
+  public static ResultSet inStockItems(ItemType type, Connection connection) {
+    String query = "SELECT item_name FROM items WHERE available = true and item_category = '"
+        + type.toString() + "';";
+    return Operations.executeQuery(connection, query);
   }
 
   /**
@@ -135,11 +124,15 @@ public class MenuQueries {
    * @throws SQLException if connection failed
    * 
    */
-  public static void setOutStock(Connection connection, String item) throws SQLException {
-    String statement = "UPDATE menu_items SET inStock = false WHERE dish = ?";
+  public static void setOutStock(Connection connection, String item) {
+    String statement = "UPDATE items SET available = false WHERE item_name = ?";
+    try {
     PreparedStatement pStatement = connection.prepareStatement(statement);
     pStatement.setString(1, item);
     pStatement.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
 

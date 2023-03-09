@@ -152,5 +152,16 @@ public class RestController implements Observer {
     return model.getStatus(orderNum);
   }
 
+  @Override
+  public ResultSet getMenuType(ItemType type) {
+    return model.getMenuType(type);
+   
+  }
+
+  @Override
+  public void toggleItemStock(String selectedItem) {
+    model.toggleItemStock(selectedItem);
+  }
+
  
 }

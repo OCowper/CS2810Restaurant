@@ -106,6 +106,7 @@ public class NotificationScreen implements ViewInterface, Subject {
   void handleIssueResolved(ActionEvent event) {
     int selectedTable = Integer.parseInt(orderNumberListView.getSelectionModel().getSelectedItem());
     String selectedRequest = issueListView.getSelectionModel().getSelectedItem();
+    System.out.println(selectedRequest);
     obs.resolveNotif(selectedTable, selectedRequest);
     startup();
   }

@@ -110,6 +110,21 @@ public interface Observer {
    */
   public String getOrderStatus(int orderNum);
 
+  /**
+   * Returns all food items in the database of a given type.
+   *
+   * @param type the type of item to be returned
+   * @return a result set containing all the items of that type
+   */
+  public ResultSet getMenuType(ItemType type);
+
+  /**
+   * Toggles a certain object between in and out of stock.
+   *
+   * @param selectedItem the item to be toggled.
+   */
+  public void toggleItemStock(String selectedItem);
+
 
 
 

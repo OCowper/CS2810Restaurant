@@ -171,4 +171,13 @@ public class RestModel implements Subject {
   public String getStatus(int orderId) {
     return OrderTracking.getOrderStatus(connection, orderId);
   }
+
+  public ResultSet getMenuType(ItemType type) {
+    return MenuQueries.inStockItems(type, connection);
+  }
+
+  public void toggleItemStock(String selectedItem) {
+    MenuQueries.setOutStock(connection, selectedItem);
+    
+  }
 }
