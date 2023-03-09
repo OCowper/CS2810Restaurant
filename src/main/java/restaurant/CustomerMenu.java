@@ -90,7 +90,7 @@ public class CustomerMenu implements Subject, ViewInterface {
   private Button TrackOrderButton;
 
   @FXML
-  private TextField userselections;
+  private TextArea userselections;
 
   @FXML
   private VBox vbox;
