@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /**
  * Returns the current status of an order via it's number.
  *
- * @author Tomor, zkac355
+ * @author Tomor, zkac355, zhac324
  */
 public class OrderTracking {
 
@@ -23,6 +23,10 @@ public class OrderTracking {
     String status = "";
     String query = "SELECT order_status FROM Orders WHERE order_Num = ?;";
     try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      // Add input validation for the orderId parameter
+            if (orderId <= 0) {
+                throw new IllegalArgumentException("Order ID must be a positive integer");
+            }
       preparedStatement.setInt(1, orderId);
       ResultSet resultSet = preparedStatement.executeQuery();
       if (resultSet.next()) {
