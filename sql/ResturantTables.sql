@@ -39,13 +39,10 @@ CREATE TABLE IF NOT EXISTS Orders(
 CREATE TABLE IF NOT EXISTS DoneOrders(
     order_num numeric(6, 0),
     cancelled boolean,
-    primary key (order_num)
 );
-
 
 CREATE TABLE IF NOT EXISTS Notifications (
     table_Num numeric(5,0),
     request_Type varchar(30),
     dealt_with boolean
 );
-

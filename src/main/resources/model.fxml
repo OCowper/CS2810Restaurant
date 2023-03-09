@@ -8,11 +8,12 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.FoodMenuView">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.FoodMenuView">
    <children>
       <ScrollPane fx:id="scrollpane" hbarPolicy="NEVER" layoutX="14.0" layoutY="173.0" maxHeight="1.7976931348623157E308" prefHeight="213.0" prefWidth="200.0" vbarPolicy="ALWAYS" vmax="2.0">
         <content>
@@ -56,13 +57,17 @@
       <Button fx:id="rtnbtn" layoutX="223.0" layoutY="361.0" mnemonicParsing="false" onAction="#handleCustomerRtnBtn" prefHeight="25.0" prefWidth="164.0" text="return to menu" />
       <VBox fx:id="descriptionBox" alignment="TOP_RIGHT" layoutX="230.0" layoutY="117.0" prefHeight="200.0" prefWidth="191.0" visible="false">
          <children>
-            <Button mnemonicParsing="false" onAction="#closeDescription" text="x" />
-            <TextField fx:id="itemName" alignment="CENTER" disable="true" editable="false" maxWidth="-Infinity" prefHeight="25.0" prefWidth="194.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
-            <TextArea fx:id="itemDescription" disable="true" editable="false" prefHeight="153.0" prefWidth="176.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="itemName" alignment="CENTER" disable="true" editable="false" maxWidth="-Infinity" prefHeight="0.0" prefWidth="170.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#closeDescription" text="x" />
+               </children>
+            </HBox>
+            <TextArea fx:id="itemDescription" disable="true" editable="false" prefHeight="312.0" prefWidth="191.0" wrapText="true" />
          </children>
       </VBox>
       <Label fx:id="confirmLabel" layoutX="486.0" layoutY="353.0" text="..." />

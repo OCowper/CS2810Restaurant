@@ -38,7 +38,7 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   @FXML
   private Label confirmLabel;
-  
+
   @FXML
   private AnchorPane anchorpane;
 
@@ -111,7 +111,7 @@ public class FoodMenuView implements Subject, ViewInterface {
     for (String key : itemsMap.keySet()) {
       vbox.getChildren().add(new Label(key));
       for (MenuItem item : itemsMap.get(key)) {
-        CheckBox cb = new CheckBox(item.getPrice());
+        CheckBox cb = new CheckBox(item.getPrice() + "");
         Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
         hl.setOnAction(e -> showDescription(item)); // sets behaviour on click
 
@@ -128,7 +128,9 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   private void showDescription(MenuItem item) {
     itemName.setText(item.getName());
-    itemDescription.setText(item.getDescription());
+    String description = item.getDescription() + "\n\nIngredients: " + item.getIngredients() + "\n"
+        + item.getCalories() + "kCal";
+    itemDescription.setText(description);
     descriptionBox.setVisible(true);
   }
 
@@ -188,16 +190,29 @@ public class FoodMenuView implements Subject, ViewInterface {
    *
    */
   private class MenuItem {
+    private String id;
     private String itemName;
-    private String price;
-    private String category;
+    private Double price;
     private String description;
+    private String ingredients;
+    private int calories;
+    private String category;
+    private boolean inStock;
 
-    public MenuItem(String name, String pr, String cat, String descr) {
+    public MenuItem(String nameId, String name, Double pr, String descr, String ingr, int c,
+        String cat, boolean t) {
+      this.id = nameId;
       this.itemName = name;
       this.price = pr;
       this.category = cat;
       this.description = descr;
+      this.ingredients = ingr;
+      this.calories = c;
+      this.inStock = t;
+    }
+
+    public String getId() {
+      return id;
     }
 
     public String getCategory() {
@@ -212,8 +227,20 @@ public class FoodMenuView implements Subject, ViewInterface {
       return itemName;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
       return price;
+    }
+
+    public String getIngredients() {
+      return ingredients;
+    }
+
+    public int getCalories() {
+      return calories;
+    }
+
+    public boolean getAvailability() {
+      return inStock;
     }
 
     @Override
@@ -236,9 +263,10 @@ public class FoodMenuView implements Subject, ViewInterface {
     // int columnsNumber = rsmd.getColumnCount();
     try {
       while (rs.next()) {
-        String key = rs.getString("item_type").trim().toLowerCase();
-        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_num"),
-            rs.getString("item_type"), rs.getString("item_description"));
+        String key = rs.getString("item_category").trim().toLowerCase();
+        MenuItem toAdd = new MenuItem(rs.getString("item_id"), rs.getString("iten_name"),
+            rs.getDouble("price"), rs.getString("item_description"), rs.getString("ingredients"),
+            rs.getInt("calories"), rs.getString("item_category"), rs.getBoolean("available"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }
