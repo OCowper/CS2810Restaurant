@@ -128,7 +128,9 @@ public class FoodMenuView implements Subject, ViewInterface {
 
   private void showDescription(MenuItem item) {
     itemName.setText(item.getName());
-    itemDescription.setText(item.getDescription());
+    String description = item.getDescription() + "\n\nIngredients: " + item.getIngredients() + "\n"
+        + item.getCalories() + "kCal";
+    itemDescription.setText(description);
     descriptionBox.setVisible(true);
   }
 
