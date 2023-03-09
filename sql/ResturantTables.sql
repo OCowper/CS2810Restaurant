@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS Orders(
 -- do we need to keep done orders separately?
 CREATE TABLE IF NOT EXISTS DoneOrders(
     order_num numeric(6, 0),
-    cancelled boolean,
+    cancelled boolean
 );
 
 CREATE TABLE IF NOT EXISTS Notifications (
