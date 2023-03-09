@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /**
  * Returns the current status of an order via it's number.
  *
- * @author Tomor, zkac355
+ * @author Tomor, zkac355, zhac324
  */
 public class OrderTracking {
 
