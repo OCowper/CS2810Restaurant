@@ -84,12 +84,10 @@ public class RestModel implements Subject {
       query =
           "SELECT * FROM doneOrders WHERE cancelled = true and order_num > 0 order by order_num;";
     } else if (confirm && !finished) {
-      query =
-          "SELECT * FROM orders WHERE order_status = "
+      query = "SELECT * FROM orders WHERE order_status = "
           + "'confirmed' AND order_num > 0 order by order_num;";
     } else {
-      query =
-          "SELECT * FROM orders WHERE "
+      query = "SELECT * FROM orders WHERE "
           + "order_status = 'recieved' and order_num > 0 order by order_num;";
     }
     return Operations.executeQuery(connection, query);
@@ -162,5 +160,15 @@ public class RestModel implements Subject {
   public void orderCompleteNotify(int orderNum) {
     InsertOrderNotif.insert(orderNum, connection);
 
+  }
+
+  /**
+   * Returns the status of an order.
+   *
+   * @param orderId the id of the order to be returned
+   * @return returns the status as a string.
+   */
+  public String getStatus(int orderId) {
+    return OrderTracking.getOrderStatus(connection, orderId);
   }
 }

@@ -102,6 +102,14 @@ public interface Observer {
    */
   public void orderCompleteNotify(int orderNum);
 
+  /**
+   * Returns the status of a given order number.
+   *
+   * @param orderNum the order number to be found
+   * @return returns the status of that order.
+   */
+  public String getOrderStatus(int orderNum);
+
 
 
 
