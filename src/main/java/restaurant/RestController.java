@@ -146,6 +146,11 @@ public class RestController implements Observer {
     model.orderCompleteNotify(orderNum);
     
   }
+  
+  @Override
+  public String getOrderStatus(int orderNum) {
+    return model.getStatus(orderNum);
+  }
 
  
 }

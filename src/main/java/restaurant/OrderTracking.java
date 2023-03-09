@@ -5,22 +5,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class OrderTracking{
+/**
+ * Returns the current status of an order via it's number.
+ *
+ * @author Tomor, zkac355
+ */
+public class OrderTracking {
 
-public static String GetOrderStatus(Connection connection, int orderId) {
-  String status = "";
-  String query = "SELECT status FROM Orders WHERE order_Num = ?";
-  try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-    preparedStatement.setInt(1, orderId);
-    ResultSet resultSet = preparedStatement.executeQuery();
-    if (resultSet.next()) {
-      status = resultSet.getString("status");
+  /**
+   * Method to return order status by ID.
+   *
+   * @param connection the current db connection
+   * @param orderId the ID of the desired order
+   * @return return the status as a string.
+   */
+  public static String getOrderStatus(Connection connection, int orderId) {
+    String status = "";
+    String query = "SELECT order_status FROM Orders WHERE order_Num = ?;";
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+      preparedStatement.setInt(1, orderId);
+      ResultSet resultSet = preparedStatement.executeQuery();
+      if (resultSet.next()) {
+        status = resultSet.getString("order_status");
+      }
+    } catch (SQLException e) {
+      System.err.println("Error searching for order with ID " + orderId + ": " + e.getMessage());
     }
-  } catch (SQLException e) {
-    System.err.println("Error searching for order with ID " + orderId + ": " + e.getMessage());
+    return status;
   }
-  return status;
-}
 }
 
 
