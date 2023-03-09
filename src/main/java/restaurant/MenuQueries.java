@@ -49,7 +49,7 @@ public class MenuQueries
   {
     ArrayList<String> items = new ArrayList<String>();
     
-    String statement = "SELECT menu_items.dish FROM menu_items WHERE menu_items.price < " + Integer.toString(priceCap);
+    String statement = "SELECT menu_items.dish FROM menu_items WHERE menu_items.price < " + Integer.toString(priceCap) + ";";
     
     try
     {
@@ -67,39 +67,71 @@ public class MenuQueries
     
     return items;
   }
-}
 
-/**
-* Returns an array list of the items given the chosen type.
-* 
-* @param connection current database connection
-* @param menuType the type of item the customer wants to filter through.
-* @return all items of the chosen type.
-*
-*/ 
-public static ArrayList<String> filterMenuType(Connection connection, String menuType)
-{
-  ArrayList<String> items = new ArrayList<String>();
-  menuType = menuType.toLowerCase();
-
-  String Statement = "Select menu_items.dish FROM menu_items WHERE menu_items.type = " + menuType;
   
-   try
-    {
-      ResultSet rs = Operations.executeQuery(connection, statement);
-      
-      while(rs.next())
-      {
-        items.add(rs.getString("dish"));
-      }
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
+  /**
+  * Returns an array list of the items given the chosen type.
+  * 
+  * @param connection current database connection
+  * @param menuType the type of item the customer wants to filter through.
+  * @return all items of the chosen type.
+  *
+  */ 
+  public static ArrayList<String> filterMenuType(Connection connection, String menuType)
+  {
+    ArrayList<String> items = new ArrayList<String>();
+    menuType = menuType.toLowerCase();
+  
+    String statement = "Select menu_items.dish FROM menu_items WHERE menu_items.type = " + menuType + ";";
     
-    return items;
+     try
+      {
+        ResultSet rs = Operations.executeQuery(connection, statement);
+        
+        while(rs.next())
+        {
+          items.add(rs.getString("dish"));
+        }
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+      
+      return items;
   }
+  
+  
+  /**
+  * Returns an array list of the items given the chosen type.
+  * 
+  * @param connection current database connection
+  * @return all items in stock.
+  *
+  */ 
+  public static ArrayList<String> inStockItems(Connection connection)
+  {
+    String statement = "Select menu_items.dish FROM menu_items WHERE menu_items.inStock = TRUE;";
+    ArrayList<String> items = new ArrayList<String>();
+  
+    try
+      {
+        ResultSet rs = Operations.executeQuery(connection, statement);
+        
+        while(rs.next())
+        {
+          items.add(rs.getString("dish"));
+        }
+      }
+      catch (Exception e)
+      {
+        e.printStackTrace();
+      }
+      
+      return items;
+  }
+
 }
+
 
 
