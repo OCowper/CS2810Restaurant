@@ -88,7 +88,7 @@ public class AboutPage implements Subject, ViewInterface {
   }
 
   /**
-   * Changes the scene from initial one to newLandingPage
+   * Changes the scene from initial one to newLandingPage.
    *
    * @param event "Logo" button pressed
    * @throws IOException when there is a problem with loading the fxml file
@@ -107,7 +107,7 @@ public class AboutPage implements Subject, ViewInterface {
   }
 
   /**
-   * Changes the scene from initial one to Help page
+   * Changes the scene from initial one to Help page.
    *
    * @param event "Help" button pressed
    * @throws IOException when there is a problem with loading the fxml file

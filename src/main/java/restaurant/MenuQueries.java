@@ -90,7 +90,7 @@ public class MenuQueries {
 
   /**
    * Returns an array list of the items given the chosen type.
-   * 
+   *
    * @param connection current database connection
    * @return all items in stock.
    *
@@ -103,7 +103,7 @@ public class MenuQueries {
 
   /**
    * Sets inStock to true for an item of choice.
-   * 
+   *
    * @param connection current database connection
    * @param item that is in stock
    * @throws SQLException if connection failed
@@ -118,7 +118,7 @@ public class MenuQueries {
 
   /**
    * Sets inStock to false for an item of choice.
-   * 
+   *
    * @param connection current database connection
    * @param item that is out of stock
    * @throws SQLException if connection failed
@@ -127,9 +127,9 @@ public class MenuQueries {
   public static void setOutStock(Connection connection, String item) {
     String statement = "UPDATE items SET available = false WHERE item_name = ?";
     try {
-    PreparedStatement pStatement = connection.prepareStatement(statement);
-    pStatement.setString(1, item);
-    pStatement.executeUpdate();
+      PreparedStatement pStatement = connection.prepareStatement(statement);
+      pStatement.setString(1, item);
+      pStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }

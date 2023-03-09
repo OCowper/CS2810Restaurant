@@ -24,9 +24,9 @@ public class OrderTracking {
     String query = "SELECT order_status FROM Orders WHERE order_Num = ?;";
     try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
       // Add input validation for the orderId parameter
-            if (orderId <= 0) {
-                throw new IllegalArgumentException("Order ID must be a positive integer");
-            }
+      if (orderId <= 0) {
+        throw new IllegalArgumentException("Order ID must be a positive integer");
+      }
       preparedStatement.setInt(1, orderId);
       ResultSet resultSet = preparedStatement.executeQuery();
       if (resultSet.next()) {

@@ -11,6 +11,12 @@ import java.sql.SQLException;
  */
 public class InsertRequest {
 
+  /**
+   * Inserts a request for help into the DB.
+   *
+   * @param request the request to be inserted.
+   * @param connection the current connection DB.
+   */
   public static void insert(HelpRequest request, Connection connection) {
     PreparedStatement stmt = null;
     String insertStmt =

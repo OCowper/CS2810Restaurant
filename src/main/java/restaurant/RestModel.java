@@ -109,7 +109,7 @@ public class RestModel implements Subject {
    * @return result set containing all menu items.
    */
   public ResultSet getMenu() {
-    String query = "SELECT * FROM items;";
+    String query = "SELECT * FROM items where available = True;";
     return Operations.executeQuery(connection, query);
   }
 
@@ -172,10 +172,21 @@ public class RestModel implements Subject {
     return OrderTracking.getOrderStatus(connection, orderId);
   }
 
+  /**
+   * Returns menu items that are in stock by type.
+   *
+   * @param type the type of menu item specificed
+   * @return result set of in stock items.
+   */
   public ResultSet getMenuType(ItemType type) {
     return MenuQueries.inStockItems(type, connection);
   }
 
+  /**
+   * Takes an in stock item and sets it to out of stock.
+   *
+   * @param selectedItem the item to be toggled.
+   */
   public void toggleItemStock(String selectedItem) {
     MenuQueries.setOutStock(connection, selectedItem);
     
