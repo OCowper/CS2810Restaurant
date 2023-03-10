@@ -40,7 +40,7 @@ public class Help implements Subject, ViewInterface {
   private Label tableNumberLbl;
 
   @FXML
-  private TextField tableNumberTxt;
+  private TextField TableNumberTxt;
 
   @FXML
   private Button aboutUsButton;
@@ -216,19 +216,19 @@ public class Help implements Subject, ViewInterface {
   @FXML
   void handleCallHelp(ActionEvent event) {
     if (tabelIssueBox.isSelected()) {
-      curRequest = new HelpRequest(Integer.parseInt(tableNumberTxt.getText()), Request.TABLE);
+      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.TABLE);
       notifyObservers(obs);
     }
     if (menuIssueBox.isSelected()) {
-      curRequest = new HelpRequest(Integer.parseInt(tableNumberTxt.getText()), Request.MENU);
+      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.MENU);
       notifyObservers(obs);
     }
     if (paymentIssueBox.isSelected()) {
-      curRequest = new HelpRequest(Integer.parseInt(tableNumberTxt.getText()), Request.PAYMENT);
+      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.PAYMENT);
       notifyObservers(obs);
     }
     if (emergencyIssueBox.isSelected()) {
-      curRequest = new HelpRequest(Integer.parseInt(tableNumberTxt.getText()), Request.EMERGENCY);
+      curRequest = new HelpRequest(Integer.parseInt(TableNumberTxt.getText()), Request.EMERGENCY);
       notifyObservers(obs);
     }
     confirmLabel.setText("Help Request Sent");
