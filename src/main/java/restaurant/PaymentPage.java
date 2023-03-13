@@ -118,6 +118,18 @@ public class PaymentPage implements Subject, ViewInterface {
    * @throws IOException if an IO error occurs
    */
   public void handlepayNowBtn(ActionEvent event) throws IOException {
+    String cvv = "";
+    if (cvvField != null) {
+        cvv = cvvField.getText().trim();
+    }
+    // validate cvv length and digits here...
+
+    String cardNumber = "";
+    if (cardNumberField != null) {
+        cardNumber = cardNumberField.getText().trim();
+    }
+    // validate cardNumber length and digits here...
+    
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
     Parent paymentConfirmationParent = loader.load();
