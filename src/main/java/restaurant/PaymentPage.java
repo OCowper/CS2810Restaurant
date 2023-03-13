@@ -89,6 +89,17 @@ public class PaymentPage implements Subject, ViewInterface {
         }
     });
     
+ // Add listener to automatically add slash after first two numbers are entered in expiryDateField
+    expiryDateField.textProperty().addListener((observable, oldValue, newValue) -> {
+        String value = newValue.trim();
+        if (value.length() == 2 && !oldValue.endsWith("/") && !newValue.endsWith("/")) {
+            expiryDateField.setText(value + "/");
+        }
+        if (value.length() > 5) {
+            expiryDateField.setText(oldValue);
+        }
+    });
+    
   }
 
   /**
