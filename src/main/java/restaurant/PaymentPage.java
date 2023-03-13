@@ -88,6 +88,7 @@ public class PaymentPage implements Subject, ViewInterface {
             cvvField.setText(oldValue);
         }
     });
+    
   }
 
   /**
@@ -118,44 +119,41 @@ public class PaymentPage implements Subject, ViewInterface {
    * @throws IOException if an IO error occurs
    */
   public void handlepayNowBtn(ActionEvent event) throws IOException {
-    String cvv = "";
-    if (cvvField != null) {
-        cvv = cvvField.getText().trim();
+    // Check if the card number field is valid
+    String cardNumber = cardNumberField.getText().trim();
+    if (cardNumber.isEmpty() || !cardNumber.matches("\\d{16}")) {
+        // If it's not valid, highlight the field in red
+        cardNumberField.setStyle("-fx-border-color: red;");
+        return;
     }
 
-    boolean isCvvValid = cvv.matches("\\d{3}");
-    if (!isCvvValid) {
-        cvvField.setStyle("-fx-border-color: red");
-    } else {
-        cvvField.setStyle("");
+    // Check if the cvv field is valid
+    String cvv = cvvField.getText().trim();
+    if (cvv.isEmpty() || !cvv.matches("\\d{3}")) {
+        // If it's not valid, highlight the field in red
+        cvvField.setStyle("-fx-border-color: red;");
+        return;
     }
 
-    String cardNumber = "";
-    if (cardNumberField != null) {
-        cardNumber = cardNumberField.getText().trim();
+    // Check if the expiry date field is valid
+    String expiryDate = expiryDateField.getText().trim();
+    if (expiryDate.isEmpty() || !expiryDate.matches("\\d{2}/\\d{2}")) {
+        // If it's not valid, highlight the field in red
+        expiryDateField.setStyle("-fx-border-color: red;");
+        return;
     }
 
-    boolean isCardNumberValid = cardNumber.matches("\\d{16}");
-    if (!isCardNumberValid) {
-        cardNumberField.setStyle("-fx-border-color: red");
-    } else {
-        cardNumberField.setStyle("");
-    }
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
+    Parent paymentConfirmationParent = loader.load();
+    Scene paymentConfirmation = new Scene(paymentConfirmationParent);
 
-    if (isCvvValid && isCardNumberValid) {
-        FXMLLoader loader =
-            new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
-        Parent paymentConfirmationParent = loader.load();
-        Scene paymentConfirmation = new Scene(paymentConfirmationParent);
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        obs.setView(loader.getController());
-
-        window.setScene(paymentConfirmation);
-        window.show();
-    }
+    window.setScene(paymentConfirmation);
+    window.show();
 }
-
 
 
   public Observer obs;
