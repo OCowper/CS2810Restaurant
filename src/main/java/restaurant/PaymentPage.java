@@ -122,25 +122,40 @@ public class PaymentPage implements Subject, ViewInterface {
     if (cvvField != null) {
         cvv = cvvField.getText().trim();
     }
-    // validate cvv length and digits here...
+
+    boolean isCvvValid = cvv.matches("\\d{3}");
+    if (!isCvvValid) {
+        cvvField.setStyle("-fx-border-color: red");
+    } else {
+        cvvField.setStyle("");
+    }
 
     String cardNumber = "";
     if (cardNumberField != null) {
         cardNumber = cardNumberField.getText().trim();
     }
-    // validate cardNumber length and digits here...
-    
-    FXMLLoader loader =
-        new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
-    Parent paymentConfirmationParent = loader.load();
-    Scene paymentConfirmation = new Scene(paymentConfirmationParent);
 
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    obs.setView(loader.getController());
+    boolean isCardNumberValid = cardNumber.matches("\\d{16}");
+    if (!isCardNumberValid) {
+        cardNumberField.setStyle("-fx-border-color: red");
+    } else {
+        cardNumberField.setStyle("");
+    }
 
-    window.setScene(paymentConfirmation);
-    window.show();
-  }
+    if (isCvvValid && isCardNumberValid) {
+        FXMLLoader loader =
+            new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
+        Parent paymentConfirmationParent = loader.load();
+        Scene paymentConfirmation = new Scene(paymentConfirmationParent);
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        obs.setView(loader.getController());
+
+        window.setScene(paymentConfirmation);
+        window.show();
+    }
+}
+
 
 
   public Observer obs;
