@@ -160,15 +160,21 @@ public class PaymentPage implements Subject, ViewInterface {
         cvvField.setStyle("");
     }
     
-    // Validate the expiry date
+ // Validate the expiry date
     String expiryDate = expiryDateField.getText().trim();
     if (!expiryDate.matches("^\\d{2}/\\d{2}$")) {
         expiryDateField.setStyle("-fx-border-color: red;");
         isValid = false;
     } else {
         expiryDateField.setStyle("");
+        String[] parts = expiryDate.split("/");
+        int month = Integer.parseInt(parts[0]);
+        int year = Integer.parseInt(parts[1]);
+        if (month < 1 || month > 12 || year < 0 || year > 99) {
+            expiryDateField.setStyle("-fx-border-color: red;");
+            isValid = false;
+        }
     }
-    
     // Validate the name on card
     String nameOnCard = nameOnCardField.getText().trim();
     if (nameOnCard.isEmpty()) {
