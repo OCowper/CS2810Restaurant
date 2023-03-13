@@ -76,6 +76,18 @@ public class PaymentPage implements Subject, ViewInterface {
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
 
+    // Add event listeners for validation
+    cardNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue.matches("\\d{0,16}")) {
+            cardNumberField.setText(oldValue);
+        }
+    });
+  
+    cvvField.textProperty().addListener((observable, oldValue, newValue) -> {
+        if (!newValue.matches("\\d{0,3}")) {
+            cvvField.setText(oldValue);
+        }
+    });
   }
 
   /**
@@ -135,7 +147,6 @@ public class PaymentPage implements Subject, ViewInterface {
 
   @Override
   public void startup() {
-    // TODO Auto-generated method stub
 
   }
 

@@ -55,6 +55,6 @@
       </Button>
       <TextField fx:id="cardNumberField" layoutX="252.0" layoutY="168.0" prefHeight="26.0" prefWidth="319.0" style="-fx-background-color: #dec190;" />
       <TextField fx:id="expiryDateField" layoutX="251.0" layoutY="229.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: #dec190;" />
-      <TextField fx:id="expiryDateField1" layoutX="499.0" layoutY="227.0" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #dec190;" />
+      <TextField fx:id="cvvField" layoutX="499.0" layoutY="227.0" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #dec190;" />
    </children>
 </AnchorPane>
