@@ -70,34 +70,33 @@ public class PaymentPage implements Subject, ViewInterface {
   private Button returnButton;
 
   /**
-   * Initialization method.
+   * Initialisation method.
    */
   public void initialize() {
 
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
 
-    // Add event listeners for validation
+    // Add event listeners for validation of card number, CVV, and name on card
     cardNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
         if (!newValue.matches("\\d{0,16}")) {
             cardNumberField.setText(oldValue);
         }
     });
-  
+
     cvvField.textProperty().addListener((observable, oldValue, newValue) -> {
         if (!newValue.matches("\\d{0,3}")) {
             cvvField.setText(oldValue);
         }
     });
-    
+
     nameOnCardField.textProperty().addListener((observable, oldValue, newValue) -> {
       if (!newValue.matches("^[a-zA-Z\\s]*$")) {
           nameOnCardField.setText(oldValue);
       }
-  });
+    });
 
-    
- // Add listener to automatically add slash after first two numbers are entered in expiryDateField
+    // Add listener to automatically add slash after first two numbers are entered in expiryDateField
     expiryDateField.textProperty().addListener((observable, oldValue, newValue) -> {
         String value = newValue.trim();
         if (value.length() == 2 && !oldValue.endsWith("/") && !newValue.endsWith("/")) {
@@ -107,7 +106,8 @@ public class PaymentPage implements Subject, ViewInterface {
             expiryDateField.setText(oldValue);
         }
     });
-    
+
+    // Add key event filter to expiryDateField to only allow digits
     expiryDateField.addEventFilter(KeyEvent.KEY_TYPED, event -> {
       // Get the character typed
       String character = event.getCharacter();
@@ -115,8 +115,7 @@ public class PaymentPage implements Subject, ViewInterface {
       if (!"0123456789".contains(character)) {
           event.consume();
       }
-  });
-    
+    });
   }
 
   /**
