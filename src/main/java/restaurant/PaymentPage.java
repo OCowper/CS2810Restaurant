@@ -90,6 +90,13 @@ public class PaymentPage implements Subject, ViewInterface {
         }
     });
     
+    nameOnCardField.textProperty().addListener((observable, oldValue, newValue) -> {
+      if (!newValue.matches("^[a-zA-Z\\s]*$")) {
+          nameOnCardField.setText(oldValue);
+      }
+  });
+
+    
  // Add listener to automatically add slash after first two numbers are entered in expiryDateField
     expiryDateField.textProperty().addListener((observable, oldValue, newValue) -> {
         String value = newValue.trim();
@@ -175,9 +182,9 @@ public class PaymentPage implements Subject, ViewInterface {
             isValid = false;
         }
     }
-    // Validate the name on card
+ // Validate the name on card
     String nameOnCard = nameOnCardField.getText().trim();
-    if (nameOnCard.isEmpty()) {
+    if (!nameOnCard.matches("^[a-zA-Z\\s]+$")) {
         nameOnCardField.setStyle("-fx-border-color: red;");
         isValid = false;
     } else {
