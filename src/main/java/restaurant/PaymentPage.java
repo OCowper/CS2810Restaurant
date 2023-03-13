@@ -119,41 +119,61 @@ public class PaymentPage implements Subject, ViewInterface {
    * @throws IOException if an IO error occurs
    */
   public void handlepayNowBtn(ActionEvent event) throws IOException {
-    // Check if the card number field is valid
+    boolean isValid = true;
+    
+    // Validate the card number
     String cardNumber = cardNumberField.getText().trim();
-    if (cardNumber.isEmpty() || !cardNumber.matches("\\d{16}")) {
-        // If it's not valid, highlight the field in red
+    if (!cardNumber.matches("^\\d{16}$")) {
         cardNumberField.setStyle("-fx-border-color: red;");
-        return;
+        isValid = false;
+    } else {
+        cardNumberField.setStyle("");
     }
-
-    // Check if the cvv field is valid
+    
+    // Validate the CVV
     String cvv = cvvField.getText().trim();
-    if (cvv.isEmpty() || !cvv.matches("\\d{3}")) {
-        // If it's not valid, highlight the field in red
+    if (!cvv.matches("^\\d{3}$")) {
         cvvField.setStyle("-fx-border-color: red;");
-        return;
+        isValid = false;
+    } else {
+        cvvField.setStyle("");
     }
-
-    // Check if the expiry date field is valid
+    
+    // Validate the expiry date
     String expiryDate = expiryDateField.getText().trim();
-    if (expiryDate.isEmpty() || !expiryDate.matches("\\d{2}/\\d{2}")) {
-        // If it's not valid, highlight the field in red
+    if (!expiryDate.matches("^\\d{2}/\\d{2}$")) {
         expiryDateField.setStyle("-fx-border-color: red;");
-        return;
+        isValid = false;
+    } else {
+        expiryDateField.setStyle("");
     }
-
-    FXMLLoader loader =
-        new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
-    Parent paymentConfirmationParent = loader.load();
-    Scene paymentConfirmation = new Scene(paymentConfirmationParent);
-
-    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    obs.setView(loader.getController());
-
-    window.setScene(paymentConfirmation);
-    window.show();
+    
+    // Validate the name on card
+    String nameOnCard = nameOnCardField.getText().trim();
+    if (nameOnCard.isEmpty()) {
+        nameOnCardField.setStyle("-fx-border-color: red;");
+        isValid = false;
+    } else {
+        nameOnCardField.setStyle("");
+    }
+    
+    if (isValid) {
+        // If all fields are valid, switch to the payment confirmation page
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
+        Parent paymentConfirmationParent = loader.load();
+        Scene paymentConfirmation = new Scene(paymentConfirmationParent);
+        
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        obs.setView(loader.getController());
+        
+        window.setScene(paymentConfirmation);
+        window.show();
+    } else {
+        // Highlight invalid fields and stay on the same page
+        payNowButton.setStyle("");
+    }
 }
+
 
 
   public Observer obs;
