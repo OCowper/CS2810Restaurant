@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -99,6 +100,15 @@ public class PaymentPage implements Subject, ViewInterface {
             expiryDateField.setText(oldValue);
         }
     });
+    
+    expiryDateField.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+      // Get the character typed
+      String character = event.getCharacter();
+      // Only allow digits
+      if (!"0123456789".contains(character)) {
+          event.consume();
+      }
+  });
     
   }
 
