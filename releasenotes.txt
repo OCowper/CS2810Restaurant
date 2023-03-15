@@ -1,3 +1,16 @@
+Release: Sprint 4:
+
+Customers can click on an item to view the description
+Customers can submit a help request to notify the waiter of an issue
+Customers can enter their order number to recieve the current status of their order
+
+
+Staff can toggle items off if they run out during a shift.
+Staff are notified when an order is ready to be delivered
+Staff can resolve notifications to mark them as dealt with
+
+
+
 Release: Sprint 3
 
 added decorations, pictures, changed most buttons to a sidebar.

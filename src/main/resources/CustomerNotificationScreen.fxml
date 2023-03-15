@@ -58,15 +58,15 @@
             <Image url="@../java/images/plata-o-plomo-1.jpeg" />
          </image>
       </ImageView>
-      <Label fx:id="orderIDLabel" layoutX="220.0" layoutY="77.0" text="Please enter your Order ID:">
+      <Label fx:id="enterIdLabel" layoutX="220.0" layoutY="77.0" text="Please enter your Order ID:">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="orderIDTextField" alignment="CENTER" layoutX="460.0" layoutY="74.0" prefHeight="26.0" prefWidth="165.0" promptText="ORDER ID" />
+      <TextField fx:id="orderIdTextField" alignment="CENTER" layoutX="460.0" layoutY="74.0" prefHeight="26.0" prefWidth="165.0" promptText="ORDER ID" />
       <Button fx:id="trackOrderButton" layoutX="374.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleTrackOrder" prefHeight="26.0" prefWidth="113.0" style="-fx-background-color: #BA8B39;" text="Track Order" textFill="WHITE" />
       <Separator layoutX="193.0" layoutY="148.0" prefHeight="4.0" prefWidth="464.0" />
-      <ListView fx:id="orderIDListView" layoutX="220.0" layoutY="182.0" prefHeight="35.0" prefWidth="208.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
+      <ListView fx:id="orderIdListView" layoutX="220.0" layoutY="182.0" prefHeight="35.0" prefWidth="208.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
       <ListView fx:id="statusListView" layoutX="431.0" layoutY="181.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
       <Label fx:id="orderIdLabel" layoutX="294.0" layoutY="160.0" text="Order ID">
          <font>

@@ -43,10 +43,10 @@ public class AboutPage implements Subject, ViewInterface {
   private Button returnButton;
 
   @FXML
-  private Button TrackOrderButton;
+  private Button trackOrderButton;
 
   @FXML
-  private VBox sidebarVBox;
+  private VBox sidebarVbox;
 
   /**
    * Initialization method.

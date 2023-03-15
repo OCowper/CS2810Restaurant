@@ -25,7 +25,7 @@ public class StaffPanel implements ViewInterface, Subject {
 
 
   @FXML
-  private Button NotifictionsButton;
+  private Button notificationsButton;
 
   @FXML
 

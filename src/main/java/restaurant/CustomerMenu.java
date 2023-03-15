@@ -29,7 +29,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -87,7 +86,7 @@ public class CustomerMenu implements Subject, ViewInterface {
   private TextField totaltxt;
 
   @FXML
-  private Button TrackOrderButton;
+  private Button trackOrderButton;
 
   @FXML
   private TextArea userselections;
@@ -108,7 +107,7 @@ public class CustomerMenu implements Subject, ViewInterface {
   private TextField itemName;
 
 
-  private String[] Type = {"Show All", "Starters", "Mains", "Desserts", "Drinks"};
+  private String[] type = {"Show All", "Starters", "Mains", "Desserts", "Drinks"};
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
   private double totalCost = 0;
@@ -415,7 +414,7 @@ public class CustomerMenu implements Subject, ViewInterface {
     Image title = new Image("/images/newoaxacaLogo.png");
     oaxacaImageView.setImage(title);
     bgImage.setImage(background);
-    filterBox.setItems(FXCollections.observableArrayList(Type));
+    filterBox.setItems(FXCollections.observableArrayList(type));
     filterBox.setValue("Show All");
     initializeAfter();
   }

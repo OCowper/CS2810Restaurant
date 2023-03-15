@@ -23,13 +23,13 @@ import javafx.stage.Stage;
 public class CustomerNotificationScreen implements Subject, ViewInterface {
 
   @FXML
-  private Label orderIDLabel;
+  private Label enterIdLabel;
 
   @FXML
-  private ListView<String> orderIDListView;
+  private ListView<String> orderIdListView;
 
   @FXML
-  private TextField orderIDTextField;
+  private TextField orderIdTextField;
 
   @FXML
   private Label orderIdLabel;
@@ -193,8 +193,8 @@ public class CustomerNotificationScreen implements Subject, ViewInterface {
   
   @FXML
   void handleTrackOrder(ActionEvent event) {
-    int curOrderNum = Integer.parseInt(orderIDTextField.getText());
-    orderIDListView.getItems().add(String.valueOf(curOrderNum));
+    int curOrderNum = Integer.parseInt(orderIdTextField.getText());
+    orderIdListView.getItems().add(String.valueOf(curOrderNum));
     statusListView.getItems().add(obs.getOrderStatus(curOrderNum));
   }
 
