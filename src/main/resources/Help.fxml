@@ -62,7 +62,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="TableNumberTxt" alignment="CENTER" layoutX="351.0" layoutY="100.0" prefHeight="26.0" prefWidth="260.0" />
+      <TextField fx:id="tableNumberTxt" alignment="CENTER" layoutX="351.0" layoutY="100.0" prefHeight="26.0" prefWidth="260.0" />
       <Label fx:id="issuesLbl" layoutX="233.0" layoutY="149.0" text="Issues:">
          <font>
             <Font name="System Bold" size="14.0" />

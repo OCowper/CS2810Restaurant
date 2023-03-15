@@ -6,6 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Class containing some queries on the menu table.
+ *
+ * @author zkac355, James Wood
+ */
 public class MenuQueries {
   /**
    * Returns the menu as an ArrayList.
@@ -32,7 +37,7 @@ public class MenuQueries {
   }
 
   /**
-   * Returns items that are less then a certain price
+   * Returns items that are less then a certain price.
    *
    * @param connection current database connection
    * @param priceCap value of the users input
@@ -61,7 +66,7 @@ public class MenuQueries {
 
   /**
    * Returns an array list of the items given the chosen type.
-   * 
+   *
    * @param connection current database connection
    * @param menuType the type of item the customer wants to filter through.
    * @return all items of the chosen type.
@@ -111,9 +116,9 @@ public class MenuQueries {
    */
   public static void setInStock(Connection connection, String item) throws SQLException {
     String statement = "UPDATE menu_items SET inStock = true WHERE dish = ?";
-    PreparedStatement pStatement = connection.prepareStatement(statement);
-    pStatement.setString(1, item);
-    pStatement.executeUpdate();
+    PreparedStatement prepStatement = connection.prepareStatement(statement);
+    prepStatement.setString(1, item);
+    prepStatement.executeUpdate();
   }
 
   /**
@@ -127,9 +132,9 @@ public class MenuQueries {
   public static void setOutStock(Connection connection, String item) {
     String statement = "UPDATE items SET available = false WHERE item_name = ?";
     try {
-      PreparedStatement pStatement = connection.prepareStatement(statement);
-      pStatement.setString(1, item);
-      pStatement.executeUpdate();
+      PreparedStatement prepStatement = connection.prepareStatement(statement);
+      prepStatement.setString(1, item);
+      prepStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
