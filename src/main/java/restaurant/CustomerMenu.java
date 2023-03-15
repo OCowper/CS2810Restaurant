@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +31,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -106,7 +107,7 @@ public class CustomerMenu implements Subject, ViewInterface {
 
   @FXML
   private TextField itemName;
-  
+
   @FXML
   private Button ConfirmQuantityButton;
 
@@ -132,7 +133,7 @@ public class CustomerMenu implements Subject, ViewInterface {
    * Puts the item from database on to the menu view.
    */
   public void initializeAfter() {
-
+    vbox.getChildren().clear();
     Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
     // populating the menu with item categories and items
     for (String key : itemsMap.keySet()) {
@@ -259,9 +260,13 @@ public class CustomerMenu implements Subject, ViewInterface {
    */
   private Map<String, List<MenuItem>> queryItemsFromDb() {
     Map<String, List<MenuItem>> map = new HashMap<String, List<MenuItem>>();
-    ResultSet rs = obs.getMenuItems();
-    // ResultSetMetaData rsmd = rs.getMetaData();
-    // int columnsNumber = rsmd.getColumnCount();
+    String curType = filterBox.getValue();
+    ResultSet rs = null;
+    if (curType == "Show All") {
+      rs = obs.getMenuItems();
+    } else {
+      rs = obs.getMenuItems(curType);
+    }
     try {
       while (rs.next()) {
         String key = rs.getString("item_category").trim().toLowerCase();
@@ -432,6 +437,13 @@ public class CustomerMenu implements Subject, ViewInterface {
     bgImage.setImage(background);
     filterBox.setItems(FXCollections.observableArrayList(Type));
     filterBox.setValue("Show All");
+    filterBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+      @Override
+      public void changed(ObservableValue<? extends String> observableValue, String string,
+          String string2) {
+        initializeAfter();
+      }
+    });
     initializeAfter();
   }
 

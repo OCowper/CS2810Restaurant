@@ -67,24 +67,12 @@ public class MenuQueries {
    * @return all items of the chosen type.
    *
    */
-  public static ArrayList<String> filterMenuType(Connection connection, String menuType) {
-    ArrayList<String> items = new ArrayList<String>();
-    menuType = menuType.toLowerCase();
+  public static ResultSet filterMenuType(Connection connection, String menuType) {
 
     String statement =
-        "Select menu_items.dish FROM menu_items WHERE menu_items.type = " + menuType + ";";
-
-    try {
-      ResultSet rs = Operations.executeQuery(connection, statement);
-
-      while (rs.next()) {
-        items.add(rs.getString("dish"));
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    return items;
+        "SELECT * from items where item_category = '" + menuType + "' and available = true;";
+    ResultSet rs = Operations.executeQuery(connection, statement);
+    return rs;
   }
 
 

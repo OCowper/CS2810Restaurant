@@ -112,6 +112,16 @@ public class RestModel implements Subject {
     String query = "SELECT * FROM items where available = True;";
     return Operations.executeQuery(connection, query);
   }
+  
+  /**
+   * Returns menu items of a certain type.
+   *
+   * @param type the type of item to be returned
+   * @return a result set containing the items.
+   */
+  public ResultSet getMenu(String type) {
+    return MenuQueries.filterMenuType(connection, type);
+  }
 
   /**
    * Removes an order from the database and moves it to the done orders database.
@@ -191,4 +201,6 @@ public class RestModel implements Subject {
     MenuQueries.setOutStock(connection, selectedItem);
     
   }
+
+
 }

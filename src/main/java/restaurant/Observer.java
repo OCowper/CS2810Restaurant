@@ -79,6 +79,14 @@ public interface Observer {
    * @return result set containing menu items.
    */
   public ResultSet getMenuItems();
+  
+  /**
+   * Returns a subsection of the menu by a certain type.
+   *
+   * @param type the type of item to be delivered
+   * @return a result set of the items
+   */
+  public ResultSet getMenuItems(String type);
 
   /**
    * Retrieves notifications from the database.
@@ -124,6 +132,7 @@ public interface Observer {
    * @param selectedItem the item to be toggled.
    */
   public void toggleItemStock(String selectedItem);
+
 
 
 

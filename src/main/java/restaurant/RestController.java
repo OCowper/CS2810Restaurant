@@ -133,7 +133,10 @@ public class RestController implements Observer {
   @Override
   public ResultSet getMenuItems() {
     return model.getMenu();
-
+  }
+  
+  public ResultSet getMenuItems(String type) {
+    return model.getMenu(type);
   }
 
   @Override
