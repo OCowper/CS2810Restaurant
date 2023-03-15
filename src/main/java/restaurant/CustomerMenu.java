@@ -106,6 +106,21 @@ public class CustomerMenu implements Subject, ViewInterface {
 
   @FXML
   private TextField itemName;
+  
+  @FXML
+  private Button ConfirmQuantityButton;
+
+  @FXML
+  private Label ItemLabel;
+
+  @FXML
+  private TextField ItemTextField;
+
+  @FXML
+  private Label NewQuantityChangeLabel;
+
+  @FXML
+  private TextField NewQuantityTextField;
 
 
   private String[] Type = {"Show All", "Starters", "Mains", "Desserts", "Drinks"};

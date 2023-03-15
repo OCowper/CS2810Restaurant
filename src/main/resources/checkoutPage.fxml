@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -51,7 +52,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <ImageView fx:id="bgImage" blendMode="SRC_ATOP" fitHeight="449.0" fitWidth="600.0" layoutX="200.0" layoutY="-2.0" nodeOrientation="INHERIT" opacity="0.38" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="-142.0">
+      <ImageView fx:id="bgImage" blendMode="SRC_ATOP" fitHeight="449.0" fitWidth="600.0" layoutX="200.0" layoutY="-2.0" nodeOrientation="INHERIT" opacity="0.23" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="-142.0">
          <image>
             <Image url="@../java/images/plata-o-plomo-1.jpeg" />
          </image>
@@ -66,7 +67,7 @@
          </font>
       </Text>
       <TextField fx:id="totalAmount" layoutX="297.0" layoutY="305.0" prefHeight="26.0" prefWidth="256.0" style="-fx-background-color: #dec190;" />
-      <Button fx:id="placeOrderButton" layoutX="361.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #BA8B39;" text="checkout" textFill="WHITE" />
+      <Button fx:id="placeOrderButton" layoutX="361.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #BA8B39;" text="Checkout" textFill="WHITE" />
       <Text fx:id="itemsHeading" layoutX="230.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEMS">
          <font>
             <Font size="18.0" />
@@ -82,5 +83,10 @@
             <Font size="18.0" />
          </font>
       </Text>
+      <TextField fx:id="ItemTextField" layoutX="570.0" layoutY="139.0" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
+      <TextField fx:id="NewQuantityTextField" layoutX="570.0" layoutY="194.0" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
+      <Button fx:id="ConfirmQuantityButton" layoutX="571.0" layoutY="230.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="78.0" style="-fx-background-color: #BA8B39;" text="Confirm" textFill="WHITE" />
+      <Label fx:id="NewQuantityChangeLabel" layoutX="561.0" layoutY="174.0" text="New Quantity:" />
+      <Label fx:id="ItemLabel" layoutX="589.0" layoutY="121.0" text="Item:" />
    </children>
 </AnchorPane>
