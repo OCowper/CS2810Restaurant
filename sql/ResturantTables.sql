@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS Items(
     calories smallint NOT NULL,  -- kCal
     item_category varchar(20) NOT NULL, 
     available boolean NOT NULL, 
+    image_path varchar(50),
     primary key (item_id)
 );
 
@@ -46,3 +47,4 @@ CREATE TABLE IF NOT EXISTS Notifications (
     request_Type varchar(30),
     dealt_with boolean
 );
+

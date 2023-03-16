@@ -123,36 +123,42 @@ public class CustomerMenu implements Subject, ViewInterface {
   @FXML
   private TextField NewQuantityTextField;
 
-
   private String[] Type = {"Show All", "Starters", "Mains", "Desserts", "Drinks"};
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
+  private Map<CheckBox, Image> itemImages = new HashMap<>();
+
+
   private double totalCost = 0;
 
   /**
    * Puts the item from database on to the menu view.
    */
   public void initializeAfter() {
-    vbox.getChildren().clear();
-    Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
-    // populating the menu with item categories and items
-    for (String key : itemsMap.keySet()) {
-      vbox.getChildren().add(new Label(key));
-      for (MenuItem item : itemsMap.get(key)) {
-        CheckBox cb = new CheckBox(item.getPrice());
-        Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
-        hl.setOnAction(e -> showDescription(item)); // sets behaviour on click
+      vbox.getChildren().clear();
+      Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
+      // populating the menu with item categories and items
+      for (String key : itemsMap.keySet()) {
+        vbox.getChildren().add(new Label(key));
+        for (MenuItem item : itemsMap.get(key)) {
+          CheckBox cb = new CheckBox(item.getPrice());
+          Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
+          hl.setOnAction(e -> showDescription(item)); // sets behavior on click
 
-        cb.setGraphic(hl);
-        cb.setContentDisplay(ContentDisplay.LEFT); // name set to be left of everything else
-        cb.selectedProperty().addListener(
-            (observable, oldValue, newValue) -> handleCheckboxClick(cb, oldValue, newValue));
-        vbox.getChildren().add((cb));
+          cb.setGraphic(hl);
+          cb.setContentDisplay(ContentDisplay.LEFT); // name set to be left of everything else
+          cb.selectedProperty().addListener(
+              (observable, oldValue, newValue) -> handleCheckboxClick(cb, oldValue, newValue));
+          cb.setUserData(item); // Store the MenuItem object as user data
+          vbox.getChildren().add((cb));
+          Image itemImage = new Image(item.getImagePath()); // Load image using the image path
+          itemImages.put(cb, itemImage); // Store the association between the CheckBox and Image
+        }
       }
-    }
-    scrollpane.setContent(vbox);
-    searchbar.setOnAction(e -> handleSearchbarAction());
+      scrollpane.setContent(vbox);
+      searchbar.setOnAction(e -> handleSearchbarAction());
   }
+
 
   private void showDescription(MenuItem item) {
     itemName.setText(item.getName());
@@ -161,18 +167,23 @@ public class CustomerMenu implements Subject, ViewInterface {
   }
 
   private void handleCheckboxClick(CheckBox checkbox, Boolean o, Boolean n) {
-    String item = ((Hyperlink) checkbox.getGraphic()).getText();
+    MenuItem item = (MenuItem) checkbox.getUserData();
     double price = Double.parseDouble(checkbox.getText());
     if (n) {
-      userselections.appendText(item + ",");
-      totalCost += price;
-      totaltxt.setText("£" + Double.toString(totalCost));
+        userselections.appendText(item.getName() + ",");
+        totalCost += price;
+        totaltxt.setText("£" + Double.toString(totalCost));
+
+        // Load and display the image when the checkbox is selected
+        String imagePath = item.getImagePath();
+        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+        productimages.setImage(image);
     } else {
-      userselections.setText(userselections.getText().replace(item + ",", ""));
-      totalCost -= price;
-      totaltxt.setText("£" + Double.toString(totalCost));
+        userselections.setText(userselections.getText().replace(item.getName() + ",", ""));
+        totalCost -= price;
+        totaltxt.setText("£" + Double.toString(totalCost));
     }
-  }
+}
 
 
   private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
@@ -221,12 +232,15 @@ public class CustomerMenu implements Subject, ViewInterface {
     private String price;
     private String category;
     private String description;
+    private String imagePath;
 
-    public MenuItem(String name, String pr, String cat, String descr) {
+
+    public MenuItem(String name, String pr, String cat, String descr, String imagePath) {
       this.itemName = name;
       this.price = pr;
       this.category = cat;
       this.description = descr;
+      this.imagePath = imagePath;
     }
 
     public String getCategory() {
@@ -244,6 +258,11 @@ public class CustomerMenu implements Subject, ViewInterface {
     public String getPrice() {
       return price;
     }
+    
+    public String getImagePath() {
+      return imagePath;
+    }
+
 
     @Override
     public String toString() {
@@ -271,7 +290,7 @@ public class CustomerMenu implements Subject, ViewInterface {
       while (rs.next()) {
         String key = rs.getString("item_category").trim().toLowerCase();
         MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_id"),
-            rs.getString("item_category"), rs.getString("item_description"));
+            rs.getString("item_category"), rs.getString("item_description"), rs.getString("image_path"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }
