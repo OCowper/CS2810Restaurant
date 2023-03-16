@@ -166,40 +166,46 @@ public class CustomerMenu implements Subject, ViewInterface {
     descriptionBox.setVisible(true);
   }
 
-  private CheckBox lastChecked;
+  private ArrayList<CheckBox> checkedItems = new ArrayList<>();
+
   private void handleCheckboxClick(CheckBox checkbox, Boolean o, Boolean n) {
-    MenuItem item = (MenuItem) checkbox.getUserData();
-    double price = Double.parseDouble(checkbox.getText());
-    if (n) {
-        userselections.appendText(item.getName() + ",");
-        totalCost += price;
-        totaltxt.setText("£" + Double.toString(totalCost));
+      MenuItem item = (MenuItem) checkbox.getUserData();
+      double price = Double.parseDouble(checkbox.getText());
+      if (n) {
+          userselections.appendText(item.getName() + ",");
+          totalCost += price;
+          totaltxt.setText("£" + Double.toString(totalCost));
 
-        lastChecked = checkbox;
-        updateImageView();
+          checkedItems.add(checkbox);
+          updateImageView(checkbox);
 
-    } else {
-        userselections.setText(userselections.getText().replace(item.getName() + ",", ""));
-        totalCost -= price;
-        totaltxt.setText("£" + Double.toString(totalCost));
+      } else {
+          userselections.setText(userselections.getText().replace(item.getName() + ",", ""));
+          totalCost -= price;
+          totaltxt.setText("£" + Double.toString(totalCost));
 
-        if (lastChecked == checkbox) {
-            lastChecked = null;
-            updateImageView();
-        }
-    }
+          checkedItems.remove(checkbox);
+          updateImageView(null);
+      }
   }
-
-  private void updateImageView() {
-    if (lastChecked != null) {
+  
+  private void updateImageView(CheckBox currentCheckbox) {
+    if (checkedItems.size() > 0) {
+        CheckBox lastChecked = currentCheckbox == null ? checkedItems.get(checkedItems.size() - 1) : currentCheckbox;
         MenuItem item = (MenuItem) lastChecked.getUserData();
         String imagePath = item.getImagePath();
         Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+
         productimages.setImage(image);
+        productimages.setFitWidth(139);
+        productimages.setFitHeight(110);
+        productimages.setPreserveRatio(false);
     } else {
         productimages.setImage(null);
     }
-  }
+}
+
+
 
 
   private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
