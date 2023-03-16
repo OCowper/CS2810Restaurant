@@ -166,6 +166,7 @@ public class CustomerMenu implements Subject, ViewInterface {
     descriptionBox.setVisible(true);
   }
 
+  private CheckBox lastChecked;
   private void handleCheckboxClick(CheckBox checkbox, Boolean o, Boolean n) {
     MenuItem item = (MenuItem) checkbox.getUserData();
     double price = Double.parseDouble(checkbox.getText());
@@ -174,16 +175,31 @@ public class CustomerMenu implements Subject, ViewInterface {
         totalCost += price;
         totaltxt.setText("£" + Double.toString(totalCost));
 
-        // Load and display the image when the checkbox is selected
-        String imagePath = item.getImagePath();
-        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
-        productimages.setImage(image);
+        lastChecked = checkbox;
+        updateImageView();
+
     } else {
         userselections.setText(userselections.getText().replace(item.getName() + ",", ""));
         totalCost -= price;
         totaltxt.setText("£" + Double.toString(totalCost));
+
+        if (lastChecked == checkbox) {
+            lastChecked = null;
+            updateImageView();
+        }
     }
-}
+  }
+
+  private void updateImageView() {
+    if (lastChecked != null) {
+        MenuItem item = (MenuItem) lastChecked.getUserData();
+        String imagePath = item.getImagePath();
+        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+        productimages.setImage(image);
+    } else {
+        productimages.setImage(null);
+    }
+  }
 
 
   private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
