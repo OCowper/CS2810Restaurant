@@ -190,7 +190,14 @@ public class NewOrdersView implements ViewInterface, Subject {
     window.setScene(startView);
     window.show();
   }
-
+  
+  
+  /**
+   * Handling for if the Notification button view switcher is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs
+   */
   @FXML
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -204,6 +211,13 @@ public class NewOrdersView implements ViewInterface, Subject {
     window.show();
   }
 
+  /**
+   * Handling for if the Stock button view switcher is pressed.
+   *
+   * @param event representing the button push
+   * @throws IOException if an IO error occurs
+   */
+  @FXML
   public void handleStockBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =
