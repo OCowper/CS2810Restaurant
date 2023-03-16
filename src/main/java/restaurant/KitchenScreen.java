@@ -175,6 +175,12 @@ public class KitchenScreen implements Subject, ViewInterface {
     window.show();
   }
   
+  /**
+   * Handling for if the switcher to the customer notification screen is pressed.
+   *
+   * @param event representing the button push.
+   * @throws IOException if an IO error occurs
+   */
   @FXML
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -188,6 +194,14 @@ public class KitchenScreen implements Subject, ViewInterface {
     window.show();
   }
   
+  
+  /**
+   * Handling for if the switcher to the stocks screen is pressed.
+   *
+   * @param event representing the button push.
+   * @throws IOException if an IO error occurs
+   */
+  @FXML
   public void handleStockBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("stockPage.fxml"));
