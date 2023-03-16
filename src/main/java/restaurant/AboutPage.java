@@ -1,5 +1,6 @@
 package restaurant;
 
+import java.awt.TextArea;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,12 @@ public class AboutPage implements Subject, ViewInterface {
 
   @FXML
   private Button aboutUsButton;
+  
+  @FXML
+  private Text welcomeText;
+  
+  @FXML
+  private TextArea aboutUsDescription;
 
   @FXML
   private AnchorPane bgPane;
