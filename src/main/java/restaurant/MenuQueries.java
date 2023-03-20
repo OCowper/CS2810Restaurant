@@ -84,7 +84,7 @@ public class MenuQueries {
    *
    */
   public static ResultSet inStockItems(ItemType type, Connection connection) {
-    String query = "SELECT item_name FROM items WHERE available = true and item_category = '"
+    String query = "SELECT item_name FROM items WHERE item_name NOT LIKE '%!' and item_category = '"
         + type.toString() + "';";
     return Operations.executeQuery(connection, query);
   }
