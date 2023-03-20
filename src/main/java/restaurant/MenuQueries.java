@@ -98,9 +98,10 @@ public class MenuQueries {
    * 
    */
   public static void setInStock(Connection connection, String item) throws SQLException {
-    String statement = "UPDATE menu_items SET inStock = true WHERE dish = ?";
+    String statement = "UPDATE items SET item_name = ? WHERE item_name = ?";
     PreparedStatement pStatement = connection.prepareStatement(statement);
-    pStatement.setString(1, item);
+    pStatement.setString(1, item + "!");
+    pStatement.setString(2, item);
     pStatement.executeUpdate();
   }
 
@@ -113,10 +114,11 @@ public class MenuQueries {
    * 
    */
   public static void setOutStock(Connection connection, String item) {
-    String statement = "UPDATE items SET available = false WHERE item_name = ?";
+    String statement = "UPDATE items SET item_name = ? WHERE item_name = ?";
     try {
       PreparedStatement pStatement = connection.prepareStatement(statement);
       pStatement.setString(1, item);
+      pStatement.setString(2, item + "!");
       pStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
