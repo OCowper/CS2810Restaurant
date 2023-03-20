@@ -180,6 +180,12 @@ public class WaiterScreenView implements Subject, ViewInterface {
     window.show();
   }
   
+  /**
+   * Handling for if the user presses the Notifications.
+   *
+   * @param event representing the button press
+   * @throws IOException If an IO error occurs
+   */
   @FXML
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -193,6 +199,12 @@ public class WaiterScreenView implements Subject, ViewInterface {
     window.show();
   }
   
+  /**
+   * Handling for if the user presses the Stock Button.
+   *
+   * @param event representing the button press
+   * @throws IOException If an IO error occurs
+   */
   public void handleStockBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =

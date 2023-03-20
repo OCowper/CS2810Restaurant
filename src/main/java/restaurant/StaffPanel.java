@@ -181,6 +181,12 @@ public class StaffPanel implements ViewInterface, Subject {
 
   }
 
+  /**
+   * Handling for if the user presses the Notifications.
+   *
+   * @param event representing the button press
+   * @throws IOException If an IO error occurs
+   */
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =
@@ -202,6 +208,12 @@ public class StaffPanel implements ViewInterface, Subject {
 
   }
   
+  /**
+   * Handling for if the user presses the Stock Button.
+   *
+   * @param event representing the button press
+   * @throws IOException If an IO error occurs
+   */
   public void handleStockBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =

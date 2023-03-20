@@ -20,6 +20,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * View representing StockPage of available items/ add items.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class StockPage implements ViewInterface, Subject {
 
   @FXML
@@ -117,7 +122,9 @@ public class StockPage implements ViewInterface, Subject {
   @FXML
   private Separator verSeparator;
 
-
+  /**
+   * Loads Oaxaca logo.
+   */
   public void initializeAfter() {
 
     Image title = new Image("/images/newoaxacaLogo.png");

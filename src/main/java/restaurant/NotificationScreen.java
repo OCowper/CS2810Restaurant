@@ -18,6 +18,11 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * View representing NottificationScreen of incoming notifications.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class NotificationScreen implements ViewInterface, Subject {
 
   @FXML
@@ -101,7 +106,12 @@ public class NotificationScreen implements ViewInterface, Subject {
 
   }
 
-
+  /**
+   * Handles the event triggered when an issue is marked as resolved. This method is
+   * called when the user clicks the "Resolve Issue" button in the user interface.
+   *
+   * @param event The ActionEvent triggered by the user interaction.
+   */
   @FXML
   void handleIssueResolved(ActionEvent event) {
     int selectedTable = Integer.parseInt(orderNumberListView.getSelectionModel().getSelectedItem());
