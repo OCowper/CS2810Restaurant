@@ -90,7 +90,7 @@ public class MenuQueries {
   }
 
   /**
-   * Sets inStock to true for an item of choice.
+   * Removes the '!' from item name making it in stock.
    *
    * @param connection current database connection
    * @param item that is in stock
@@ -106,7 +106,7 @@ public class MenuQueries {
   }
 
   /**
-   * Sets inStock to false for an item of choice.
+   * Sets item_name to have '!' at end if out of stock.
    *
    * @param connection current database connection
    * @param item that is out of stock
