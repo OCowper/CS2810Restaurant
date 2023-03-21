@@ -190,8 +190,8 @@ public class NewOrdersView implements ViewInterface, Subject {
     window.setScene(startView);
     window.show();
   }
-  
-  
+
+
   /**
    * Handling for if the Notification button view switcher is pressed.
    *

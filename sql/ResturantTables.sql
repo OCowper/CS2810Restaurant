@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Items(
     primary key (item_id)
 );
 
-CREATE TYPE status AS ENUM ('recieved', 'confirmed', 'being prepared', 'ready', 'received', 'settled', 'paid'); --combine ready and received?
+CREATE TYPE status AS ENUM ('recieved', 'confirmed', 'being prepared', 'ready', 'settled', 'paid'); --combine ready and received?
 CREATE TABLE IF NOT EXISTS Orders(
     order_num numeric(6, 0) NOT NULL,
     order_description varchar(100),
@@ -39,7 +39,8 @@ CREATE TABLE IF NOT EXISTS Orders(
 -- do we need to keep done orders separately?
 CREATE TABLE IF NOT EXISTS DoneOrders(
     order_num numeric(6, 0),
-    cancelled boolean
+    cancelled boolean,
+    primary key (order_num)
 );
 
 CREATE TABLE IF NOT EXISTS Notifications (

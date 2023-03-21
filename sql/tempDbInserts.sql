@@ -7,5 +7,5 @@ INSERT INTO Items VALUES ('35', 'Steak', 25, 'No description needed. Steak. The 
 INSERT INTO Items VALUES ('36', 'Pasta', 15, 'Ask our waiter for today`s choice of pasta dishes. They all cost the same and all taste like heaven.', 'ask waiter for clarification', 1400, 'Mains', TRUE, '/images/pasta.jpg');
 INSERT INTO Items VALUES ('37', 'Risotto', 12.8, 'Authentic gourmet mashroom risotto with rosemary, black pepper and truffle salt.', 'rice, mashrooms, heavy cream, beef stock, white wine, parsley', 947, 'Mains', TRUE, '/images/risotto.jpg');
 INSERT INTO Items VALUES ('38', 'Paella', 17.6, 'Some would argue we it`s just a seafood risotto; we say they are nothing alike. Our spanish paella features all your favourite crustacean.', 'rice, king shrimps, mussles, cod, basa fillet, crab meat, white wine, bell peppers, cherry tomatoes', 1100, 'Mains', TRUE, '/images/paella.jpg');
-insert into Staff values('100575405', 'pass1', 'Oscar', 'Cowper', 'Waiter', 'oscar.cowper', '977856', 'new road');
-insert into Orders values('0', 'voidorder', '12', 25.67, 'recieved', '100575405');
+insert into Staff values('123456789', 'pass1', 'admin', 'admin', 'manager', 'admin', 'admin', 'admin');
+insert into Orders values('0', 'voidorder', '12', 25.67, 'recieved', '123456789');
