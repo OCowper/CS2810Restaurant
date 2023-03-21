@@ -27,6 +27,7 @@ public class RestModel implements Subject {
    */
   public RestModel(Observer controller) {
     addObservers(controller);
+    RestStartup.startup(connection);
   }
 
   /**
