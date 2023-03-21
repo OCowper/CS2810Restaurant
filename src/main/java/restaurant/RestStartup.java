@@ -5,11 +5,20 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.net.URL;
 import java.sql.Connection;
 import org.apache.ibatis.jdbc.ScriptRunner;
 
+/**
+ * Handles the necessary database setup for a first time run of the system.
+ *
+ * @author zkac355
+ */
 public class RestStartup {
+  /**
+   * Static method that initialises tables and fills them with data.
+   *
+   * @param connection current database connection
+   */
   public static void startup(Connection connection) {
     String path = new File("").getAbsolutePath();
     String tablesPath = path + "/sql/ResturantTables.sql";
