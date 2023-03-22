@@ -55,7 +55,7 @@ public class StockPage implements ViewInterface, Subject {
   private AnchorPane bgPane;
 
   @FXML
-  private VBox categoryField;
+  private TextField categoryField;
 
   @FXML
   private TextField descriptionField;
@@ -130,7 +130,7 @@ public class StockPage implements ViewInterface, Subject {
     Image title = new Image("/images/newoaxacaLogo.png");
     logoImage.setImage(title);
   }
-  
+
   /**
    * Handling for when the toggle order button is pressed.
    *
@@ -275,6 +275,14 @@ public class StockPage implements ViewInterface, Subject {
     window.setScene(startView);
     window.show();
 
+  }
+
+  @FXML
+  void handleAddItem(ActionEvent event) {
+    Item newItem = new Item(-1, nameField.getText(), Integer.parseInt(priceField.getText()),
+        descriptionField.getText(), "", -1, categoryField.getText(), true, "/images/noimage.jpg");
+    obs.addItem(newItem);
+    startup();
   }
 
   public Observer obs;

@@ -167,5 +167,11 @@ public class RestController implements Observer {
     model.toggleItemStock(selectedItem);
   }
 
+  @Override
+  public void addItem(Item newItem) {
+    model.addStock(newItem);
+    
+  }
+
  
 }

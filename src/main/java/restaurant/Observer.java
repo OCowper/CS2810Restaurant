@@ -133,6 +133,13 @@ public interface Observer {
    */
   public void toggleItemStock(String selectedItem);
 
+  /**
+   * Adds a new stock item into the database.
+   *
+   * @param newItem the item to be added
+   */
+  public void addItem(Item newItem);
+
 
 
 

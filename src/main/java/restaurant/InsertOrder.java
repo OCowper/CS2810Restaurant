@@ -28,12 +28,6 @@ public class InsertOrder {
    */
   public static int insert(Order order, Connection connection, String waiterFirstName,
       String waiterLastName) {
-    // updated method takes in too more parameters, waiter first and last name. this is to find the
-    // waiterID from the staff table
-    // this could be changed later on if we would want the waiter to enter their own waiterID. for
-    // this case they will have
-    // to remember it however.
-    // After finding the ID of the waiter it will add it to the order.
     String findWaiterId = "Select staff_ID from Staff WHERE first_name = '" + waiterFirstName
         + "' AND last_name = '" + waiterLastName + "';";
 

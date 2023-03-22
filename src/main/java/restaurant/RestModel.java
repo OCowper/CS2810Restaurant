@@ -209,5 +209,14 @@ public class RestModel implements Subject {
     }
   }
 
+  /**
+   * Adds a new item into the database.
+   *
+   * @param newItem the item to be added
+   */
+  public void addStock(Item newItem) {
+    InsertItem.insert(newItem, connection);
+  }
+
 
 }
