@@ -17,6 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * View class representing the About Us screen.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class AboutPage implements Subject, ViewInterface {
 
   @FXML
