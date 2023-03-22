@@ -79,32 +79,33 @@ public class PaymentPage implements Subject, ViewInterface {
 
     // Add event listeners for validation of card number, CVV, and name on card
     cardNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
-        if (!newValue.matches("\\d{0,16}")) {
-            cardNumberField.setText(oldValue);
-        }
+      if (!newValue.matches("\\d{0,16}")) {
+        cardNumberField.setText(oldValue);
+      }
     });
 
     cvvField.textProperty().addListener((observable, oldValue, newValue) -> {
-        if (!newValue.matches("\\d{0,3}")) {
-            cvvField.setText(oldValue);
-        }
+      if (!newValue.matches("\\d{0,3}")) {
+        cvvField.setText(oldValue);
+      }
     });
 
     nameOnCardField.textProperty().addListener((observable, oldValue, newValue) -> {
       if (!newValue.matches("^[a-zA-Z\\s]*$")) {
-          nameOnCardField.setText(oldValue);
+        nameOnCardField.setText(oldValue);
       }
     });
 
-    // Add listener to automatically add slash after first two numbers are entered in expiryDateField
+    // Add listener to automatically add slash after first two numbers are entered in
+    // expiryDateField
     expiryDateField.textProperty().addListener((observable, oldValue, newValue) -> {
-        String value = newValue.trim();
-        if (value.length() == 2 && !oldValue.endsWith("/") && !newValue.endsWith("/")) {
-            expiryDateField.setText(value + "/");
-        }
-        if (value.length() > 5) {
-            expiryDateField.setText(oldValue);
-        }
+      String value = newValue.trim();
+      if (value.length() == 2 && !oldValue.endsWith("/") && !newValue.endsWith("/")) {
+        expiryDateField.setText(value + "/");
+      }
+      if (value.length() > 5) {
+        expiryDateField.setText(oldValue);
+      }
     });
 
     // Add key event filter to expiryDateField to only allow digits
@@ -113,7 +114,7 @@ public class PaymentPage implements Subject, ViewInterface {
       String character = event.getCharacter();
       // Only allow digits
       if (!"0123456789".contains(character)) {
-          event.consume();
+        event.consume();
       }
     });
   }
@@ -147,65 +148,66 @@ public class PaymentPage implements Subject, ViewInterface {
    */
   public void handlepayNowBtn(ActionEvent event) throws IOException {
     boolean isValid = true;
-    
+
     // Validate the card number
     String cardNumber = cardNumberField.getText().trim();
     if (!cardNumber.matches("^\\d{16}$")) {
-        cardNumberField.setStyle("-fx-border-color: red;");
-        isValid = false;
+      cardNumberField.setStyle("-fx-border-color: red;");
+      isValid = false;
     } else {
-        cardNumberField.setStyle("");
+      cardNumberField.setStyle("");
     }
-    
+
     // Validate the CVV
     String cvv = cvvField.getText().trim();
     if (!cvv.matches("^\\d{3}$")) {
-        cvvField.setStyle("-fx-border-color: red;");
-        isValid = false;
+      cvvField.setStyle("-fx-border-color: red;");
+      isValid = false;
     } else {
-        cvvField.setStyle("");
+      cvvField.setStyle("");
     }
-    
- // Validate the expiry date
+
+    // Validate the expiry date
     String expiryDate = expiryDateField.getText().trim();
     if (!expiryDate.matches("^\\d{2}/\\d{2}$")) {
+      expiryDateField.setStyle("-fx-border-color: red;");
+      isValid = false;
+    } else {
+      expiryDateField.setStyle("");
+      String[] parts = expiryDate.split("/");
+      int month = Integer.parseInt(parts[0]);
+      int year = Integer.parseInt(parts[1]);
+      if (month < 1 || month > 12 || year < 0 || year > 99) {
         expiryDateField.setStyle("-fx-border-color: red;");
         isValid = false;
-    } else {
-        expiryDateField.setStyle("");
-        String[] parts = expiryDate.split("/");
-        int month = Integer.parseInt(parts[0]);
-        int year = Integer.parseInt(parts[1]);
-        if (month < 1 || month > 12 || year < 0 || year > 99) {
-            expiryDateField.setStyle("-fx-border-color: red;");
-            isValid = false;
-        }
+      }
     }
- // Validate the name on card
+    // Validate the name on card
     String nameOnCard = nameOnCardField.getText().trim();
     if (!nameOnCard.matches("^[a-zA-Z\\s]+$")) {
-        nameOnCardField.setStyle("-fx-border-color: red;");
-        isValid = false;
+      nameOnCardField.setStyle("-fx-border-color: red;");
+      isValid = false;
     } else {
-        nameOnCardField.setStyle("");
+      nameOnCardField.setStyle("");
     }
-    
+
     if (isValid) {
-        // If all fields are valid, switch to the payment confirmation page
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
-        Parent paymentConfirmationParent = loader.load();
-        Scene paymentConfirmation = new Scene(paymentConfirmationParent);
-        
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        obs.setView(loader.getController());
-        
-        window.setScene(paymentConfirmation);
-        window.show();
+      // If all fields are valid, switch to the payment confirmation page
+      FXMLLoader loader =
+          new FXMLLoader(getClass().getClassLoader().getResource("paymentConfirmation.fxml"));
+      Parent paymentConfirmationParent = loader.load();
+      Scene paymentConfirmation = new Scene(paymentConfirmationParent);
+
+      Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      obs.setView(loader.getController());
+      obs.orderStartup();
+      window.setScene(paymentConfirmation);
+      window.show();
     } else {
-        // Highlight invalid fields and stay on the same page
-        payNowButton.setStyle("");
+      // Highlight invalid fields and stay on the same page
+      payNowButton.setStyle("");
     }
-}
+  }
 
 
 

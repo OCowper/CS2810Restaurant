@@ -79,7 +79,7 @@ public class RestController implements Observer {
 
   @Override
   public void update(Boolean confirmed) {
-    if (view.getClass() == FoodMenuView.class) {
+    if (view.getClass() == CustomerMenu.class) {
       curOrder.setConfirmed(confirmed);
     }
     view.acceptBoolean(confirmed);
@@ -97,10 +97,10 @@ public class RestController implements Observer {
   @Override
   public void update(HelpRequest request) {
     model.submitRequest(request);
-    
+
   }
-  
-  @Override 
+
+  @Override
   public void resolveNotif(int notifNum, String requestType) {
     model.removeNotification(notifNum, requestType);
   }
@@ -134,7 +134,7 @@ public class RestController implements Observer {
   public ResultSet getMenuItems() {
     return model.getMenu();
   }
-  
+
   @Override
   public ResultSet getMenuItems(String type) {
     return model.getMenu(type);
@@ -148,9 +148,9 @@ public class RestController implements Observer {
   @Override
   public void orderCompleteNotify(int orderNum) {
     model.orderCompleteNotify(orderNum);
-    
+
   }
-  
+
   @Override
   public String getOrderStatus(int orderNum) {
     return model.getStatus(orderNum);
@@ -159,7 +159,7 @@ public class RestController implements Observer {
   @Override
   public ResultSet getMenuType(ItemType type) {
     return model.getMenuType(type);
-   
+
   }
 
   @Override
@@ -170,7 +170,7 @@ public class RestController implements Observer {
   @Override
   public void addItem(Item newItem) {
     model.addStock(newItem);
-    
+
   }
 
   @Override
@@ -178,5 +178,10 @@ public class RestController implements Observer {
     return model.getTables();
   }
 
- 
+  @Override
+  public ResultSet getLatestOrderNum() {
+    return model.getLatestOrder();
+  }
+
+
 }

@@ -228,5 +228,10 @@ public class RestModel implements Subject {
     return Operations.executeQuery(connection, query);
   }
 
+  public ResultSet getLatestOrder() {
+    String query = "select MAX(order_num) from orders;";
+    return Operations.executeQuery(connection, query);
+  }
+
 
 }

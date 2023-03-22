@@ -147,4 +147,11 @@ public interface Observer {
    */
   public ResultSet getTables();
 
+  /**
+   * Returns the order number of the most recent order.
+   *
+   * @return the order number
+   */
+  public ResultSet getLatestOrderNum();
+
 }

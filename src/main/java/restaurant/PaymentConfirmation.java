@@ -1,6 +1,8 @@
 package restaurant;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,8 +67,16 @@ public class PaymentConfirmation implements Subject, ViewInterface {
 
   @Override
   public void startup() {
-    // TODO Auto-generated method stub
-
+    ResultSet rs = obs.getLatestOrderNum();
+    int latestOrderNum = -1;
+    try {
+      while (rs.next()) {
+        latestOrderNum = rs.getInt(1);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    ordernumberLabel.setText(String.valueOf(latestOrderNum));
   }
 
 
