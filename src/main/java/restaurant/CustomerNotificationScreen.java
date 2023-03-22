@@ -77,6 +77,9 @@ public class CustomerNotificationScreen implements Subject, ViewInterface {
   @FXML
   private VBox virtualBox;
 
+  /**
+   * Initialization method.
+   */
   public void initialize() {
     Image background = new Image("/images/plata-o-plomo-1.jpeg");
     Image title = new Image("/images/newoaxacaLogo.png");
