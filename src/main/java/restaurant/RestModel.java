@@ -202,8 +202,11 @@ public class RestModel implements Subject {
    * @param selectedItem the item to be toggled.
    */
   public void toggleItemStock(String selectedItem) {
-    MenuQueries.setOutStock(connection, selectedItem);
-
+    if (selectedItem.charAt(selectedItem.length() - 1) == '!') {
+      MenuQueries.setInStock(connection, selectedItem);
+    } else {
+      MenuQueries.setOutStock(connection, selectedItem);
+    }
   }
 
 

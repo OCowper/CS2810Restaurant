@@ -135,6 +135,7 @@ public class RestController implements Observer {
     return model.getMenu();
   }
   
+  @Override
   public ResultSet getMenuItems(String type) {
     return model.getMenu(type);
   }

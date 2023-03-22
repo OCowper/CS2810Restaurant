@@ -135,28 +135,28 @@ public class CustomerMenu implements Subject, ViewInterface {
    * Puts the item from database on to the menu view.
    */
   public void initializeAfter() {
-      vbox.getChildren().clear();
-      Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
-      // populating the menu with item categories and items
-      for (String key : itemsMap.keySet()) {
-        vbox.getChildren().add(new Label(key));
-        for (MenuItem item : itemsMap.get(key)) {
-          CheckBox cb = new CheckBox(item.getPrice());
-          Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
-          hl.setOnAction(e -> showDescription(item)); // sets behavior on click
+    vbox.getChildren().clear();
+    Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
+    // populating the menu with item categories and items
+    for (String key : itemsMap.keySet()) {
+      vbox.getChildren().add(new Label(key));
+      for (MenuItem item : itemsMap.get(key)) {
+        CheckBox cb = new CheckBox(item.getPrice());
+        Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
+        hl.setOnAction(e -> showDescription(item)); // sets behavior on click
 
-          cb.setGraphic(hl);
-          cb.setContentDisplay(ContentDisplay.LEFT); // name set to be left of everything else
-          cb.selectedProperty().addListener(
-              (observable, oldValue, newValue) -> handleCheckboxClick(cb, oldValue, newValue));
-          cb.setUserData(item); // Store the MenuItem object as user data
-          vbox.getChildren().add((cb));
-          Image itemImage = new Image(item.getImagePath()); // Load image using the image path
-          itemImages.put(cb, itemImage); // Store the association between the CheckBox and Image
-        }
+        cb.setGraphic(hl);
+        cb.setContentDisplay(ContentDisplay.LEFT); // name set to be left of everything else
+        cb.selectedProperty().addListener(
+            (observable, oldValue, newValue) -> handleCheckboxClick(cb, oldValue, newValue));
+        cb.setUserData(item); // Store the MenuItem object as user data
+        vbox.getChildren().add((cb));
+        Image itemImage = new Image(item.getImagePath()); // Load image using the image path
+        itemImages.put(cb, itemImage); // Store the association between the CheckBox and Image
       }
-      scrollpane.setContent(vbox);
-      searchbar.setOnAction(e -> handleSearchbarAction());
+    }
+    scrollpane.setContent(vbox);
+    searchbar.setOnAction(e -> handleSearchbarAction());
   }
 
 
@@ -169,42 +169,42 @@ public class CustomerMenu implements Subject, ViewInterface {
   private ArrayList<CheckBox> checkedItems = new ArrayList<>();
 
   private void handleCheckboxClick(CheckBox checkbox, Boolean o, Boolean n) {
-      MenuItem item = (MenuItem) checkbox.getUserData();
-      double price = Double.parseDouble(checkbox.getText());
-      if (n) {
-          userselections.appendText(item.getName() + ",");
-          totalCost += price;
-          totaltxt.setText("£" + Double.toString(totalCost));
+    MenuItem item = (MenuItem) checkbox.getUserData();
+    double price = Double.parseDouble(checkbox.getText());
+    if (n) {
+      userselections.appendText(item.getName() + ",");
+      totalCost += price;
+      totaltxt.setText("£" + Double.toString(totalCost));
 
-          checkedItems.add(checkbox);
-          updateImageView(checkbox);
+      checkedItems.add(checkbox);
+      updateImageView(checkbox);
 
-      } else {
-          userselections.setText(userselections.getText().replace(item.getName() + ",", ""));
-          totalCost -= price;
-          totaltxt.setText("£" + Double.toString(totalCost));
+    } else {
+      userselections.setText(userselections.getText().replace(item.getName() + ",", ""));
+      totalCost -= price;
+      totaltxt.setText("£" + Double.toString(totalCost));
 
-          checkedItems.remove(checkbox);
-          updateImageView(null);
-      }
+      checkedItems.remove(checkbox);
+      updateImageView(null);
+    }
   }
-  
+
   private void updateImageView(CheckBox currentCheckbox) {
     if (checkedItems.size() > 0) {
-        CheckBox lastChecked = currentCheckbox == null ? checkedItems.get(checkedItems.size() - 1) : currentCheckbox;
-        MenuItem item = (MenuItem) lastChecked.getUserData();
-        String imagePath = item.getImagePath();
-        Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+      CheckBox lastChecked =
+          currentCheckbox == null ? checkedItems.get(checkedItems.size() - 1) : currentCheckbox;
+      MenuItem item = (MenuItem) lastChecked.getUserData();
+      String imagePath = item.getImagePath();
+      Image image = new Image(getClass().getResource(imagePath).toExternalForm());
 
-        productimages.setImage(image);
-        productimages.setFitWidth(139);
-        productimages.setFitHeight(110);
-        productimages.setPreserveRatio(false);
+      productimages.setImage(image);
+      productimages.setFitWidth(139);
+      productimages.setFitHeight(110);
+      productimages.setPreserveRatio(false);
     } else {
-        productimages.setImage(null);
+      productimages.setImage(null);
     }
-}
-
+  }
 
 
 
@@ -280,7 +280,7 @@ public class CustomerMenu implements Subject, ViewInterface {
     public String getPrice() {
       return price;
     }
-    
+
     public String getImagePath() {
       return imagePath;
     }
@@ -312,7 +312,8 @@ public class CustomerMenu implements Subject, ViewInterface {
       while (rs.next()) {
         String key = rs.getString("item_category").trim().toLowerCase();
         MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_id"),
-            rs.getString("item_category"), rs.getString("item_description"), rs.getString("image_path"));
+            rs.getString("item_category"), rs.getString("item_description"),
+            rs.getString("image_path"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }
