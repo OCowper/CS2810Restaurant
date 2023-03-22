@@ -440,9 +440,25 @@ public class CustomerMenu implements Subject, ViewInterface {
     curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()),
         (float) totalCost);
     notifyObservers(obs);
-    confirmLabel.setText("confirmed!");
-  }
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
+    Parent cartParent = null;
+    
+    try {
+      cartParent = loader.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+    Scene checkout = new Scene(cartParent);
 
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    obs.orderStartup();
+    window.setScene(checkout);
+    window.show();
+  }
+  
   public Observer obs;
   private Order curOrder;
 
