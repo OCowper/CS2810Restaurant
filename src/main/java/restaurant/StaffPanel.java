@@ -14,6 +14,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -36,29 +39,20 @@ public class StaffPanel implements ViewInterface, Subject {
   private Button NotifictionsButton;
 
   @FXML
-
   private Button logoutBtn;
 
-
-
   @FXML
-
   private Button newOrderViewBtn;
 
-
-
   @FXML
-
   private Label titelLbl;
 
-
-
   @FXML
-
   private Button waiterViewBtn;
 
   @FXML
   private ListView<String> TabelNumberListView;
+  
 
   /**
    * Handling for if the user presses the View New Order button.
@@ -233,6 +227,25 @@ public class StaffPanel implements ViewInterface, Subject {
 
     window.show();
 
+  }
+  
+  /**
+   * Handling for if Menu Return switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
+  public void handleMenuReturn(MouseEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
+    Parent paymentParent = loader.load();
+    Scene payment = new Scene(paymentParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(payment);
+    window.show();
   }
 
 
