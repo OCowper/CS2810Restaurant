@@ -173,5 +173,10 @@ public class RestController implements Observer {
     
   }
 
+  @Override
+  public ResultSet getTables() {
+    return model.getTables();
+  }
+
  
 }

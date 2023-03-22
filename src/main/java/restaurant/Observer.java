@@ -140,8 +140,11 @@ public interface Observer {
    */
   public void addItem(Item newItem);
 
-
-
-
+  /**
+   * Returns a list of tables that have an order in the system.
+   *
+   * @return result set containing table numbers.
+   */
+  public ResultSet getTables();
 
 }

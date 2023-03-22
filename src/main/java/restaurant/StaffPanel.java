@@ -3,6 +3,8 @@ package restaurant;
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,9 +33,6 @@ public class StaffPanel implements ViewInterface, Subject {
   private Label CurrentTablesLabel;
 
   @FXML
-  private ListView<String> TabelNumberListView;
-  
-  @FXML
   private Button NotifictionsButton;
 
   @FXML
@@ -58,7 +57,8 @@ public class StaffPanel implements ViewInterface, Subject {
 
   private Button waiterViewBtn;
 
-
+  @FXML
+  private ListView<String> TabelNumberListView;
 
   /**
    * Handling for if the user presses the View New Order button.
@@ -207,7 +207,7 @@ public class StaffPanel implements ViewInterface, Subject {
     window.show();
 
   }
-  
+
   /**
    * Handling for if the user presses the Stock Button.
    *
@@ -236,6 +236,17 @@ public class StaffPanel implements ViewInterface, Subject {
   }
 
 
+  @FXML
+  void handleAssign(ActionEvent event) {
+    ResultSet rs = obs.getTables();
+    try {
+      while (rs.next()) {
+        TabelNumberListView.getItems().add(String.valueOf(rs.getInt(1)));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
 
   public Observer obs;
 

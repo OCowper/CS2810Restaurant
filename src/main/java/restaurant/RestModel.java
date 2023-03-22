@@ -218,5 +218,15 @@ public class RestModel implements Subject {
     InsertItem.insert(newItem, connection);
   }
 
+  /**
+   * Returns a list of all tables which have orders placed currently.
+   *
+   * @return result set containing table numbers
+   */
+  public ResultSet getTables() {
+    String query = "select table_num from orders where order_num > 0;";
+    return Operations.executeQuery(connection, query);
+  }
+
 
 }
