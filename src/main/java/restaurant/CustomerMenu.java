@@ -33,7 +33,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
+/**
+ * View representing all Menu items for customers to make a selection from.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class CustomerMenu implements Subject, ViewInterface {
 
   @FXML
