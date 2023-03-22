@@ -14,17 +14,12 @@ public class EstablishConnection {
   /**
    * Establishes a connection to the database based on user id and password. Static.
    */
-  public static Connection establishConnection() {
-
-    Scanner userInput = new Scanner(System.in);
+  public static Connection establishConnection(Scanner userInput) {
     System.out.println("Enter your username: ");
     String user = userInput.nextLine();
     System.out.println("Enter your password: ");
     String password = userInput.nextLine();
     String database = "teachdb.cs.rhul.ac.uk";
-
-    userInput.close();
-
     System.out.println("Attempting Connection");
     Connection connection = null;
     try {

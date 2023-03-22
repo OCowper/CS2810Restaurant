@@ -2,6 +2,7 @@ package restaurant;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.Scanner;
 
 
 /**
@@ -13,7 +14,8 @@ public class RestModel implements Subject {
 
   private Order curOrder;
   private Observer obs;
-  private Connection connection = EstablishConnection.establishConnection();
+  private Scanner scanner = new Scanner(System.in);
+  private Connection connection = EstablishConnection.establishConnection(scanner);
 
   /**
    * Constructs an empty instance of the model.
@@ -27,7 +29,8 @@ public class RestModel implements Subject {
    */
   public RestModel(Observer controller) {
     addObservers(controller);
-    RestStartup.startup(connection);
+    RestStartup.startup(connection, scanner);
+    scanner.close();
   }
 
   /**
@@ -113,7 +116,7 @@ public class RestModel implements Subject {
     String query = "SELECT * FROM items where available = True;";
     return Operations.executeQuery(connection, query);
   }
-  
+
   /**
    * Returns menu items of a certain type.
    *
@@ -200,7 +203,7 @@ public class RestModel implements Subject {
    */
   public void toggleItemStock(String selectedItem) {
     MenuQueries.setOutStock(connection, selectedItem);
-    
+
   }
 
 

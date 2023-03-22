@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.sql.Connection;
+import java.util.Scanner;
 import org.apache.ibatis.jdbc.ScriptRunner;
 
 /**
@@ -19,23 +20,29 @@ public class RestStartup {
    *
    * @param connection current database connection
    */
-  public static void startup(Connection connection) {
-    String path = new File("").getAbsolutePath();
-    String tablesPath = path + "/sql/ResturantTables.sql";
-    File createsFile = new File(tablesPath);
-    String insertsPath = path + "/sql/tempDbInserts.sql";
-    File insertsFile = new File(insertsPath);
-    ScriptRunner sr = new ScriptRunner(connection);
-    Reader br;
-    try {
-      br = new BufferedReader(new FileReader(createsFile));
-      sr.runScript(br);
-      br.close();
-      br = new BufferedReader(new FileReader(insertsFile));
-      sr.runScript(br);
-      br.close();
-    } catch (IOException e) {
-      e.printStackTrace();
+  public static void startup(Connection connection, Scanner scanner) {
+    String firstTime;
+    System.out.println("run first time startup? (Y/N)");
+    firstTime = scanner.nextLine();
+    if (firstTime.equals("Y")) {
+      System.out.println("running");
+      String path = new File("").getAbsolutePath();
+      String tablesPath = path + "/sql/ResturantTables.sql";
+      File createsFile = new File(tablesPath);
+      String insertsPath = path + "/sql/tempDbInserts.sql";
+      File insertsFile = new File(insertsPath);
+      ScriptRunner sr = new ScriptRunner(connection);
+      Reader br;
+      try {
+        br = new BufferedReader(new FileReader(createsFile));
+        sr.runScript(br);
+        br.close();
+        br = new BufferedReader(new FileReader(insertsFile));
+        sr.runScript(br);
+        br.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
   }
 
