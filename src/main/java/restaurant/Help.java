@@ -19,6 +19,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * View representing Help page screen prompting customers to ask for help if needed.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class Help implements Subject, ViewInterface {
 
   @FXML
