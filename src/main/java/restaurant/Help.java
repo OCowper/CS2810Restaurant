@@ -80,6 +80,10 @@ public class Help implements Subject, ViewInterface {
   @FXML
   private Label confirmLabel;
 
+
+  /**
+   * Sets up the initial visual elements in the background as the page loads.
+   */
   public void startup() {
     Image background = new Image("/images/plata-o-plomo-1.jpeg");
     Image title = new Image("/images/newoaxacaLogo.png");
