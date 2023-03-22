@@ -2,6 +2,7 @@ package restaurant;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 
@@ -233,7 +234,7 @@ public class RestModel implements Subject {
    *
    * @return a result set containing that one order number
    */
-  public ResultSet getLatestOrder() {
+  public ResultSet getLatestOrderNum() {
     String query = "select MAX(order_num) from orders;";
     return Operations.executeQuery(connection, query);
   }
@@ -247,6 +248,24 @@ public class RestModel implements Subject {
     String strNum = String.valueOf(latestOrderNum);
     String op = "UPDATE orders set order_status = 'recieved' where order_num = " + strNum + ";";
     Operations.executeProcedure(connection, op);
+  }
+
+  /**
+   * Returns the most recent order placed in the db.
+   */
+  public ResultSet getLatestOrder() {
+    ResultSet rs = getLatestOrderNum();
+    int latestOrderNum = -1;
+    try {
+    while (rs.next()) {
+      latestOrderNum = rs.getInt(1);
+    }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    String strNum = String.valueOf(latestOrderNum);
+    String query = "Select order_description from orders where order_num = " + strNum + ";";
+    return Operations.executeQuery(connection, query);
   }
 
 
