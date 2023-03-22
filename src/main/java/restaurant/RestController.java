@@ -183,5 +183,11 @@ public class RestController implements Observer {
     return model.getLatestOrder();
   }
 
+  @Override
+  public void setPaid(int latestOrderNum) {
+    model.setPaid(latestOrderNum);
+    
+  }
+
 
 }

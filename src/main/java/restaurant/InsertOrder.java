@@ -77,7 +77,7 @@ public class InsertOrder {
 
     PreparedStatement stmt = null;
     String insertStatement = "INSERT INTO Orders(order_Num, order_Description, "
-        + "table_Num, price, order_status, waiter_id) VALUES (?,?,?,?, 'recieved', ?);";
+        + "table_Num, price, order_status, waiter_id) VALUES (?,?,?,?, 'unpaid', ?);";
     try {
       // INSERTS new order with the new order number and the waitersID as primary key and foreign
       // key.

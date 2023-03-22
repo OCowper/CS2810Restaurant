@@ -76,6 +76,7 @@ public class PaymentConfirmation implements Subject, ViewInterface {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    obs.setPaid(latestOrderNum);
     ordernumberLabel.setText(String.valueOf(latestOrderNum));
   }
 

@@ -154,4 +154,11 @@ public interface Observer {
    */
   public ResultSet getLatestOrderNum();
 
+  /**
+   * Sets an order as paid in the database.
+   *
+   * @param latestOrderNum the order to be set as paid
+   */
+  public void setPaid(int latestOrderNum);
+
 }

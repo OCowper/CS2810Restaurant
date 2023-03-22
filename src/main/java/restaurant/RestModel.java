@@ -233,5 +233,11 @@ public class RestModel implements Subject {
     return Operations.executeQuery(connection, query);
   }
 
+  public void setPaid(int latestOrderNum) {
+    String strNum = String.valueOf(latestOrderNum);
+    String op = "UPDATE orders set order_status = 'recieved' where order_num = " + strNum + ";";
+    Operations.executeProcedure(connection, op);
+  }
+
 
 }

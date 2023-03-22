@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS Items(
     primary key (item_id)
 );
 
-CREATE TYPE status AS ENUM ('recieved', 'confirmed', 'being prepared', 'ready', 'settled', 'paid'); --combine ready and received?
+CREATE TYPE status AS ENUM ('recieved', 'confirmed', 'being prepared', 'ready', 'settled', 'unpaid'); --combine ready and received?
 CREATE TABLE IF NOT EXISTS Orders(
     order_num numeric(6, 0) NOT NULL,
     order_description varchar(100),
