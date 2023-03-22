@@ -240,8 +240,15 @@ public class CheckoutPage implements Subject, ViewInterface {
 
   @Override
   public void startup() {
-    // TODO Auto-generated method stub
+    listexit();
 
+  }
+
+  private void listexit() {
+    itemsListview.getItems().clear();
+    quantityListview.getItems().clear();
+    priceListview.getItems().clear();
+    totalAmount.clear();
   }
 
 }
