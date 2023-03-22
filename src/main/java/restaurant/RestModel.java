@@ -228,11 +228,21 @@ public class RestModel implements Subject {
     return Operations.executeQuery(connection, query);
   }
 
+  /**
+   * Returns the latest order from the database.
+   *
+   * @return a result set containing that one order number
+   */
   public ResultSet getLatestOrder() {
     String query = "select MAX(order_num) from orders;";
     return Operations.executeQuery(connection, query);
   }
 
+  /**
+   * Sets the latest order to paid.
+   *
+   * @param latestOrderNum order number of the latest order
+   */
   public void setPaid(int latestOrderNum) {
     String strNum = String.valueOf(latestOrderNum);
     String op = "UPDATE orders set order_status = 'recieved' where order_num = " + strNum + ";";
