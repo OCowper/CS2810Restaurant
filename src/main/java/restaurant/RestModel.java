@@ -225,7 +225,9 @@ public class RestModel implements Subject {
    * @return result set containing table numbers
    */
   public ResultSet getTables() {
-    String query = "select table_num from orders where order_num > 0;";
+    String query =
+        "select table_num from orders where order_num > 0 AND NOT order_status = 'unpaid' "
+        + "GROUP BY table_num;";
     return Operations.executeQuery(connection, query);
   }
 
@@ -257,9 +259,9 @@ public class RestModel implements Subject {
     ResultSet rs = getLatestOrderNum();
     int latestOrderNum = -1;
     try {
-    while (rs.next()) {
-      latestOrderNum = rs.getInt(1);
-    }
+      while (rs.next()) {
+        latestOrderNum = rs.getInt(1);
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }
