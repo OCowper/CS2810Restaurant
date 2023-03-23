@@ -31,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -39,6 +40,9 @@ import javafx.stage.Stage;
  * @author Mathushan, Manpreet
  */
 public class CustomerMenu implements Subject, ViewInterface {
+
+  @FXML
+  private Text menuTitle;
 
   @FXML
   private Button aboutUsButton;
@@ -59,13 +63,22 @@ public class CustomerMenu implements Subject, ViewInterface {
   private Label confirmLabel;
 
   @FXML
-  private Button helpBtn;
+  private VBox descriptionBox;
 
   @FXML
   private ChoiceBox<String> filterBox;
 
   @FXML
   private Label filterLbl;
+
+  @FXML
+  private Button helpBtn;
+
+  @FXML
+  private TextArea itemDescription;
+
+  @FXML
+  private TextField itemName;
 
   @FXML
   private Button menuButton;
@@ -103,29 +116,6 @@ public class CustomerMenu implements Subject, ViewInterface {
   @FXML
   private VBox virtualBox;
 
-  @FXML
-  private VBox descriptionBox;
-
-  @FXML
-  private TextArea itemDescription;
-
-  @FXML
-  private TextField itemName;
-
-  @FXML
-  private Button ConfirmQuantityButton;
-
-  @FXML
-  private Label ItemLabel;
-
-  @FXML
-  private TextField ItemTextField;
-
-  @FXML
-  private Label NewQuantityChangeLabel;
-
-  @FXML
-  private TextField NewQuantityTextField;
 
   private String[] type = {"Show All", "Starters", "Mains", "Desserts", "Drinks"};
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
