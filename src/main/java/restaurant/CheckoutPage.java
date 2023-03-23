@@ -1,6 +1,8 @@
 package restaurant;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +49,7 @@ public class CheckoutPage implements Subject, ViewInterface {
   private Text itemsHeading;
 
   @FXML
-  private ListView<?> itemsListview;
+  private ListView<String> itemsListview;
 
   @FXML
   private Button menuButton;
@@ -62,13 +64,13 @@ public class CheckoutPage implements Subject, ViewInterface {
   private Text priceHeading;
 
   @FXML
-  private ListView<?> priceListview;
+  private ListView<String> priceListview;
 
   @FXML
   private Text quantityHeading;
 
   @FXML
-  private ListView<?> quantityListview;
+  private ListView<String> quantityListview;
 
   @FXML
   private Button removeItemButton;
@@ -205,7 +207,7 @@ public class CheckoutPage implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-  
+
   /**
    * Handling for if Track Order switcher is pressed.
    *
@@ -241,7 +243,34 @@ public class CheckoutPage implements Subject, ViewInterface {
   @Override
   public void startup() {
     listexit();
+    ResultSet desc = obs.getLatestOrder();
+    String[] itemsList = null;
+    try {
+      while (desc.next()) {
+        itemsList = desc.getString(1).split(",");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    float totalCost = 0f;
+    float curCost;
+    ResultSet price;
+    for (int i = 0; i < itemsList.length; i++) {
+      itemsListview.getItems().add(itemsList[i]);
+      quantityListview.getItems().add("1");
+      price = obs.getItemPrice(itemsList[i]);
+      try {
+        while (price.next()) {
+          curCost = price.getFloat(1);
+          priceListview.getItems().add(String.valueOf(curCost));
+          totalCost = totalCost + curCost;
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
 
+    }
+    totalAmount.setText(String.valueOf(totalCost));
   }
 
   private void listexit() {

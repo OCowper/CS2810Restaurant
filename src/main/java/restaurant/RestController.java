@@ -180,13 +180,23 @@ public class RestController implements Observer {
 
   @Override
   public ResultSet getLatestOrderNum() {
-    return model.getLatestOrder();
+    return model.getLatestOrderNum();
   }
 
   @Override
   public void setPaid(int latestOrderNum) {
     model.setPaid(latestOrderNum);
     
+  }
+
+  @Override
+  public ResultSet getLatestOrder() {
+    return model.getLatestOrder(); 
+  }
+
+  @Override
+  public ResultSet getItemPrice(String item) {
+    return model.getItemPrice(item);
   }
 
 

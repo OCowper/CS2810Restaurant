@@ -9,7 +9,7 @@ public class Item {
 
   private int itemId;
   private String itemName;
-  private double price;
+  private Float price;
   private String itemDescription;
   private String ingredients;
   private int calories;
@@ -30,7 +30,7 @@ public class Item {
    * @param available whether the item is in stock
    * @param imagePath the image path of the item's picture
    */
-  public Item(int itemId, String itemName, double price, String itemDescription, String ingredients,
+  public Item(int itemId, String itemName, Float price, String itemDescription, String ingredients,
       int calories, String itemCategory, boolean available, String imagePath) {
     this.itemId = itemId;
     this.itemName = itemName;
@@ -69,7 +69,7 @@ public class Item {
    *
    * @return price
    */
-  public double getPrice() {
+  public Float getPrice() {
     return price;
   }
 
