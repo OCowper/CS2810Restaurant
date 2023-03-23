@@ -179,7 +179,7 @@ public class CustomerMenu implements Subject, ViewInterface {
     if (n) {
       userselections.appendText(item.getName() + ",");
       totalCost += price;
-      totaltxt.setText("£" + Double.toString(totalCost));
+      totaltxt.setText("£" + String.format("%.2f", totalCost));
 
       checkedItems.add(checkbox);
       updateImageView(checkbox);
@@ -187,7 +187,7 @@ public class CustomerMenu implements Subject, ViewInterface {
     } else {
       userselections.setText(userselections.getText().replace(item.getName() + ",", ""));
       totalCost -= price;
-      totaltxt.setText("£" + Double.toString(totalCost));
+      totaltxt.setText("£" + String.format("%.2f", totalCost));
 
       checkedItems.remove(checkbox);
       updateImageView(null);
