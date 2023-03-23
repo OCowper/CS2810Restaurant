@@ -255,6 +255,8 @@ public class CheckoutPage implements Subject, ViewInterface {
     }
     for (int i = 0; i < itemsList.length; i++) {
       itemsListview.getItems().add(itemsList[i]);
+      quantityListview.getItems().add("1");
+      
     }
   }
 
