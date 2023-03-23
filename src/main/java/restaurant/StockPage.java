@@ -280,7 +280,7 @@ public class StockPage implements ViewInterface, Subject {
 
   @FXML
   void handleAddItem(ActionEvent event) {
-    Item newItem = new Item(-1, nameField.getText(), Integer.parseInt(priceField.getText()),
+    Item newItem = new Item(-1, nameField.getText(), Float.parseFloat(priceField.getText()),
         descriptionField.getText(), "", -1, categoryField.getText(), true, "/images/noimage.jpg");
     obs.addItem(newItem);
     startup();

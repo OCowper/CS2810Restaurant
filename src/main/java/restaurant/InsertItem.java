@@ -41,7 +41,7 @@ public class InsertItem {
       stmt = connection.prepareStatement(query);
       stmt.setInt(1, createId(item, connection));
       stmt.setString(2, item.getItemName());
-      stmt.setDouble(3, item.getPrice());
+      stmt.setFloat(3, item.getPrice());
       stmt.setString(4, item.getItemDescription());
       stmt.setString(5, item.getIngredients());
       stmt.setInt(6, item.getCalories());
