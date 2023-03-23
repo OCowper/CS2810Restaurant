@@ -64,9 +64,7 @@ public class StaffPanel implements ViewInterface, Subject {
   @FXML
 
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
-
     FXMLLoader loader =
-
         new FXMLLoader(getClass().getClassLoader().getResource("NewOrdersView.fxml"));
 
     Parent startViewParent = loader.load();
