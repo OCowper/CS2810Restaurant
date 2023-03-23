@@ -72,24 +72,12 @@ public class MenuQueries {
    * @return all items of the chosen type.
    *
    */
-  public static ArrayList<String> filterMenuType(Connection connection, String menuType) {
-    ArrayList<String> items = new ArrayList<String>();
-    menuType = menuType.toLowerCase();
+  public static ResultSet filterMenuType(Connection connection, String menuType) {
 
     String statement =
-        "Select menu_items.dish FROM menu_items WHERE menu_items.type = " + menuType + ";";
-
-    try {
-      ResultSet rs = Operations.executeQuery(connection, statement);
-
-      while (rs.next()) {
-        items.add(rs.getString("dish"));
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    return items;
+        "SELECT * from items where item_category = '" + menuType + "' and available = true;";
+    ResultSet rs = Operations.executeQuery(connection, statement);
+    return rs;
   }
 
 
@@ -101,28 +89,34 @@ public class MenuQueries {
    *
    */
   public static ResultSet inStockItems(ItemType type, Connection connection) {
-    String query = "SELECT item_name FROM items WHERE available = true and item_category = '"
-        + type.toString() + "';";
+    String query = "SELECT item_name FROM items WHERE item_category = '" + type.toString() + "';";
     return Operations.executeQuery(connection, query);
   }
 
   /**
-   * Sets inStock to true for an item of choice.
+   * Removes the '!' from item name making it in stock.
    *
    * @param connection current database connection
    * @param item that is in stock
    * @throws SQLException if connection failed
    * 
    */
-  public static void setInStock(Connection connection, String item) throws SQLException {
-    String statement = "UPDATE menu_items SET inStock = true WHERE dish = ?";
-    PreparedStatement prepStatement = connection.prepareStatement(statement);
-    prepStatement.setString(1, item);
-    prepStatement.executeUpdate();
+  public static void setInStock(Connection connection, String item) {
+    String statement = "UPDATE items SET item_name = ?, available = true WHERE item_name = ?";
+    StringBuffer buffer = new StringBuffer(item);
+    buffer.deleteCharAt(item.length() - 1);
+    try {
+      PreparedStatement pStatement = connection.prepareStatement(statement);
+      pStatement.setString(1, buffer.toString());
+      pStatement.setString(2, item);
+      pStatement.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
-   * Sets inStock to false for an item of choice.
+   * Sets item_name to have '!' at end if out of stock.
    *
    * @param connection current database connection
    * @param item that is out of stock
@@ -130,10 +124,11 @@ public class MenuQueries {
    * 
    */
   public static void setOutStock(Connection connection, String item) {
-    String statement = "UPDATE items SET available = false WHERE item_name = ?";
+    String statement = "UPDATE items SET item_name = ?, available = false WHERE item_name = ?";
     try {
       PreparedStatement prepStatement = connection.prepareStatement(statement);
-      prepStatement.setString(1, item);
+      prepStatement.setString(1, item + "!");
+      prepStatement.setString(2, item);
       prepStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

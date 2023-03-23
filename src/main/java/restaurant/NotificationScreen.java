@@ -12,11 +12,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * View representing NottificationScreen of incoming notifications.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class NotificationScreen implements ViewInterface, Subject {
 
   @FXML
@@ -79,6 +87,14 @@ public class NotificationScreen implements ViewInterface, Subject {
   private Separator verticalSeparator4;
 
   /**
+   * Initalization method.
+   */
+  public void initialize() {
+    Image title = new Image("/images/newoaxacaLogo.png");
+    oaxacaImageView.setImage(title);
+  }
+  
+  /**
    * Handling for if the user presses the View New Order button.
    *
    * @param event representing the button press
@@ -100,12 +116,16 @@ public class NotificationScreen implements ViewInterface, Subject {
 
   }
 
-
+  /**
+   * Handles the event triggered when an issue is marked as resolved. This method is
+   * called when the user clicks the "Resolve Issue" button in the user interface.
+   *
+   * @param event The ActionEvent triggered by the user interaction.
+   */
   @FXML
   void handleIssueResolved(ActionEvent event) {
     int selectedTable = Integer.parseInt(orderNumberListView.getSelectionModel().getSelectedItem());
     String selectedRequest = issueListView.getSelectionModel().getSelectedItem();
-    System.out.println(selectedRequest);
     obs.resolveNotif(selectedTable, selectedRequest);
     startup();
   }
@@ -206,6 +226,25 @@ public class NotificationScreen implements ViewInterface, Subject {
     obs.setView(loader.getController());
     obs.orderStartup();
     window.setScene(startView);
+    window.show();
+  }
+  
+  /**
+   * Handling for if Menu Return switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
+  public void handleMenuReturn(MouseEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
+    Parent paymentParent = loader.load();
+    Scene payment = new Scene(paymentParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(payment);
     window.show();
   }
 

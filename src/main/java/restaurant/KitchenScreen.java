@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -175,6 +176,12 @@ public class KitchenScreen implements Subject, ViewInterface {
     window.show();
   }
   
+  /**
+   * Handling for if the switcher to the customer notification screen is pressed.
+   *
+   * @param event representing the button push.
+   * @throws IOException if an IO error occurs
+   */
   @FXML
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -188,6 +195,14 @@ public class KitchenScreen implements Subject, ViewInterface {
     window.show();
   }
   
+  
+  /**
+   * Handling for if the switcher to the stocks screen is pressed.
+   *
+   * @param event representing the button push.
+   * @throws IOException if an IO error occurs
+   */
+  @FXML
   public void handleStockBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("stockPage.fxml"));
@@ -199,6 +214,25 @@ public class KitchenScreen implements Subject, ViewInterface {
     window.setScene(startView);
     window.show();
 
+  }
+  
+  /**
+   * Handling for if Menu Return switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
+  public void handleMenuReturn(MouseEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
+    Parent paymentParent = loader.load();
+    Scene payment = new Scene(paymentParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(payment);
+    window.show();
   }
 
   @FXML

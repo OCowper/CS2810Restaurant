@@ -20,7 +20,7 @@
 
          <children>
 
-            <ImageView fx:id="oaxacaImageView" blendMode="SRC_ATOP" fitHeight="100.0" fitWidth="167.0" pickOnBounds="true" smooth="false">
+            <ImageView fx:id="oaxacaImageView" blendMode="SRC_ATOP" fitHeight="100.0" fitWidth="167.0" onMouseClicked="#handleMenuReturn" pickOnBounds="true" smooth="false">
 
                <image>
 

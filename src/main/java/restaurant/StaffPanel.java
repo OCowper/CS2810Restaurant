@@ -3,6 +3,8 @@ package restaurant;
 
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -23,33 +27,30 @@ import javafx.stage.Stage;
 
 public class StaffPanel implements ViewInterface, Subject {
 
+  @FXML
+  private Button AssignTableNumberButton;
 
   @FXML
   private Button notificationsButton;
 
   @FXML
+  private Label CurrentTablesLabel;
 
+  @FXML
   private Button logoutBtn;
 
-
-
   @FXML
-
   private Button newOrderViewBtn;
 
-
-
   @FXML
-
   private Label titelLbl;
 
-
-
   @FXML
-
   private Button waiterViewBtn;
 
-
+  @FXML
+  private ListView<String> TabelNumberListView;
+  
 
   /**
    * Handling for if the user presses the View New Order button.
@@ -61,9 +62,7 @@ public class StaffPanel implements ViewInterface, Subject {
   @FXML
 
   public void handleNewOrderViewBtn(ActionEvent event) throws IOException {
-
     FXMLLoader loader =
-
         new FXMLLoader(getClass().getClassLoader().getResource("NewOrdersView.fxml"));
 
     Parent startViewParent = loader.load();
@@ -172,6 +171,12 @@ public class StaffPanel implements ViewInterface, Subject {
 
   }
 
+  /**
+   * Handling for if the user presses the Notifications.
+   *
+   * @param event representing the button press
+   * @throws IOException If an IO error occurs
+   */
   public void handleNotificationsBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =
@@ -192,7 +197,13 @@ public class StaffPanel implements ViewInterface, Subject {
     window.show();
 
   }
-  
+
+  /**
+   * Handling for if the user presses the Stock Button.
+   *
+   * @param event representing the button press
+   * @throws IOException If an IO error occurs
+   */
   public void handleStockBtn(ActionEvent event) throws IOException {
 
     FXMLLoader loader =
@@ -213,8 +224,38 @@ public class StaffPanel implements ViewInterface, Subject {
     window.show();
 
   }
+  
+  /**
+   * Handling for if Menu Return switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
+  public void handleMenuReturn(MouseEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
+    Parent paymentParent = loader.load();
+    Scene payment = new Scene(paymentParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(payment);
+    window.show();
+  }
 
 
+  @FXML
+  void handleAssign(ActionEvent event) {
+    ResultSet rs = obs.getTables();
+    try {
+      while (rs.next()) {
+        TabelNumberListView.getItems().add(String.valueOf(rs.getInt(1)));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
 
   public Observer obs;
 

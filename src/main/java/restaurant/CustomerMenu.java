@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +33,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
+/**
+ * View representing all Menu items for customers to make a selection from.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class CustomerMenu implements Subject, ViewInterface {
 
   @FXML
@@ -106,23 +112,40 @@ public class CustomerMenu implements Subject, ViewInterface {
   @FXML
   private TextField itemName;
 
+  @FXML
+  private Button ConfirmQuantityButton;
+
+  @FXML
+  private Label ItemLabel;
+
+  @FXML
+  private TextField ItemTextField;
+
+  @FXML
+  private Label NewQuantityChangeLabel;
+
+  @FXML
+  private TextField NewQuantityTextField;
 
   private String[] type = {"Show All", "Starters", "Mains", "Desserts", "Drinks"};
   private HashSet<CheckBox> matchingCheckboxes = new HashSet<>();
   private Map<CheckBox, Double> itemCosts = new HashMap<>();
+  private Map<CheckBox, Image> itemImages = new HashMap<>();
+
+
   private double totalCost = 0;
 
   /**
    * Puts the item from database on to the menu view.
    */
   public void initializeAfter() {
-
     Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
     // populating the menu with item categories and items
+    vbox.getChildren().clear();
     for (String key : itemsMap.keySet()) {
       vbox.getChildren().add(new Label(key));
       for (MenuItem item : itemsMap.get(key)) {
-        CheckBox cb = new CheckBox(item.getPrice());
+        CheckBox cb = new CheckBox(item.getPrice() + "");
         Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
         hl.setOnAction(e -> showDescription(item)); // sets behaviour on click
 
@@ -130,32 +153,65 @@ public class CustomerMenu implements Subject, ViewInterface {
         cb.setContentDisplay(ContentDisplay.LEFT); // name set to be left of everything else
         cb.selectedProperty().addListener(
             (observable, oldValue, newValue) -> handleCheckboxClick(cb, oldValue, newValue));
+        cb.setUserData(item); // Store the MenuItem object as user data
         vbox.getChildren().add((cb));
+        Image itemImage = new Image(item.getImagePath()); // Load image using the image path
+        itemImages.put(cb, itemImage); // Store the association between the CheckBox and Image
       }
     }
     scrollpane.setContent(vbox);
     searchbar.setOnAction(e -> handleSearchbarAction());
   }
 
+
   private void showDescription(MenuItem item) {
     itemName.setText(item.getName());
-    itemDescription.setText(item.getDescription());
+    String description = item.getDescription() + "\n\nIngredients: " + item.getIngredients() + "\n"
+        + item.getCalories() + "kCal";
+    itemDescription.setText(description);
     descriptionBox.setVisible(true);
   }
 
+  private ArrayList<CheckBox> checkedItems = new ArrayList<>();
+
   private void handleCheckboxClick(CheckBox checkbox, Boolean o, Boolean n) {
-    String item = ((Hyperlink) checkbox.getGraphic()).getText();
+    MenuItem item = (MenuItem) checkbox.getUserData();
     double price = Double.parseDouble(checkbox.getText());
     if (n) {
-      userselections.appendText(item + ",");
+      userselections.appendText(item.getName() + ",");
       totalCost += price;
-      totaltxt.setText("£" + Double.toString(totalCost));
+      totaltxt.setText("£" + String.format("%.2f", totalCost));
+
+      checkedItems.add(checkbox);
+      updateImageView(checkbox);
+
     } else {
-      userselections.setText(userselections.getText().replace(item + ",", ""));
+      userselections.setText(userselections.getText().replace(item.getName() + ",", ""));
       totalCost -= price;
-      totaltxt.setText("£" + Double.toString(totalCost));
+      totaltxt.setText("£" + String.format("%.2f", totalCost));
+
+      checkedItems.remove(checkbox);
+      updateImageView(null);
     }
   }
+
+  private void updateImageView(CheckBox currentCheckbox) {
+    if (checkedItems.size() > 0) {
+      CheckBox lastChecked =
+          currentCheckbox == null ? checkedItems.get(checkedItems.size() - 1) : currentCheckbox;
+      MenuItem item = (MenuItem) lastChecked.getUserData();
+      String imagePath = item.getImagePath();
+      Image image = new Image(getClass().getResource(imagePath).toExternalForm());
+
+      productimages.setImage(image);
+      productimages.setFitWidth(139);
+      productimages.setFitHeight(110);
+      productimages.setPreserveRatio(false);
+    } else {
+      productimages.setImage(null);
+    }
+  }
+
 
 
   private HashSet<CheckBox> previouslySelectedCheckboxes = new HashSet<>();
@@ -200,16 +256,31 @@ public class CustomerMenu implements Subject, ViewInterface {
    *
    */
   private class MenuItem {
+    private String id;
     private String itemName;
-    private String price;
-    private String category;
+    private Double price;
     private String description;
+    private String ingredients;
+    private int calories;
+    private String category;
+    private boolean inStock;
+    private String imagePath;
 
-    public MenuItem(String name, String pr, String cat, String descr) {
+    public MenuItem(String nameId, String name, Double pr, String descr, String ingr, int c,
+        String cat, boolean t, String img) {
+      this.id = nameId;
       this.itemName = name;
       this.price = pr;
       this.category = cat;
       this.description = descr;
+      this.ingredients = ingr;
+      this.calories = c;
+      this.inStock = t;
+      this.imagePath = img;
+    }
+
+    public String getId() {
+      return id;
     }
 
     public String getCategory() {
@@ -224,8 +295,24 @@ public class CustomerMenu implements Subject, ViewInterface {
       return itemName;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
       return price;
+    }
+
+    public String getIngredients() {
+      return ingredients;
+    }
+
+    public int getCalories() {
+      return calories;
+    }
+
+    public boolean getAvailability() {
+      return inStock;
+    }
+
+    public String getImagePath() {
+      return imagePath;
     }
 
     @Override
@@ -243,14 +330,20 @@ public class CustomerMenu implements Subject, ViewInterface {
    */
   private Map<String, List<MenuItem>> queryItemsFromDb() {
     Map<String, List<MenuItem>> map = new HashMap<String, List<MenuItem>>();
-    ResultSet rs = obs.getMenuItems();
-    // ResultSetMetaData rsmd = rs.getMetaData();
-    // int columnsNumber = rsmd.getColumnCount();
+    String curType = filterBox.getValue();
+    ResultSet rs = null;
+    if (curType == "Show All") {
+      rs = obs.getMenuItems();
+    } else {
+      rs = obs.getMenuItems(curType);
+    }
     try {
       while (rs.next()) {
         String key = rs.getString("item_category").trim().toLowerCase();
-        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_id"),
-            rs.getString("item_category"), rs.getString("item_description"));
+        MenuItem toAdd = new MenuItem(rs.getString("item_id"), rs.getString("item_name"),
+            rs.getDouble("price"), rs.getString("item_description"), rs.getString("ingredients"),
+            rs.getInt("calories"), rs.getString("item_category"), rs.getBoolean("available"),
+            rs.getString("image_path"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
       }
@@ -332,7 +425,7 @@ public class CustomerMenu implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
-
+    obs.orderStartup();
     window.setScene(checkout);
     window.show();
   }
@@ -377,7 +470,23 @@ public class CustomerMenu implements Subject, ViewInterface {
     curOrder = new Order(userselections.getText(), Integer.parseInt(tablenotxt.getText()),
         (float) totalCost);
     notifyObservers(obs);
-    confirmLabel.setText("confirmed!");
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
+    Parent cartParent = null;
+
+    try {
+      cartParent = loader.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    Scene checkout = new Scene(cartParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+    obs.orderStartup();
+    window.setScene(checkout);
+    window.show();
   }
 
   public Observer obs;
@@ -416,6 +525,13 @@ public class CustomerMenu implements Subject, ViewInterface {
     bgImage.setImage(background);
     filterBox.setItems(FXCollections.observableArrayList(type));
     filterBox.setValue("Show All");
+    filterBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+      @Override
+      public void changed(ObservableValue<? extends String> observableValue, String string,
+          String string2) {
+        initializeAfter();
+      }
+    });
     initializeAfter();
   }
 

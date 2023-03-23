@@ -79,6 +79,14 @@ public interface Observer {
    * @return result set containing menu items.
    */
   public ResultSet getMenuItems();
+  
+  /**
+   * Returns a subsection of the menu by a certain type.
+   *
+   * @param type the type of item to be delivered
+   * @return a result set of the items
+   */
+  public ResultSet getMenuItems(String type);
 
   /**
    * Retrieves notifications from the database.
@@ -125,7 +133,45 @@ public interface Observer {
    */
   public void toggleItemStock(String selectedItem);
 
+  /**
+   * Adds a new stock item into the database.
+   *
+   * @param newItem the item to be added
+   */
+  public void addItem(Item newItem);
 
+  /**
+   * Returns a list of tables that have an order in the system.
+   *
+   * @return result set containing table numbers.
+   */
+  public ResultSet getTables();
 
+  /**
+   * Returns the order number of the most recent order.
+   *
+   * @return the order number
+   */
+  public ResultSet getLatestOrderNum();
+
+  /**
+   * Sets an order as paid in the database.
+   *
+   * @param latestOrderNum the order to be set as paid
+   */
+  public void setPaid(int latestOrderNum);
+
+  /**
+   * Returns the most recently placed order in the database
+   */
+  public ResultSet getLatestOrder();
+
+  /**
+   * Returns the price of an item.
+   *
+   * @param item the item to be queried
+   * @return result set containing the price
+   */
+  public ResultSet getItemPrice(String item);
 
 }

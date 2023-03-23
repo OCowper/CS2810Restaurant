@@ -1,6 +1,8 @@
 package restaurant;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +49,7 @@ public class CheckoutPage implements Subject, ViewInterface {
   private Text itemsHeading;
 
   @FXML
-  private ListView<?> itemsListview;
+  private ListView<String> itemsListview;
 
   @FXML
   private Button menuButton;
@@ -62,13 +64,13 @@ public class CheckoutPage implements Subject, ViewInterface {
   private Text priceHeading;
 
   @FXML
-  private ListView<?> priceListview;
+  private ListView<String> priceListview;
 
   @FXML
   private Text quantityHeading;
 
   @FXML
-  private ListView<?> quantityListview;
+  private ListView<String> quantityListview;
 
   @FXML
   private Button removeItemButton;
@@ -116,10 +118,10 @@ public class CheckoutPage implements Subject, ViewInterface {
   }
 
   /**
-   * Handler for if the cart button is pressed.
+   * Handling for if the cart screen switcher is pressed.
    *
    * @param event representing the button press
-   * @throws IOException if an IO error occurs
+   * @throws IOException if an IO error occurs.
    */
   public void handleCartBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -129,7 +131,7 @@ public class CheckoutPage implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
-
+    obs.orderStartup();
     window.setScene(checkout);
     window.show();
   }
@@ -205,7 +207,7 @@ public class CheckoutPage implements Subject, ViewInterface {
     window.setScene(staffLogin);
     window.show();
   }
-  
+
   /**
    * Handling for if Track Order switcher is pressed.
    *
@@ -240,8 +242,42 @@ public class CheckoutPage implements Subject, ViewInterface {
 
   @Override
   public void startup() {
-    // TODO Auto-generated method stub
+    listexit();
+    ResultSet desc = obs.getLatestOrder();
+    String[] itemsList = null;
+    try {
+      while (desc.next()) {
+        itemsList = desc.getString(1).split(",");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    float totalCost = 0f;
+    float curCost;
+    ResultSet price;
+    for (int i = 0; i < itemsList.length; i++) {
+      itemsListview.getItems().add(itemsList[i]);
+      quantityListview.getItems().add("1");
+      price = obs.getItemPrice(itemsList[i]);
+      try {
+        while (price.next()) {
+          curCost = price.getFloat(1);
+          priceListview.getItems().add(String.valueOf(curCost));
+          totalCost = totalCost + curCost;
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
 
+    }
+    totalAmount.setText(String.format("%.2f", totalCost));
+  }
+
+  private void listexit() {
+    itemsListview.getItems().clear();
+    quantityListview.getItems().clear();
+    priceListview.getItems().clear();
+    totalAmount.clear();
   }
 
 }

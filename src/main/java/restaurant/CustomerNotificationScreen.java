@@ -19,7 +19,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
+/**
+ * View representing Notification Screen showing customers the status of their order.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class CustomerNotificationScreen implements Subject, ViewInterface {
 
   @FXML
@@ -73,6 +77,9 @@ public class CustomerNotificationScreen implements Subject, ViewInterface {
   @FXML
   private VBox virtualBox;
 
+  /**
+   * Initialization method.
+   */
   public void initialize() {
     Image background = new Image("/images/plata-o-plomo-1.jpeg");
     Image title = new Image("/images/newoaxacaLogo.png");
@@ -151,7 +158,7 @@ public class CustomerNotificationScreen implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
-
+    obs.orderStartup();
     window.setScene(checkout);
     window.show();
   }

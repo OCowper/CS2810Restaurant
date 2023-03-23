@@ -91,6 +91,12 @@ public class NewLandingPage implements Subject, ViewInterface {
     window.show();
   }
 
+  /**
+   * Handling for if Help switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
   public void handleHelpBtn(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Help.fxml"));
     Parent staffLodinParent = loader.load();
@@ -117,7 +123,7 @@ public class NewLandingPage implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
-
+    obs.orderStartup();
     window.setScene(checkout);
     window.show();
   }

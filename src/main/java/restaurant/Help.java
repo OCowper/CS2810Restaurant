@@ -19,6 +19,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * View representing Help page screen prompting customers to ask for help if needed.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class Help implements Subject, ViewInterface {
 
   @FXML
@@ -75,6 +80,10 @@ public class Help implements Subject, ViewInterface {
   @FXML
   private Label confirmLabel;
 
+
+  /**
+   * Sets up the initial visual elements in the background as the page loads.
+   */
   public void startup() {
     Image background = new Image("/images/plata-o-plomo-1.jpeg");
     Image title = new Image("/images/newoaxacaLogo.png");
@@ -171,7 +180,7 @@ public class Help implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
-
+    obs.orderStartup();
     window.setScene(checkout);
     window.show();
   }

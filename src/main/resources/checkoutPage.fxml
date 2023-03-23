@@ -51,7 +51,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <ImageView fx:id="bgImage" blendMode="SRC_ATOP" fitHeight="449.0" fitWidth="600.0" layoutX="200.0" layoutY="-2.0" nodeOrientation="INHERIT" opacity="0.38" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="-142.0">
+      <ImageView fx:id="bgImage" blendMode="SRC_ATOP" fitHeight="449.0" fitWidth="600.0" layoutX="200.0" layoutY="-2.0" nodeOrientation="INHERIT" opacity="0.23" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="-142.0">
          <image>
             <Image url="@../java/images/plata-o-plomo-1.jpeg" />
          </image>
@@ -59,14 +59,13 @@
       <ListView fx:id="itemsListview" layoutX="208.0" layoutY="73.0" prefHeight="223.0" prefWidth="110.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
       <ListView fx:id="quantityListview" layoutX="327.0" layoutY="75.0" prefHeight="223.0" prefWidth="110.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
       <ListView fx:id="priceListview" layoutX="444.0" layoutY="75.0" prefHeight="223.0" prefWidth="110.0" style="-fx-background-color: #dec190; -fx-border-color: white;" />
-      <Button fx:id="removeItemButton" layoutX="571.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: #BA8B39;" text="REMOVE" textFill="WHITE" />
-      <Text fx:id="totalField" layoutX="204.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL : " wrappingWidth="102.0">
+      <Text fx:id="totalField" layoutX="204.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL (£): " wrappingWidth="102.0">
          <font>
-            <Font size="19.0" />
+            <Font size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="totalAmount" layoutX="297.0" layoutY="305.0" prefHeight="26.0" prefWidth="256.0" style="-fx-background-color: #dec190;" />
-      <Button fx:id="placeOrderButton" layoutX="361.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #BA8B39;" text="checkout" textFill="WHITE" />
+      <TextField fx:id="totalAmount" editable="false" layoutX="297.0" layoutY="305.0" prefHeight="26.0" prefWidth="256.0" style="-fx-background-color: #dec190;" />
+      <Button fx:id="placeOrderButton" layoutX="361.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #BA8B39;" text="Checkout" textFill="WHITE" />
       <Text fx:id="itemsHeading" layoutX="230.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEMS">
          <font>
             <Font size="18.0" />

@@ -2,6 +2,8 @@ package restaurant;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Scanner;
 
 
 /**
@@ -13,7 +15,8 @@ public class RestModel implements Subject {
 
   private Order curOrder;
   private Observer obs;
-  private Connection connection = EstablishConnection.establishConnection();
+  private Scanner scanner = new Scanner(System.in);
+  private Connection connection = EstablishConnection.establishConnection(scanner);
 
   /**
    * Constructs an empty instance of the model.
@@ -27,6 +30,8 @@ public class RestModel implements Subject {
    */
   public RestModel(Observer controller) {
     addObservers(controller);
+    RestStartup.startup(connection, scanner);
+    scanner.close();
   }
 
   /**
@@ -34,7 +39,7 @@ public class RestModel implements Subject {
    */
   public void retrieveOrder(Order curOrder) {
     this.curOrder = curOrder;
-    curOrder.setId(InsertOrder.insert(curOrder, connection, "Oscar", "Cowper"));
+    curOrder.setId(InsertOrder.insert(curOrder, connection, "admin", "admin"));
   }
 
   /**
@@ -114,6 +119,16 @@ public class RestModel implements Subject {
   }
 
   /**
+   * Returns menu items of a certain type.
+   *
+   * @param type the type of item to be returned
+   * @return a result set containing the items.
+   */
+  public ResultSet getMenu(String type) {
+    return MenuQueries.filterMenuType(connection, type);
+  }
+
+  /**
    * Removes an order from the database and moves it to the done orders database.
    *
    * @param orderId the ID of the order
@@ -188,7 +203,77 @@ public class RestModel implements Subject {
    * @param selectedItem the item to be toggled.
    */
   public void toggleItemStock(String selectedItem) {
-    MenuQueries.setOutStock(connection, selectedItem);
-    
+    if (selectedItem.charAt(selectedItem.length() - 1) == '!') {
+      MenuQueries.setInStock(connection, selectedItem);
+    } else {
+      MenuQueries.setOutStock(connection, selectedItem);
+    }
   }
+
+  /**
+   * Adds a new item into the database.
+   *
+   * @param newItem the item to be added
+   */
+  public void addStock(Item newItem) {
+    InsertItem.insert(newItem, connection);
+  }
+
+  /**
+   * Returns a list of all tables which have orders placed currently.
+   *
+   * @return result set containing table numbers
+   */
+  public ResultSet getTables() {
+    String query =
+        "select table_num from orders where order_num > 0 AND NOT order_status = 'unpaid' "
+        + "GROUP BY table_num;";
+    return Operations.executeQuery(connection, query);
+  }
+
+  /**
+   * Returns the latest order from the database.
+   *
+   * @return a result set containing that one order number
+   */
+  public ResultSet getLatestOrderNum() {
+    String query = "select MAX(order_num) from orders;";
+    return Operations.executeQuery(connection, query);
+  }
+
+  /**
+   * Sets the latest order to paid.
+   *
+   * @param latestOrderNum order number of the latest order
+   */
+  public void setPaid(int latestOrderNum) {
+    String strNum = String.valueOf(latestOrderNum);
+    String op = "UPDATE orders set order_status = 'recieved' where order_num = " + strNum + ";";
+    Operations.executeProcedure(connection, op);
+  }
+
+  /**
+   * Returns the most recent order placed in the db.
+   */
+  public ResultSet getLatestOrder() {
+    ResultSet rs = getLatestOrderNum();
+    int latestOrderNum = -1;
+    try {
+      while (rs.next()) {
+        latestOrderNum = rs.getInt(1);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    String strNum = String.valueOf(latestOrderNum);
+    String query = "Select order_description from orders where order_num = " + strNum + ";";
+    return Operations.executeQuery(connection, query);
+  }
+
+  public ResultSet getItemPrice(String item) {
+    String query = "SELECT price FROM items where item_name = '" + item + "';";
+    return Operations.executeQuery(connection, query);
+  }
+
+
 }

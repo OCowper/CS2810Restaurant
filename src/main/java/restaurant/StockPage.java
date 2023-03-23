@@ -15,11 +15,17 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * View representing StockPage of available items/ add items.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class StockPage implements ViewInterface, Subject {
 
   @FXML
@@ -50,7 +56,7 @@ public class StockPage implements ViewInterface, Subject {
   private AnchorPane bgPane;
 
   @FXML
-  private VBox categoryField;
+  private TextField categoryField;
 
   @FXML
   private TextField descriptionField;
@@ -117,13 +123,15 @@ public class StockPage implements ViewInterface, Subject {
   @FXML
   private Separator verSeparator;
 
-
+  /**
+   * Loads Oaxaca logo.
+   */
   public void initializeAfter() {
 
     Image title = new Image("/images/newoaxacaLogo.png");
     logoImage.setImage(title);
   }
-  
+
   /**
    * Handling for when the toggle order button is pressed.
    *
@@ -268,6 +276,33 @@ public class StockPage implements ViewInterface, Subject {
     window.setScene(startView);
     window.show();
 
+  }
+
+  @FXML
+  void handleAddItem(ActionEvent event) {
+    Item newItem = new Item(-1, nameField.getText(), Float.parseFloat(priceField.getText()),
+        descriptionField.getText(), "", -1, categoryField.getText(), true, "/images/noimage.jpg");
+    obs.addItem(newItem);
+    startup();
+  }
+  
+  /**
+   * Handling for if Menu Return switcher is pressed.
+   *
+   * @param event representing the button press
+   * @throws IOException if an IO error occurs.
+   */
+  public void handleMenuReturn(MouseEvent event) throws IOException {
+    FXMLLoader loader =
+        new FXMLLoader(getClass().getClassLoader().getResource("staffPanel.fxml"));
+    Parent paymentParent = loader.load();
+    Scene payment = new Scene(paymentParent);
+
+    Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    obs.setView(loader.getController());
+
+    window.setScene(payment);
+    window.show();
   }
 
   public Observer obs;

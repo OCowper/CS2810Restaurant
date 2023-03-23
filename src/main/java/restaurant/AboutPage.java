@@ -1,5 +1,6 @@
 package restaurant;
 
+import java.awt.TextArea;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * View class representing the About Us screen.
+ *
+ * @author Mathushan, Manpreet
+ */
 public class AboutPage implements Subject, ViewInterface {
 
   @FXML
@@ -23,6 +29,12 @@ public class AboutPage implements Subject, ViewInterface {
 
   @FXML
   private Button aboutUsButton;
+  
+  @FXML
+  private Text welcomeText;
+  
+  @FXML
+  private TextArea aboutUsDescription;
 
   @FXML
   private AnchorPane bgPane;
@@ -138,7 +150,7 @@ public class AboutPage implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
-
+    obs.orderStartup();
     window.setScene(checkout);
     window.show();
   }

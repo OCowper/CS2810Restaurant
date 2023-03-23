@@ -32,7 +32,7 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="nameOnCardField" layoutX="250.0" layoutY="110.0" prefHeight="26.0" prefWidth="319.0" style="-fx-background-color: #dec190;" />
+      <TextField fx:id="nameOnCardField" alignment="CENTER" layoutX="250.0" layoutY="110.0" prefHeight="26.0" prefWidth="319.0" promptText="Name" style="-fx-background-color: #dec190;" />
       <Text fx:id="cardNumber" layoutX="251.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number">
          <font>
             <Font size="15.0" />
@@ -53,8 +53,8 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="cardNumberField" layoutX="252.0" layoutY="168.0" prefHeight="26.0" prefWidth="319.0" style="-fx-background-color: #dec190;" />
-      <TextField fx:id="expiryDateField" layoutX="251.0" layoutY="229.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-color: #dec190;" />
-      <TextField fx:id="expiryDateField1" layoutX="499.0" layoutY="227.0" prefHeight="26.0" prefWidth="66.0" style="-fx-background-color: #dec190;" />
+      <TextField fx:id="cardNumberField" alignment="CENTER" layoutX="252.0" layoutY="168.0" prefHeight="26.0" prefWidth="319.0" promptText="Card Number" style="-fx-background-color: #dec190;" />
+      <TextField fx:id="expiryDateField" alignment="CENTER" layoutX="251.0" layoutY="229.0" prefHeight="26.0" prefWidth="108.0" promptText="MM/YY" style="-fx-background-color: #dec190;" />
+      <TextField fx:id="cvvField" alignment="CENTER" layoutX="499.0" layoutY="227.0" prefHeight="26.0" prefWidth="66.0" promptText="3 Digits" style="-fx-background-color: #dec190;" />
    </children>
 </AnchorPane>
