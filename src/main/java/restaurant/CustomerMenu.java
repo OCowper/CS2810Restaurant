@@ -256,35 +256,21 @@ public class CustomerMenu implements Subject, ViewInterface {
    *
    */
   private class MenuItem {
-    private String id;
     private String itemName;
     private Double price;
     private String description;
     private String ingredients;
     private int calories;
-    private String category;
-    private boolean inStock;
     private String imagePath;
 
     public MenuItem(String nameId, String name, Double pr, String descr, String ingr, int c,
         String cat, boolean t, String img) {
-      this.id = nameId;
       this.itemName = name;
       this.price = pr;
-      this.category = cat;
       this.description = descr;
       this.ingredients = ingr;
       this.calories = c;
-      this.inStock = t;
       this.imagePath = img;
-    }
-
-    public String getId() {
-      return id;
-    }
-
-    public String getCategory() {
-      return category;
     }
 
     public String getDescription() {
@@ -305,10 +291,6 @@ public class CustomerMenu implements Subject, ViewInterface {
 
     public int getCalories() {
       return calories;
-    }
-
-    public boolean getAvailability() {
-      return inStock;
     }
 
     public String getImagePath() {
