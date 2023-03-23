@@ -64,7 +64,7 @@
             <Font size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="totalAmount" layoutX="297.0" layoutY="305.0" prefHeight="26.0" prefWidth="256.0" style="-fx-background-color: #dec190;" />
+      <TextField fx:id="totalAmount" editable="false" layoutX="297.0" layoutY="305.0" prefHeight="26.0" prefWidth="256.0" style="-fx-background-color: #dec190;" />
       <Button fx:id="placeOrderButton" layoutX="361.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleCheckoutButton" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #BA8B39;" text="Checkout" textFill="WHITE" />
       <Text fx:id="itemsHeading" layoutX="230.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ITEMS">
          <font>

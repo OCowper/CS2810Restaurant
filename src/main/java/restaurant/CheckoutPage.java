@@ -118,10 +118,10 @@ public class CheckoutPage implements Subject, ViewInterface {
   }
 
   /**
-   * Handler for if the cart button is pressed.
+   * Handling for if the cart screen switcher is pressed.
    *
    * @param event representing the button press
-   * @throws IOException if an IO error occurs
+   * @throws IOException if an IO error occurs.
    */
   public void handleCartBtn(ActionEvent event) throws IOException {
     FXMLLoader loader =
@@ -131,7 +131,7 @@ public class CheckoutPage implements Subject, ViewInterface {
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
     obs.setView(loader.getController());
-
+    obs.orderStartup();
     window.setScene(checkout);
     window.show();
   }
@@ -270,7 +270,7 @@ public class CheckoutPage implements Subject, ViewInterface {
       }
 
     }
-    totalAmount.setText(String.valueOf(totalCost));
+    totalAmount.setText(String.format("%.2f", totalCost));
   }
 
   private void listexit() {

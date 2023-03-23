@@ -19,12 +19,13 @@ public class EstablishConnection {
     String user = userInput.nextLine();
     System.out.println("Enter your password: ");
     String password = userInput.nextLine();
-    String database = "localhost:5432/";
+    String database = "teachdb.cs.rhul.ac.uk";
     System.out.println("Attempting Connection");
     Connection connection = null;
     try {
       String protocol = "jdbc:postgresql://";
-      String fullUrl = protocol + database + "postgres";
+      String databaseName = "/CS2855%2F";
+      String fullUrl = protocol + database + databaseName + user;
       connection = DriverManager.getConnection(fullUrl, user, password);
     } catch (SQLException e) {
       String errorMsg = e.getMessage();
