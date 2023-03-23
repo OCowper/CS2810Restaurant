@@ -139,15 +139,14 @@ public class CustomerMenu implements Subject, ViewInterface {
    * Puts the item from database on to the menu view.
    */
   public void initializeAfter() {
-    vbox.getChildren().clear();
     Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
     // populating the menu with item categories and items
     for (String key : itemsMap.keySet()) {
       vbox.getChildren().add(new Label(key));
       for (MenuItem item : itemsMap.get(key)) {
-        CheckBox cb = new CheckBox(item.getPrice());
+        CheckBox cb = new CheckBox(item.getPrice() + "");
         Hyperlink hl = new Hyperlink(item.getName()); // item name will be clickable for description
-        hl.setOnAction(e -> showDescription(item)); // sets behavior on click
+        hl.setOnAction(e -> showDescription(item)); // sets behaviour on click
 
         cb.setGraphic(hl);
         cb.setContentDisplay(ContentDisplay.LEFT); // name set to be left of everything else
@@ -166,7 +165,9 @@ public class CustomerMenu implements Subject, ViewInterface {
 
   private void showDescription(MenuItem item) {
     itemName.setText(item.getName());
-    itemDescription.setText(item.getDescription());
+    String description = item.getDescription() + "\n\nIngredients: " + item.getIngredients() + "\n"
+        + item.getCalories() + "kCal";
+    itemDescription.setText(description);
     descriptionBox.setVisible(true);
   }
 
@@ -254,19 +255,31 @@ public class CustomerMenu implements Subject, ViewInterface {
    *
    */
   private class MenuItem {
+    private String id;
     private String itemName;
-    private String price;
-    private String category;
+    private Double price;
     private String description;
+    private String ingredients;
+    private int calories;
+    private String category;
+    private boolean inStock;
     private String imagePath;
 
-
-    public MenuItem(String name, String pr, String cat, String descr, String imagePath) {
+    public MenuItem(String nameId, String name, Double pr, String descr, String ingr, int c,
+        String cat, boolean t, String img) {
+      this.id = nameId;
       this.itemName = name;
       this.price = pr;
       this.category = cat;
       this.description = descr;
-      this.imagePath = imagePath;
+      this.ingredients = ingr;
+      this.calories = c;
+      this.inStock = t;
+      this.imagePath = img;
+    }
+
+    public String getId() {
+      return id;
     }
 
     public String getCategory() {
@@ -281,14 +294,25 @@ public class CustomerMenu implements Subject, ViewInterface {
       return itemName;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
       return price;
+    }
+
+    public String getIngredients() {
+      return ingredients;
+    }
+
+    public int getCalories() {
+      return calories;
+    }
+
+    public boolean getAvailability() {
+      return inStock;
     }
 
     public String getImagePath() {
       return imagePath;
     }
-
 
     @Override
     public String toString() {
@@ -315,8 +339,9 @@ public class CustomerMenu implements Subject, ViewInterface {
     try {
       while (rs.next()) {
         String key = rs.getString("item_category").trim().toLowerCase();
-        MenuItem toAdd = new MenuItem(rs.getString("item_name"), rs.getString("item_id"),
-            rs.getString("item_category"), rs.getString("item_description"),
+        MenuItem toAdd = new MenuItem(rs.getString("item_id"), rs.getString("item_name"),
+            rs.getDouble("price"), rs.getString("item_description"), rs.getString("ingredients"),
+            rs.getInt("calories"), rs.getString("item_category"), rs.getBoolean("available"),
             rs.getString("image_path"));
         // adds a new value to the list of items. Handles keys that are not present
         map.computeIfAbsent(key, k -> new ArrayList<MenuItem>()).add(toAdd);
@@ -447,13 +472,13 @@ public class CustomerMenu implements Subject, ViewInterface {
     FXMLLoader loader =
         new FXMLLoader(getClass().getClassLoader().getResource("checkoutPage.fxml"));
     Parent cartParent = null;
-    
+
     try {
       cartParent = loader.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    
+
     Scene checkout = new Scene(cartParent);
 
     Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -462,7 +487,7 @@ public class CustomerMenu implements Subject, ViewInterface {
     window.setScene(checkout);
     window.show();
   }
-  
+
   public Observer obs;
   private Order curOrder;
 
