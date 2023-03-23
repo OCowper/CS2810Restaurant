@@ -141,6 +141,7 @@ public class CustomerMenu implements Subject, ViewInterface {
   public void initializeAfter() {
     Map<String, List<MenuItem>> itemsMap = queryItemsFromDb();
     // populating the menu with item categories and items
+    vbox.getChildren().clear();
     for (String key : itemsMap.keySet()) {
       vbox.getChildren().add(new Label(key));
       for (MenuItem item : itemsMap.get(key)) {
