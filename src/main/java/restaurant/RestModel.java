@@ -268,5 +268,10 @@ public class RestModel implements Subject {
     return Operations.executeQuery(connection, query);
   }
 
+  public ResultSet getItemPrice(String item) {
+    String query = "SELECT price FROM items where item_name = '" + item + "';";
+    return Operations.executeQuery(connection, query);
+  }
+
 
 }

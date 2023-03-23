@@ -253,10 +253,19 @@ public class CheckoutPage implements Subject, ViewInterface {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    ResultSet price;
     for (int i = 0; i < itemsList.length; i++) {
       itemsListview.getItems().add(itemsList[i]);
       quantityListview.getItems().add("1");
-      
+      price = obs.getItemPrice(itemsList[i]);
+      try {
+        while (price.next()) {
+          priceListview.getItems().add(String.valueOf(price.getFloat(1)));
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+
     }
   }
 

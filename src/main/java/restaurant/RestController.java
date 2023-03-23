@@ -194,5 +194,10 @@ public class RestController implements Observer {
     return model.getLatestOrder(); 
   }
 
+  @Override
+  public ResultSet getItemPrice(String item) {
+    return model.getItemPrice(item);
+  }
+
 
 }

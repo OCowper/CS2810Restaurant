@@ -166,4 +166,12 @@ public interface Observer {
    */
   public ResultSet getLatestOrder();
 
+  /**
+   * Returns the price of an item.
+   *
+   * @param item the item to be queried
+   * @return result set containing the price
+   */
+  public ResultSet getItemPrice(String item);
+
 }
