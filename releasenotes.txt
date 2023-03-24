@@ -1,3 +1,17 @@
+Release: Final
+
+Customer cart and payment is now implemented - on placing an order customer is sent to the cart
+which shows individual prices. 
+Customers are then taken to the payment page where they can enter cart details, and recieve 
+their order ID
+Customers can see photos of items.
+Customers can select a type of item to display on the menu
+
+Orders are only displayed on the staff side when they are paid
+Staff can ask for a list of tables with current orders so they know who to service
+Staff can add a new stock item to the database
+Staff can toggle items back on now if they become reavailable
+
 Release: Sprint 4:
 
 Customers can click on an item to view the description
