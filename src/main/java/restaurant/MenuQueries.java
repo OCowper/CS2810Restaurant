@@ -106,10 +106,10 @@ public class MenuQueries {
     StringBuffer buffer = new StringBuffer(item);
     buffer.deleteCharAt(item.length() - 1);
     try {
-      PreparedStatement pStatement = connection.prepareStatement(statement);
-      pStatement.setString(1, buffer.toString());
-      pStatement.setString(2, item);
-      pStatement.executeUpdate();
+      PreparedStatement prepStatement = connection.prepareStatement(statement);
+      prepStatement.setString(1, buffer.toString());
+      prepStatement.setString(2, item);
+      prepStatement.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }

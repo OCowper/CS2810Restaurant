@@ -162,7 +162,7 @@ public interface Observer {
   public void setPaid(int latestOrderNum);
 
   /**
-   * Returns the most recently placed order in the database
+   * Returns the most recently placed order in the database.
    */
   public ResultSet getLatestOrder();
 

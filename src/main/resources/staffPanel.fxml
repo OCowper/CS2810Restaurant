@@ -104,9 +104,9 @@
          </font>
 
       </Label>
-      <ListView fx:id="TabelNumberListView" layoutX="341.0" layoutY="88.0" prefHeight="220.0" prefWidth="151.0" />
-      <Button fx:id="AssignTableNumberButton" layoutX="349.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleAssign" prefHeight="26.0" prefWidth="135.0" style="-fx-background-color: #BA8B39;" text="Assign" textFill="WHITE" />
-      <Label fx:id="CurrentTablesLabel" layoutX="363.0" layoutY="69.0" text="Current Tables:" />
+      <ListView fx:id="tableNumberListView" layoutX="341.0" layoutY="88.0" prefHeight="220.0" prefWidth="151.0" />
+      <Button fx:id="assignTableNumberButton" layoutX="349.0" layoutY="318.0" mnemonicParsing="false" onAction="#handleAssign" prefHeight="26.0" prefWidth="135.0" style="-fx-background-color: #BA8B39;" text="Assign" textFill="WHITE" />
+      <Label fx:id="currentTablesLabel" layoutX="363.0" layoutY="69.0" text="Current Tables:" />
 
    </children>
 

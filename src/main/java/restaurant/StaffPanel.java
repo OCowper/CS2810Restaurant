@@ -28,13 +28,13 @@ import javafx.stage.Stage;
 public class StaffPanel implements ViewInterface, Subject {
 
   @FXML
-  private Button AssignTableNumberButton;
+  private Button assignTableNumberButton;
 
   @FXML
   private Button notificationsButton;
 
   @FXML
-  private Label CurrentTablesLabel;
+  private Label currentTablesLabel;
 
   @FXML
   private Button logoutBtn;
@@ -49,7 +49,7 @@ public class StaffPanel implements ViewInterface, Subject {
   private Button waiterViewBtn;
 
   @FXML
-  private ListView<String> TabelNumberListView;
+  private ListView<String> tableNumberListView;
   
 
   /**
@@ -250,7 +250,7 @@ public class StaffPanel implements ViewInterface, Subject {
     ResultSet rs = obs.getTables();
     try {
       while (rs.next()) {
-        TabelNumberListView.getItems().add(String.valueOf(rs.getInt(1)));
+        tableNumberListView.getItems().add(String.valueOf(rs.getInt(1)));
       }
     } catch (SQLException e) {
       e.printStackTrace();
