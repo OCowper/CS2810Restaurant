@@ -43,6 +43,8 @@ public class RestStartup {
       } catch (IOException e) {
         e.printStackTrace();
       }
+      System.out.println("first time setup ran, please relaunch");
+      System.exit(0);
     }
   }
 

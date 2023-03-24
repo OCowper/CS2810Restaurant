@@ -8,7 +8,7 @@ cd PROJECT
 
 follow the docker instructions in "docker instructions.rtf"
 
-Can be run directly in maven or through eclipse run configurations:
+The project can be run directly in maven or through eclipse run configurations:
 
 maven:
 
@@ -28,16 +28,16 @@ right click on the project, go to Build Path -> configure build path
 click on the current postgres jar listing, click remove,
 click classpath, click add external jars, navigate to the top level of the project folder, select the postgres jar there.
 
+USEAGE INSTRUCTIONS
+
 on running:
 when prompted enter your database username and password (see "docker instructions.rtf")
 on a first time start up make sure you enter "Y" - you should see sql statements outputted to the console. 
-THE SYSTEM WILL NOT WORK IF YOU DO NOT TYPE IN Y (MUST BE CAPITAL).
+THE SYSTEM WILL NOT WORK IF YOU DO NOT TYPE IN Y ON THE FIRST SETUP (MUST BE CAPITAL).
+After completing first time setup the program will exit. Launch it again, and select N instead when prompted.
+The system is now ready for use.
 default staff login is:
 id: 123456789
 password: pass1
-there is an odd glitch where in some systems the same instance of the program ran with first time 
-setup of the project fails on a customer submitting an order.
-if this occurs just run the project again without first time setup and it will work.
-
 
 
