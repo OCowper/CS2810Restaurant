@@ -24,6 +24,7 @@ public class EstablishConnection {
     Connection connection = null;
     try {
       String protocol = "jdbc:postgresql://";
+      String databaseName = "";
       String fullUrl = protocol + database + "postgres";
       connection = DriverManager.getConnection(fullUrl, user, password);
     } catch (SQLException e) {
