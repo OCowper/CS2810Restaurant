@@ -1,9 +1,9 @@
 # Team Project
 
 This is a simulation of a restaurant system, ecompassing menu, stock, orders for the kitchen, and interfacing with staff.
-This was built as part of the CS2810 Team Project module at Royal Holloway, lead by Dr Argyrios Deligkas, Prof Carlos Matos and Dr Francisco Ferreira Ruiz
+This was built as part of the CS2810 Team Project module at Royal Holloway, lead by Dr Argyrios Deligkas, Prof Carlos Matos and Dr Francisco Ferreira Ruiz.
 The team was comprised of:
-Me: Oscar Cowper - @OCowper
+Me: Oscar Cowper - @OCowper,
 Mathushan Shanthan,
 Irina Gubaciova,
 James Wood,
