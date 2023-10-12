@@ -1,5 +1,19 @@
 # Team Project
 
+This is a simulation of a restaurant system, ecompassing menu, stock, orders for the kitchen, and interfacing with staff.
+This was built as part of the CS2810 Team Project module at Royal Holloway, lead by Dr Argyrios Deligkas, Prof Carlos Matos and Dr Francisco Ferreira Ruiz
+The team was comprised of:
+Me: Oscar Cowper - @OCowper
+Mathushan Shanthan,
+Irina Gubaciova,
+James Wood,
+Manpreet Kaur,
+Isaac Joseph, 
+Shayan Shah, 
+Anton Voshchinskiy, 
+Tomor Vokshi,
+and would not have been possible without the support of the two Product Owners, Amanda Warren and Nery Riquelme Granada.
+
 Installation instructions:
 
 git clone https://gitlab.cim.rhul.ac.uk/TeamProject10/PROJECT.git
