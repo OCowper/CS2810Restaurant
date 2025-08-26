@@ -41,7 +41,7 @@ right click on the project, go to Build Path -> configure build path
 click on the current postgres jar listing, click remove,
 click classpath, click add external jars, navigate to the top level of the project folder, select the postgres jar there.
 
-USEAGE INSTRUCTIONS
+USAGE INSTRUCTIONS
 
 on running:
 when prompted enter your database username and password (see "docker instructions.rtf")
